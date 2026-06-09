@@ -20,7 +20,7 @@ from pathlib import Path
 import torch
 import torch.nn as nn
 
-from src.model import CRNN, ctc_greedy_decode
+from src.recognizer.model import CRNN, ctc_greedy_decode
 
 logger = logging.getLogger(__name__)
 

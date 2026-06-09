@@ -21,7 +21,7 @@ import numpy as np
 from PIL import Image, ImageDraw, ImageFont
 from tqdm import tqdm
 
-from src.corpus import random_text
+from .corpus import random_text
 
 logger = logging.getLogger(__name__)
 

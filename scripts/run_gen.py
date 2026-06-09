@@ -10,7 +10,7 @@ from pathlib import Path
 # Thêm thư mục gốc vào đường dẫn hệ thống để Python tìm thấy module src
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from src.data_gen import generate_dataset
+from src.data_generation import generate_dataset
 
 def get_font_weights(fonts: list[str], common_fonts: list[str], common_wt: float, rare_wt: float) -> list[float]:
     """Tạo mảng xác suất: Font phổ biến (thẳng) x trọng số cao, font lạ x trọng số thấp."""

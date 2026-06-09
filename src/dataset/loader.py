@@ -6,8 +6,8 @@ import torch
 from torch.utils.data import Dataset, DataLoader
 from pathlib import Path
 
-from src.charset import CharsetCodec
-from src.augment import preprocess_for_crnn
+from src.dataset.charset import CharsetCodec
+from src.data_generation import preprocess_for_crnn
 
 class OCRDataset(Dataset):
     def __init__(

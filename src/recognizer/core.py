@@ -13,7 +13,7 @@ from typing import Protocol
 import cv2
 import numpy as np
 
-from src.charset import CharsetCodec
+from src.dataset import CharsetCodec
 
 try:
     import onnxruntime as ort

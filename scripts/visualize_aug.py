@@ -10,8 +10,8 @@ from pathlib import Path
 # Thêm thư mục gốc vào đường dẫn hệ thống để Python tìm thấy module src
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from src.data_gen import generate_sample
-from src.augment import preprocess_for_crnn
+from src.data_generation import generate_sample
+from src.data_generation import preprocess_for_crnn
 
 def main():
     font_file = Path("data/font_list.txt")

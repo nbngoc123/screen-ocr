@@ -19,8 +19,8 @@ paths:
 
 # ─── Data Generation ──────────────────────────────────────────────────────────
 data_gen:
-  n_train:        100000    
-  n_val:          10000     
+  n_train:        10    
+  n_val:          1     
   val_ratio:      0.1        # 10% font dành riêng cho tập validation
   font_size_min:  10
   font_size_max:  52
@@ -40,10 +40,11 @@ data_gen:
 detector:
   max_size:       960        # Kích thước ảnh tối đa (pixel) đưa vào DBNet. Giúp tránh tràn RAM, đảm bảo tốc độ.
   prob_threshold: 0.3        # Ngưỡng xác suất (Probability Map) quyết định pixel nào là viền chữ.
-  unclip_ratio:   3.0        # Hệ số nới lỏng (padding) Bounding Box theo thuật toán Vatti. Chuẩn: 1.5 - 2.0.
+  unclip_ratio:   0.30        # Hệ số nới lỏng (padding) Bounding Box theo thuật toán Vatti. Chuẩn: 1.5 - 2.0.
   min_area:       10         # Bỏ qua các Box có diện tích nhỏ hơn mức này để lọc nhiễu.
   min_padding_x:  4          # Padding an toàn tối thiểu (pixel) theo chiều X
   min_padding_y:  4          # Padding an toàn tối thiểu (pixel) theo chiều Y
+  box_score_threshold: 0.5   # Confidence score tối thiểu của cả vùng bounding box
   normalize_mean: [0.485, 0.456, 0.406] # Tham số ImageNet Normalize (Mean)
   normalize_std:  [0.229, 0.224, 0.225] # Tham số ImageNet Normalize (Std)
 

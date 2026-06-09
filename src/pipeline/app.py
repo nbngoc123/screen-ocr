@@ -12,8 +12,8 @@ from typing import Any
 import numpy as np
 
 from src.detector import BoundingBox, DBNetDetector
-from src.postprocess import postprocess
-from src.recognizer import CRNNRecognizer
+from src.recognizer.postprocess import postprocess
+from src.recognizer.core import CRNNRecognizer
 
 logger = logging.getLogger(__name__)
 

@@ -1,5 +1,5 @@
 import pytest
-from src.postprocess import postprocess
+from src.recognizer.postprocess import postprocess
 
 def test_postprocess_whitespace():
     assert postprocess("  hello  world  ") == "hello world"
