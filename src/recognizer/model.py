@@ -105,8 +105,9 @@ class CRNN(nn.Module):
             x = x.repeat(1, 3, 1, 1)
             
         feat = self.cnn(x)             # (B, 512, H', W')
-        # Dùng AdaptiveAvgPool2d ép chiều cao về đúng 1 pixel để hỗ trợ mọi target_h (vd: 32, 48, 64)
-        feat = nn.functional.adaptive_avg_pool2d(feat, (1, None))
+        # Ép chiều cao về đúng 1 pixel để hỗ trợ mọi target_h (vd: 32, 48, 64)
+        # Thay vì adaptive_avg_pool2d(feat, (1, None)) gây lỗi ONNX, dùng .mean(dim=2, keepdim=True)
+        feat = feat.mean(dim=2, keepdim=True)
         feat = feat.squeeze(2)         # (B, 512, W')
         feat = feat.permute(0, 2, 1)   # (B, W', 512)
         
@@ -139,7 +140,11 @@ def ctc_greedy_decode(logits: torch.Tensor, charset: str) -> list[str]:
         for i, char_idx in enumerate(pred):
             # Nếu ko phải blank (idx=0) và không bị lặp chữ (khác ký tự trước)
             if char_idx != 0 and (not (i > 0 and char_idx == pred[i - 1])):
-                char_list.append(charset[char_idx - 1]) # charset ko chứa blank (id=0)
+                # Kiểm tra tránh out of range nếu dùng nhầm model/charset
+                if char_idx - 1 < len(charset):
+                    char_list.append(charset[char_idx - 1])
+                else:
+                    char_list.append('?') # Ký tự không xác định
         results.append("".join(char_list))
         
     return results
