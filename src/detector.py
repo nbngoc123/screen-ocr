@@ -134,71 +134,124 @@ class DBNetDetector:
         
         return img_tensor, (h, w)
 
-    def _postprocess(self, prob_map: np.ndarray, orig_shape: tuple[int, int], thresh: float = 0.3, unclip_ratio: float = 2.0, min_area: int = 10, min_padding_x: int = 4, min_padding_y: int = 4) -> list[BoundingBox]:
-        """
-        Hậu xử lý Probability Map -> BoundingBoxes sử dụng pyclipper.
-        """
+    def _postprocess(
+        self,
+        prob_map: np.ndarray,
+        orig_shape: tuple[int, int],
+        thresh: float = 0.3,
+        unclip_ratio: float = 2.0,
+        min_area: int = 10,
+        min_padding_x: int = 4,
+        min_padding_y: int = 4,
+        box_score_threshold: float = 0.5,
+    ) -> list[BoundingBox]:
         orig_h, orig_w = orig_shape
         pred_h, pred_w = prob_map.shape
-        
-        # Binarize
+
         bitmap = (prob_map > thresh).astype(np.uint8) * 255
-        
-        # Tìm contours
-        contours, _ = cv2.findContours(bitmap, cv2.RETR_LIST, cv2.CHAIN_APPROX_SIMPLE)
-        
-        boxes = []
+
+        contours, _ = cv2.findContours(
+            bitmap,
+            cv2.RETR_LIST,
+            cv2.CHAIN_APPROX_SIMPLE
+        )
+
+        scale_x = orig_w / pred_w
+        scale_y = orig_h / pred_h
+
+        boxes: list[BoundingBox] = []
+
         for contour in contours:
             area = cv2.contourArea(contour)
+
             if area < min_area:
                 continue
-                
-            # --- PADDING (UNCLIP) CHUẨN DBNET BẰNG PYCLIPPER ---
+
+            pts = contour.squeeze(1)
+            
+            # Bảo vệ nếu squeeze làm thay đổi cấu trúc không lường trước
+            if pts.ndim != 2 or len(pts) < 3:
+                continue
+
             perimeter = cv2.arcLength(contour, True)
-            if perimeter == 0:
+
+            if perimeter <= 0:
                 continue
-                
-            # Tính khoảng cách giãn nở polygon
+
             distance = area * unclip_ratio / perimeter
-            
-            # Khởi tạo Pyclipper để nới rộng đa giác
-            offset = pyclipper.PyclipperOffset()
-            offset.AddPath(contour.squeeze(1).tolist(), pyclipper.JT_ROUND, pyclipper.ET_CLOSEDPOLYGON)
-            expanded = offset.Execute(distance)
-            
-            if len(expanded) == 0:
+
+            try:
+                offset = pyclipper.PyclipperOffset()
+                offset.AddPath(
+                    pts.tolist(),
+                    pyclipper.JT_ROUND,
+                    pyclipper.ET_CLOSEDPOLYGON
+                )
+                expanded = offset.Execute(distance)
+            except Exception:
                 continue
-                
-            expanded_contour = np.array(expanded[0]).reshape(-1, 1, 2)
-            
-            # Lấy bounding box chữ nhật từ polygon ĐÃ GIÃN NỞ
-            x, y, w, h = cv2.boundingRect(expanded_contour)
-            
-            # Tính tỉ lệ phục hồi lại kích thước gốc
-            scale_x = orig_w / pred_w
-            scale_y = orig_h / pred_h
-            
+
+            if not expanded:
+                continue
+
+            largest_poly = max(
+                expanded,
+                key=lambda p: cv2.contourArea(
+                    np.array(p, dtype=np.int32)
+                )
+            )
+
+            expanded_contour = np.array(
+                largest_poly,
+                dtype=np.int32
+            ).reshape(-1, 1, 2)
+
+            mask = np.zeros(
+                prob_map.shape,
+                dtype=np.uint8
+            )
+
+            cv2.fillPoly(
+                mask,
+                [contour], # <-- SỬ DỤNG CONTOUR GỐC ĐỂ TÍNH SCORE, KHÔNG DÙNG EXPANDED!
+                1
+            )
+
+            scores = prob_map[mask == 1]
+
+            if scores.size == 0:
+                continue
+
+            score = float(scores.mean())
+
+            if score < box_score_threshold:
+                continue
+
+            x, y, w, h = cv2.boundingRect(
+                expanded_contour
+            )
+
             x1 = int(x * scale_x)
             y1 = int(y * scale_y)
+
             x2 = int((x + w) * scale_x)
             y2 = int((y + h) * scale_y)
-            
-            # Áp dụng min padding tránh trường hợp scale quá nhỏ hoặc bị lẹm chút xíu
+
             x1 = max(0, x1 - min_padding_x)
             y1 = max(0, y1 - min_padding_y)
             x2 = min(orig_w, x2 + min_padding_x)
             y2 = min(orig_h, y2 + min_padding_y)
-            
-            # Tính confidence trung bình trong vùng chữ nhật (trên prob_map)
-            # Chú ý: Cần lấy vùng crop trong giới hạn ảnh
-            crop_y = max(0, y)
-            crop_x = max(0, x)
-            crop_h = min(pred_h - crop_y, h)
-            crop_w = min(pred_w - crop_x, w)
-            score = np.mean(prob_map[crop_y:crop_y+crop_h, crop_x:crop_x+crop_w])
-            
-            boxes.append(BoundingBox(x1=x1, y1=y1, x2=x2, y2=y2, confidence=float(score)))
-            
+
+            boxes.append(
+                BoundingBox(
+                    x1=x1,
+                    y1=y1,
+                    x2=x2,
+                    y2=y2,
+                    confidence=score
+                )
+            )
+
         return boxes
 
     def detect(self, image: np.ndarray, max_size: int | None = None, prob_threshold: float | None = None, unclip_ratio: float | None = None, min_area: int | None = None) -> list[BoundingBox]:
@@ -215,6 +268,7 @@ class DBNetDetector:
         c_min_area = min_area if min_area is not None else self.config.get("min_area", 10)
         c_min_pad_x = self.config.get("min_padding_x", 4)
         c_min_pad_y = self.config.get("min_padding_y", 4)
+        c_box_score = self.config.get("box_score_threshold", 0.5)
             
         # 1. Preprocess
         input_tensor, orig_shape = self._preprocess(image, max_size=c_max_size)
@@ -223,9 +277,26 @@ class DBNetDetector:
         with self._lock:
             outputs = self.sess.run([self.output_name], {self.input_name: input_tensor})
             
-        # Probability map có shape (1, 1, H, W)
-        prob_map = outputs[0][0, 0, :, :]
+        out = outputs[0]
+
+        if out.ndim == 4:
+            prob_map = out[0, 0]
+        elif out.ndim == 3:
+            prob_map = out[0]
+        else:
+            raise RuntimeError(
+                f"Unexpected DBNet output shape: {out.shape}"
+            )
         
         # 3. Postprocess
-        boxes = self._postprocess(prob_map, orig_shape, thresh=c_prob_thresh, unclip_ratio=c_unclip, min_area=c_min_area, min_padding_x=c_min_pad_x, min_padding_y=c_min_pad_y)
+        boxes = self._postprocess(
+            prob_map, 
+            orig_shape, 
+            thresh=c_prob_thresh, 
+            unclip_ratio=c_unclip, 
+            min_area=c_min_area, 
+            min_padding_x=c_min_pad_x, 
+            min_padding_y=c_min_pad_y,
+            box_score_threshold=c_box_score
+        )
         return boxes
