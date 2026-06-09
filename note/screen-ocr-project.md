@@ -152,46 +152,6 @@ aug = A.Compose([
 ])
 ```
 
-### 2. Real screen capture với UIAutomation
-
-Thu thập real data tự động — không cần label tay.
-
-```python
-import uiautomation as auto
-import mss
-import numpy as np
-from pathlib import Path
-
-def collect_screen_samples(output_dir: str, max_samples: int = 10000):
-    Path(output_dir).mkdir(parents=True, exist_ok=True)
-    count = 0
-
-    with mss.mss() as sct:
-        screenshot = np.array(sct.grab(sct.monitors[1]))
-
-    def walk(ctrl, depth=0):
-        nonlocal count
-        if count >= max_samples:
-            return
-        try:
-            name = ctrl.Name.strip()
-            rect = ctrl.BoundingRectangle
-            if name and len(name) >= 2 and rect.width() > 5 and rect.height() > 5:
-                crop = screenshot[rect.top:rect.bottom, rect.left:rect.right]
-                if crop.size > 0:
-                    img_path = f"{output_dir}/{count:06d}.png"
-                    lbl_path = f"{output_dir}/{count:06d}.txt"
-                    cv2.imwrite(img_path, crop)
-                    Path(lbl_path).write_text(name, encoding="utf-8")
-                    count += 1
-        except Exception:
-            pass
-        for child in ctrl.GetChildren():
-            walk(child, depth + 1)
-
-    walk(auto.GetRootControl())
-    print(f"Collected {count} samples")
-```
 
 ### 3. Charset definition
 
@@ -431,31 +391,41 @@ def recognize_endpoint(req: OCRRequest):
 screen-ocr/
 ├── data/
 │   ├── synthetic/          # Generated samples
-│   │   ├── 000001.png
-│   │   └── 000001.txt
-│   ├── real/               # UIAutomation captures
+│   ├── real/               # Manual captures
 │   └── charset.txt
 ├── models/
 │   ├── dbnet.onnx
 │   ├── crnn.onnx
 │   └── crnn_checkpoint.pt
 ├── src/
-│   ├── data_gen.py         # Synthetic generation
-│   ├── crawler.py          # UIAutomation collector
-│   ├── dataset.py          # PyTorch Dataset
-│   ├── model.py            # CRNN architecture
-│   ├── train.py            # Training loop
-│   ├── detector.py         # DBNet wrapper
-│   ├── recognizer.py       # CRNN ONNX wrapper
-│   ├── postprocess.py      # Text cleanup
-│   └── pipeline.py         # Full end-to-end
+│   ├── data_generation/    # Sinh dữ liệu
+│   │   ├── augment.py
+│   │   ├── corpus.py
+│   │   └── generator.py
+│   ├── dataset/            # Loaders
+│   │   ├── charset.py
+│   │   └── loader.py
+│   ├── detector/           # DBNet++
+│   │   ├── core.py
+│   │   ├── polygon_utils.py
+│   │   ├── postprocess.py
+│   │   ├── preprocess.py
+│   │   └── types.py
+│   ├── recognizer/         # CRNN
+│   │   ├── core.py
+│   │   ├── model.py
+│   │   └── postprocess.py
+│   ├── pipeline/           # End-to-end
+│   │   └── app.py
+│   └── trainer/            # Vòng huấn luyện
+│       └── train.py
 ├── api/
 │   └── server.py           # FastAPI service
 ├── scripts/
 │   ├── export_onnx.py
 │   └── evaluate.py
 ├── configs/
-│   └── train_config.yaml
+│   └── default.yaml
 └── requirements.txt
 ```
 
@@ -486,7 +456,7 @@ pyyaml>=6.0.0
 
 | Tuần | Milestone |
 |---|---|
-| 1 | Data pipeline: synthetic gen + UIAutomation crawler |
+| 1 | Data pipeline: synthetic gen |
 | 2 | Train CRNN baseline, CER < 10% |
 | 3 | Fine-tune với real data, CER < 2% |
 | 4 | Export ONNX, FastAPI, end-to-end < 100ms |

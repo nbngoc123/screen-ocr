@@ -56,3 +56,7 @@ runs/
 # ─── OS ───────────────────────────────────────────────────────────────────────
 .DS_Store
 Thumbs.db
+
+checkpoints/
+test_labels.txt
+@AutomationLog.txt
