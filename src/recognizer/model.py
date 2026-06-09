@@ -20,6 +20,7 @@ import logging
 
 import torch
 import torch.nn as nn
+from torchvision.models import resnet18, ResNet18_Weights
 
 logger = logging.getLogger(__name__)
 
@@ -44,13 +45,49 @@ class CRNN(nn.Module):
 
     def __init__(self, num_classes: int) -> None:
         super().__init__()
-        # TODO: implement — xem screen-ocr-project.md §CRNN architecture
-        # 1. Load resnet18(weights=ResNet18_Weights.IMAGENET1K_V1)
-        # 2. Sửa stride layer4: conv1.stride = (1,1), downsample[0].stride = (1,1)
-        # 3. Xây dựng self.cnn = Sequential(backbone layers bỏ avgpool + fc)
-        # 4. self.rnn = LSTM(input=512, hidden=256, layers=2, bidirectional=True)
-        # 5. self.fc  = Linear(512, num_classes + 1)
-        raise NotImplementedError
+        # Load resnet18(weights=ResNet18_Weights.IMAGENET1K_V1)
+        backbone = resnet18(weights=ResNet18_Weights.IMAGENET1K_V1)
+        
+        # Sửa stride các layer cuối để giữ nguyên độ phân giải ngang (width) 
+        # nhưng downsample chiều cao (height) từ 32 xuống 1.
+        # ResNet18 mặc định: conv1(2x2) -> maxpool(2x2) -> layer2(2x2) -> layer3(2x2) -> layer4(2x2)
+        # Nếu chiều cao là 32, qua conv1+maxpool còn 8. 
+        # Ta cần 3 bước downsample (8 -> 4 -> 2 -> 1) bằng stride (2, 1).
+        backbone.layer2[0].conv1.stride = (2, 1)
+        backbone.layer2[0].downsample[0].stride = (2, 1)
+        
+        backbone.layer3[0].conv1.stride = (2, 1)
+        backbone.layer3[0].downsample[0].stride = (2, 1)
+        
+        backbone.layer4[0].conv1.stride = (2, 1)
+        if backbone.layer4[0].downsample is not None:
+            backbone.layer4[0].downsample[0].stride = (2, 1)
+
+        # Xây dựng self.cnn = Sequential(backbone layers bỏ avgpool + fc)
+        self.cnn = nn.Sequential(
+            backbone.conv1,
+            backbone.bn1,
+            backbone.relu,
+            backbone.maxpool,
+            backbone.layer1,
+            backbone.layer2,
+            backbone.layer3,
+            backbone.layer4
+        )
+
+        # self.rnn = LSTM(input=512, hidden=256, layers=2, bidirectional=True)
+        self.rnn = nn.LSTM(
+            input_size=512,
+            hidden_size=256,
+            num_layers=2,
+            bidirectional=True,
+            batch_first=True,
+            dropout=0.1
+        )
+
+        # self.fc  = Linear(512, num_classes + 1)
+        # BiLSTM xuất ra 256 * 2 = 512, map về num_classes + 1 (1 cho blank)
+        self.fc = nn.Linear(512, num_classes + 1)
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
         """
@@ -62,8 +99,21 @@ class CRNN(nn.Module):
         Returns:
             Logits tensor (B, W', num_classes+1) chưa softmax.
         """
-        # TODO: implement
-        raise NotImplementedError
+        # CNN forward: (B, 1, 32, W) -> (B, 512, 1, W')
+        # Tuy nhiên đầu vào ta là (B, 1, 32, W) grayscale, ResNet cần 3 channels.
+        # Nên ta lặp lại 3 kênh.
+        if x.size(1) == 1:
+            x = x.repeat(1, 3, 1, 1)
+            
+        feat = self.cnn(x)             # (B, 512, 1, W')
+        feat = feat.squeeze(2)         # (B, 512, W')
+        feat = feat.permute(0, 2, 1)   # (B, W', 512)
+        
+        # RNN forward
+        out, _ = self.rnn(feat)        # (B, W', 512)
+        
+        # Classifier output
+        return self.fc(out)            # (B, W', num_classes+1)
 
 
 def ctc_greedy_decode(logits: torch.Tensor, charset: str) -> list[str]:
@@ -77,5 +127,18 @@ def ctc_greedy_decode(logits: torch.Tensor, charset: str) -> list[str]:
     Returns:
         List[str] — text đã decode cho mỗi item trong batch.
     """
-    # TODO: implement
-    raise NotImplementedError
+    # 1. Greedy argmax theo phân phối logit
+    # logits shape: (B, T, C)
+    _, preds = logits.max(2) # (B, T)
+    preds = preds.cpu().numpy()
+    
+    results = []
+    for pred in preds:
+        char_list = []
+        for i, char_idx in enumerate(pred):
+            # Nếu ko phải blank (idx=0) và không bị lặp chữ (khác ký tự trước)
+            if char_idx != 0 and (not (i > 0 and char_idx == pred[i - 1])):
+                char_list.append(charset[char_idx - 1]) # charset ko chứa blank (id=0)
+        results.append("".join(char_list))
+        
+    return results

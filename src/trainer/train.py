@@ -1,134 +1,152 @@
 """
-train.py — Training loop cho CRNN model.
+train.py — Script huấn luyện mô hình CRNN.
 
-Áp dụng curriculum learning 3 giai đoạn:
-    Phase 1 (Foundation, epoch 1–15):   Synthetic, font lớn, bg trắng
-    Phase 2 (Robustness, epoch 16–35):  Synthetic + augmentation mạnh
-    Phase 3 (Fine-tune, epoch 36–45):   Real screen capture, lr thấp
-
-Quy tắc bắt buộc (screen-ocr-rules.md):
-    §3.1 — AMP (torch.cuda.amp)
-    §3.2 — Gradient clipping (max_norm=5.0)
-    §3.3 — Checkpoint theo val CER, không theo epoch
-    §3.5 — Sanity check 1 batch trước khi train
+Hỗ trợ debug mode để giới hạn số lượng mẫu huấn luyện, giúp kiểm tra luồng chạy nhanh chóng.
 """
-from __future__ import annotations
-
+import argparse
 import logging
+import os
+import sys
+import time
 from pathlib import Path
+
+# Thêm thư mục gốc của project vào PYTHONPATH để import được thư mục src
+project_root = Path(__file__).resolve().parent.parent.parent
+if str(project_root) not in sys.path:
+    sys.path.insert(0, str(project_root))
 
 import torch
 import torch.nn as nn
+from torch.optim import AdamW
+from torch.optim.lr_scheduler import ReduceLROnPlateau
 
+from src.dataset.loader import get_dataloaders
+from src.dataset.charset import CharsetCodec
 from src.recognizer.model import CRNN, ctc_greedy_decode
 
+logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
 logger = logging.getLogger(__name__)
 
 
-def compute_loss(
-    model: CRNN,
-    batch: dict,
-    ctc_loss: nn.CTCLoss,
-) -> torch.Tensor:
-    """
-    Tính CTC loss cho một batch.
-
-    Args:
-        model:    CRNN model (train mode).
-        batch:    Dict từ collate_fn: image, label, label_len, input_len.
-        ctc_loss: nn.CTCLoss instance.
-
-    Returns:
-        Scalar loss tensor.
-    """
-    # TODO: implement
-    raise NotImplementedError
-
-
-def sanity_check(
-    model: CRNN,
-    dataloader: torch.utils.data.DataLoader,
-    ctc_loss: nn.CTCLoss,
-) -> None:
-    """
-    Chạy 1 batch trước khi train để phát hiện bug sớm.
-
-    Kiểm tra:
-        - Loss không phải NaN
-        - Loss < 20 (nếu quá cao → label encoding sai)
-
-    Args:
-        model:      CRNN model.
-        dataloader: Training dataloader.
-        ctc_loss:   CTCLoss instance.
-
-    Raises:
-        RuntimeError: Nếu sanity check không pass.
-    """
-    # TODO: implement — xem screen-ocr-rules.md §3.5
-    raise NotImplementedError
+def evaluate(model, val_loader, criterion, device):
+    """Đánh giá mô hình trên tập validation."""
+    model.eval()
+    losses = []
+    
+    with torch.no_grad():
+        for batch in val_loader:
+            images = batch["image"].to(device)
+            labels = batch["label"].to(device)
+            label_len = batch["label_len"].to(device)
+            
+            outputs = model(images)  # (B, T, C)
+            log_probs = outputs.log_softmax(2).permute(1, 0, 2)  # (T, B, C)
+            input_lengths = torch.full((images.size(0),), outputs.size(1), dtype=torch.long)
+            
+            loss = criterion(log_probs, labels.cpu(), input_lengths, label_len.cpu())
+            losses.append(loss.item())
+            
+    return sum(losses) / len(losses) if losses else 0.0
 
 
-def evaluate(
-    model: CRNN,
-    dataloader: torch.utils.data.DataLoader,
-    charset: str,
-    device: torch.device,
-) -> dict[str, float]:
-    """
-    Đánh giá model trên val/test set.
+def main():
+    parser = argparse.ArgumentParser(description="Huấn luyện mô hình CRNN")
+    parser.add_argument("--train-dir", type=str, default="data/synthetic/train", help="Thư mục dữ liệu train")
+    parser.add_argument("--val-dir", type=str, default="data/synthetic/val", help="Thư mục dữ liệu val")
+    parser.add_argument("--charset", type=str, default="data/charset.txt", help="File charset")
+    parser.add_argument("--batch-size", type=int, default=32, help="Kích thước batch")
+    parser.add_argument("--epochs", type=int, default=50, help="Số lượng epoch")
+    parser.add_argument("--lr", type=float, default=1e-3, help="Learning rate ban đầu")
+    parser.add_argument("--debug", action="store_true", help="Giới hạn 320 samples để debug")
+    args = parser.parse_args()
 
-    Args:
-        model:      CRNN model (eval mode).
-        dataloader: Val/test dataloader.
-        charset:    Charset string.
-        device:     CPU hoặc CUDA device.
+    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    logger.info(f"Khởi chạy huấn luyện trên thiết bị: {device}")
+    
+    # Tạo thư mục lưu Checkpoint
+    checkpoint_dir = Path("checkpoints")
+    checkpoint_dir.mkdir(exist_ok=True)
 
-    Returns:
-        Dict với keys: "CER", "WER", "ExactMatch"
-    """
-    # TODO: implement — dùng jiwer.cer + jiwer.wer
-    raise NotImplementedError
+    # 1. Khởi tạo DataLoader
+    logger.info("Đang load dữ liệu...")
+    train_loader, val_loader = get_dataloaders(
+        train_dirs=[args.train_dir],
+        val_dirs=[args.val_dir],
+        charset_path=args.charset,
+        batch_size=args.batch_size,
+        num_workers=0
+    )
 
+    if args.debug:
+        logger.info("DEBUG MODE: Cắt tập dữ liệu xuống còn 320 mẫu!")
+        train_loader.dataset.samples = train_loader.dataset.samples[:320]
+        val_loader.dataset.samples = val_loader.dataset.samples[:320]
+    
+    logger.info(f"Số batch train: {len(train_loader)} | Số batch val: {len(val_loader)}")
 
-def maybe_save_checkpoint(
-    model: CRNN,
-    val_cer: float,
-    path: str,
-    current_epoch: int,
-    best_cer: float,
-) -> float:
-    """
-    Lưu checkpoint nếu val CER tốt hơn best hiện tại.
+    # 2. Khởi tạo Model & Charset
+    codec = CharsetCodec(args.charset)
+    model = CRNN(num_classes=len(codec)).to(device)
+    
+    # 3. Khởi tạo Criterion, Optimizer, Scheduler
+    criterion = nn.CTCLoss(blank=0, zero_infinity=True, reduction="mean")
+    optimizer = AdamW(model.parameters(), lr=args.lr, weight_decay=1e-4)
+    # Giảm LR đi một nửa nếu Val Loss không cải thiện sau 5 epochs
+    scheduler = ReduceLROnPlateau(optimizer, mode="min", factor=0.5, patience=5, verbose=True)
 
-    Args:
-        model:         Model cần save.
-        val_cer:       CER hiện tại trên val set.
-        path:          Đường dẫn file checkpoint.
-        current_epoch: Epoch hiện tại (để log).
-        best_cer:      CER tốt nhất trước đó.
+    # 4. Vòng lặp huấn luyện
+    best_val_loss = float("inf")
+    
+    for epoch in range(1, args.epochs + 1):
+        start_time = time.time()
+        model.train()
+        batch_losses = []
+        
+        for batch_idx, batch in enumerate(train_loader):
+            images = batch["image"].to(device)
+            labels = batch["label"].to(device)
+            label_len = batch["label_len"].to(device)
 
-    Returns:
-        best_cer mới (được cập nhật nếu save).
-    """
-    # TODO: implement — xem screen-ocr-rules.md §3.3
-    raise NotImplementedError
+            optimizer.zero_grad()
+            outputs = model(images)  # (B, T, C)
+            
+            # Yêu cầu của CTCLoss: input có dạng (T, B, C)
+            log_probs = outputs.log_softmax(2).permute(1, 0, 2)
+            input_lengths = torch.full((images.size(0),), outputs.size(1), dtype=torch.long)
 
+            loss = criterion(log_probs, labels.cpu(), input_lengths, label_len.cpu())
+            loss.backward()
+            
+            # Gradient clipping để chống nổ Gradient (Gradient Explosion)
+            torch.nn.utils.clip_grad_norm_(model.parameters(), max_norm=5.0)
+            optimizer.step()
+            
+            batch_losses.append(loss.item())
 
-def train(config: dict) -> None:
-    """
-    Main training loop với curriculum learning.
+        train_loss = sum(batch_losses) / len(batch_losses) if batch_losses else 0.0
+        val_loss = evaluate(model, val_loader, criterion, device)
+        scheduler.step(val_loss)
+        
+        elapsed = time.time() - start_time
+        
+        logger.info(f"Epoch {epoch:03d}/{args.epochs} | "
+                    f"Train Loss: {train_loss:.4f} | Val Loss: {val_loss:.4f} | "
+                    f"LR: {optimizer.param_groups[0]['lr']:.6f} | Thời gian: {elapsed:.1f}s")
+        
+        # Save model nếu Val Loss thấp nhất
+        if val_loss < best_val_loss:
+            best_val_loss = val_loss
+            ckpt_path = checkpoint_dir / "crnn_best.pth"
+            torch.save(model.state_dict(), ckpt_path)
+            logger.info(f"  [+] Đã lưu checkpoint mới tốt nhất tại {ckpt_path}")
+            
+            # Thử decode ngay 1 batch để theo dõi
+            model.eval()
+            with torch.no_grad():
+                test_batch = next(iter(val_loader))
+                test_out = model(test_batch["image"].to(device))
+                preds = ctc_greedy_decode(test_out, codec.charset)
+                logger.info(f"  [>] Mẫu suy luận thử: '{preds[0]}'")
 
-    Args:
-        config: Dict config từ configs/default.yaml (đã load bằng yaml.safe_load).
-
-    Flow:
-        1. Khởi tạo model, optimizer, scheduler, loss, scaler
-        2. Sanity check
-        3. Phase 1 loop (Foundation)
-        4. Phase 2 loop (Robustness)
-        5. Phase 3 loop (Fine-tune với real data, lr thấp hơn)
-        6. Log metrics lên wandb sau mỗi epoch
-    """
-    # TODO: implement — xem screen-ocr-project.md §Training loop
-    raise NotImplementedError
+if __name__ == "__main__":
+    main()
