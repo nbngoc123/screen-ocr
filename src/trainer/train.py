@@ -117,7 +117,7 @@ def main():
     criterion = nn.CTCLoss(blank=0, zero_infinity=True, reduction="mean")
     optimizer = AdamW(model.parameters(), lr=lr, weight_decay=config["training"]["weight_decay"])
     # Giảm LR đi một nửa nếu Val Loss không cải thiện sau 5 epochs
-    scheduler = ReduceLROnPlateau(optimizer, mode="min", factor=0.5, patience=5, verbose=True)
+    scheduler = ReduceLROnPlateau(optimizer, mode="min", factor=0.5, patience=5)
 
     # 4. Vòng lặp huấn luyện
     best_val_loss = float("inf")
