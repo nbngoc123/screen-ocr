@@ -13,6 +13,8 @@ from typing import Protocol
 
 import cv2
 import numpy as np
+import yaml
+from pathlib import Path
 
 try:
     import onnxruntime as ort
@@ -47,7 +49,7 @@ class DBNetDetector:
     _instance: DBNetDetector | None = None
     _init_lock = Lock()
 
-    def __init__(self, model_path: str, providers: list[str] | None = None) -> None:
+    def __init__(self, model_path: str, providers: list[str] | None = None, config_path: str = "configs/default.yaml") -> None:
         """
         Khởi tạo ONNX session. Không nên gọi trực tiếp, dùng get_instance().
         """
@@ -56,6 +58,13 @@ class DBNetDetector:
         
         self.model_path = model_path
         self._lock = Lock()
+        
+        # Tự động đọc cấu hình detector từ file YAML
+        self.config = {}
+        if Path(config_path).exists():
+            with open(config_path, "r", encoding="utf-8") as f:
+                full_config = yaml.safe_load(f)
+                self.config = full_config.get("detector", {})
         
         if providers is None:
             providers = ["CPUExecutionProvider"]
@@ -176,15 +185,21 @@ class DBNetDetector:
             
         return boxes
 
-    def detect(self, image: np.ndarray, max_size: int = 960, prob_threshold: float = 0.3, unclip_ratio: float = 2.0, min_area: int = 10) -> list[BoundingBox]:
+    def detect(self, image: np.ndarray, max_size: int | None = None, prob_threshold: float | None = None, unclip_ratio: float | None = None, min_area: int | None = None) -> list[BoundingBox]:
         """
-        Phát hiện text bounding boxes.
+        Phát hiện text bounding boxes. Nếu không truyền các tham số, hệ thống sẽ tự động dùng giá trị đọc từ file config YAML.
         """
         if image is None or image.size == 0:
             return []
             
+        # Lấy tham số (ưu tiên tham số truyền vào hàm -> lấy từ file config -> lấy giá trị cứng mặc định)
+        c_max_size = max_size if max_size is not None else self.config.get("max_size", 960)
+        c_prob_thresh = prob_threshold if prob_threshold is not None else self.config.get("prob_threshold", 0.3)
+        c_unclip = unclip_ratio if unclip_ratio is not None else self.config.get("unclip_ratio", 2.0)
+        c_min_area = min_area if min_area is not None else self.config.get("min_area", 10)
+            
         # 1. Preprocess
-        input_tensor, orig_shape = self._preprocess(image, max_size=max_size)
+        input_tensor, orig_shape = self._preprocess(image, max_size=c_max_size)
         
         # 2. Inference
         with self._lock:
@@ -194,5 +209,5 @@ class DBNetDetector:
         prob_map = outputs[0][0, 0, :, :]
         
         # 3. Postprocess
-        boxes = self._postprocess(prob_map, orig_shape, thresh=prob_threshold, unclip_ratio=unclip_ratio, min_area=min_area)
+        boxes = self._postprocess(prob_map, orig_shape, thresh=c_prob_thresh, unclip_ratio=c_unclip, min_area=c_min_area)
         return boxes
