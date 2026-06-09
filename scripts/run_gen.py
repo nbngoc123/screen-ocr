@@ -25,13 +25,21 @@ def get_font_weights(fonts: list[str], common_fonts: list[str], common_wt: float
 
 def worker_generate(args):
     """Worker function cho multiprocessing"""
-    font_list, output_dir, n_samples, font_weights, worker_id = args
-    generate_dataset(font_list, output_dir, n_samples, font_weights=font_weights, worker_id=worker_id)
+    font_list, output_dir, n_samples, font_weights, worker_id, corpus_prob, word_split_prob, phrase_split_prob = args
+    generate_dataset(
+        font_list, output_dir, n_samples, 
+        font_weights=font_weights, worker_id=worker_id, 
+        corpus_prob=corpus_prob, word_split_prob=word_split_prob, phrase_split_prob=phrase_split_prob
+    )
 
-def run_multiprocess(font_list, output_dir, total_samples, font_weights, n_workers=4):
+def run_multiprocess(font_list, output_dir, total_samples, font_weights, n_workers=4, corpus_prob=0.8, word_split_prob=0.3, phrase_split_prob=0.4):
     """Chia nhỏ tổng số sample ra cho các worker chạy song song."""
     if n_workers <= 1:
-        generate_dataset(font_list, output_dir, total_samples, font_weights=font_weights, worker_id=0)
+        generate_dataset(
+            font_list, output_dir, total_samples, 
+            font_weights=font_weights, worker_id=0, 
+            corpus_prob=corpus_prob, word_split_prob=word_split_prob, phrase_split_prob=phrase_split_prob
+        )
         # Rename file nhãn
         lbl_file = Path(output_dir) / "labels_0.jsonl"
         if lbl_file.exists():
@@ -40,13 +48,12 @@ def run_multiprocess(font_list, output_dir, total_samples, font_weights, n_worke
         return
 
     samples_per_worker = total_samples // n_workers
+    remainder = total_samples % n_workers
     args_list = []
     
     for i in range(n_workers):
-        n = samples_per_worker
-        if i == n_workers - 1:
-            n += total_samples % n_workers
-        args_list.append((font_list, output_dir, n, font_weights, i))
+        n = samples_per_worker + (1 if i < remainder else 0)
+        args_list.append((font_list, output_dir, n, font_weights, i, corpus_prob, word_split_prob, phrase_split_prob))
         
     print(f"Khởi động {n_workers} workers...")
     with multiprocessing.Pool(n_workers) as pool:
@@ -85,6 +92,9 @@ if __name__ == "__main__":
     common_wt = cfg_dg.get("common_font_weight", 10.0)
     rare_wt = cfg_dg.get("rare_font_weight", 1.0)
     val_ratio = cfg_dg.get("val_ratio", 0.1)
+    corpus_prob = cfg_dg.get("corpus_prob", 0.8)
+    word_split_prob = cfg_dg.get("word_split_prob", 0.3)
+    phrase_split_prob = cfg_dg.get("phrase_split_prob", 0.4)
 
     # Split train and val fonts theo nguyên tắc không trùng lặp
     split_idx = int(len(fonts) * (1.0 - val_ratio))
@@ -112,7 +122,10 @@ if __name__ == "__main__":
         output_dir=config["paths"]["synthetic_train"],
         total_samples=n_train,
         font_weights=train_weights,
-        n_workers=n_workers
+        n_workers=n_workers,
+        corpus_prob=corpus_prob,
+        word_split_prob=word_split_prob,
+        phrase_split_prob=phrase_split_prob
     )
     
     # Val
@@ -122,7 +135,10 @@ if __name__ == "__main__":
         output_dir=config["paths"]["synthetic_val"],
         total_samples=n_val,
         font_weights=val_weights,
-        n_workers=n_workers
+        n_workers=n_workers,
+        corpus_prob=corpus_prob,
+        word_split_prob=word_split_prob,
+        phrase_split_prob=phrase_split_prob
     )
     
     print("Hoàn tất!")

@@ -1,51 +1,15 @@
-"""
-dataset.py — PyTorch Dataset và DataLoader cho CRNN training.
-
-Hỗ trợ 2 format data:
-    - Synthetic: thư mục chứa labels.jsonl + ảnh .png
-    - Real: thư mục chứa paired .png + .json files (từ crawler)
-"""
-from __future__ import annotations
-
 import json
-import logging
 import random
+import numpy as np
+import cv2
+import torch
+from torch.utils.data import Dataset, DataLoader
 from pathlib import Path
 
-import cv2
-import numpy as np
-import torch
-from torch.utils.data import DataLoader, Dataset
-
-from src.augment import preprocess_for_crnn
 from src.charset import CharsetCodec
-
-logger = logging.getLogger(__name__)
-
+from src.augment import preprocess_for_crnn
 
 class OCRDataset(Dataset):
-    """
-    Dataset cho bài toán nhận diện text (text recognition).
-
-    Đọc cả synthetic format (labels.jsonl) và real format (paired .json).
-    Tự động shuffle samples khi khởi tạo.
-
-    Args:
-        data_dirs:     Danh sách thư mục data (có thể mix synthetic + real).
-        charset_path:  Đường dẫn charset.txt.
-        is_train:      True → dùng augmentation, False → chỉ normalize.
-        max_label_len: Cắt label nếu dài hơn (để tránh CTC error).
-        target_h:      Chiều cao ảnh sau resize (phải = 32 cho CRNN).
-
-    Example:
-        ds = OCRDataset(["data/synthetic/train", "data/real"], is_train=True)
-        sample = ds[0]
-        # sample["image"]     — tensor (1, 32, W)
-        # sample["label"]     — tensor [int]
-        # sample["label_len"] — tensor scalar
-        # sample["label_str"] — str (raw text)
-    """
-
     def __init__(
         self,
         data_dirs: list[str],
@@ -53,38 +17,93 @@ class OCRDataset(Dataset):
         is_train: bool = True,
         max_label_len: int = 80,
         target_h: int = 32,
-    ) -> None:
-        # TODO: implement — xem week1-data-pipeline.md §5.1
-        raise NotImplementedError
+    ):
+        self.codec = CharsetCodec(charset_path)
+        self.is_train = is_train
+        self.max_label_len = max_label_len
+        self.target_h = target_h
+        self.samples = self._load_samples(data_dirs)
+        print(f"Dataset: {len(self.samples)} samples, train={is_train}")
+
+    def _load_samples(self, data_dirs: list[str]) -> list[dict]:
+        samples = []
+        for d in data_dirs:
+            p = Path(d)
+            if not p.exists():
+                continue
+                
+            labels_file = p / "labels.jsonl"
+            if labels_file.exists():
+                # Format dùng chung cho Synthetic và ICDAR crop
+                with open(labels_file, encoding="utf-8") as f:
+                    for line in f:
+                        m = json.loads(line)
+                        img_path = p / m["file"]
+                        if img_path.exists():
+                            samples.append({"img": str(img_path), "label": m["label"]})
+            else:
+                # Tìm tất cả file .json nếu không có labels.jsonl
+                for img_path in sorted(p.glob("*.png")):
+                    json_path = img_path.with_suffix(".json")
+                    if json_path.exists():
+                        meta = json.loads(json_path.read_text(encoding="utf-8"))
+                        samples.append({"img": str(img_path), "label": meta["label"]})
+
+        random.shuffle(samples)
+        return samples
 
     def __len__(self) -> int:
-        # TODO: implement
-        raise NotImplementedError
+        return len(self.samples)
 
     def __getitem__(self, idx: int) -> dict:
-        # TODO: implement
-        raise NotImplementedError
+        sample = self.samples[idx]
+        img = cv2.imread(sample["img"])
+        if img is None:
+            # Fallback: blank image nếu lỗi
+            img = np.ones((self.target_h, 100, 3), dtype=np.uint8) * 255
+
+        # Preprocess
+        img_tensor = preprocess_for_crnn(img, self.target_h, self.is_train)
+        img_tensor = torch.from_numpy(img_tensor).unsqueeze(0).float()  # (1, H, W)
+
+        # Encode label
+        label = sample["label"][:self.max_label_len]
+        encoded = self.codec.encode(label)
+
+        return {
+            "image":        img_tensor,
+            "label":        torch.tensor(encoded, dtype=torch.long),
+            "label_len":    torch.tensor(len(encoded), dtype=torch.long),
+            "label_str":    label,
+            "img_path":     sample["img"],
+        }
 
 
 def collate_fn(batch: list[dict]) -> dict:
-    """
-    Custom collate: pad images về cùng width, pad labels về cùng length.
+    """Pad images về cùng width, pad labels về cùng length."""
+    # Pad images (chiều rộng khác nhau)
+    max_w = max(b["image"].shape[2] for b in batch)
+    images = torch.zeros(len(batch), 1, 32, max_w)
+    for i, b in enumerate(batch):
+        w = b["image"].shape[2]
+        images[i, :, :, :w] = b["image"]
 
-    Cần thiết vì CRNN nhận ảnh có width khác nhau trong cùng batch.
+    # Pad labels
+    max_l = max(len(b["label"]) for b in batch)
+    labels = torch.zeros(len(batch), max_l, dtype=torch.long)
+    for i, b in enumerate(batch):
+        l = len(b["label"])
+        labels[i, :l] = b["label"]
 
-    Args:
-        batch: List of dicts từ OCRDataset.__getitem__().
-
-    Returns:
-        Dict với tensors đã pad:
-            image     — (B, 1, 32, max_W)
-            label     — (B, max_L)
-            label_len — (B,)
-            input_len — (B,) chiều dài sequence sau CNN
-            label_str — list[str]
-    """
-    # TODO: implement — xem week1-data-pipeline.md §5.1
-    raise NotImplementedError
+    return {
+        "image":       images,
+        "label":       labels,
+        "label_len":   torch.stack([b["label_len"] for b in batch]),
+        "label_str":   [b["label_str"] for b in batch],
+        "input_len":   torch.tensor(
+            [max_w // 4 for _ in batch], dtype=torch.long  # output width sau CNN layer (stride = 4)
+        ),
+    }
 
 
 def get_dataloaders(
@@ -94,18 +113,18 @@ def get_dataloaders(
     batch_size: int = 256,
     num_workers: int = 4,
 ) -> tuple[DataLoader, DataLoader]:
-    """
-    Tạo train và val DataLoader.
 
-    Args:
-        train_dirs:   Thư mục training data.
-        val_dirs:     Thư mục validation data.
-        charset_path: Charset file.
-        batch_size:   Batch size.
-        num_workers:  Số worker process.
+    train_ds = OCRDataset(train_dirs, charset_path, is_train=True)
+    val_ds   = OCRDataset(val_dirs,   charset_path, is_train=False)
 
-    Returns:
-        (train_loader, val_loader)
-    """
-    # TODO: implement
-    raise NotImplementedError
+    train_loader = DataLoader(
+        train_ds, batch_size=batch_size, shuffle=True,
+        collate_fn=collate_fn, num_workers=num_workers,
+        pin_memory=True, drop_last=True,
+    )
+    val_loader = DataLoader(
+        val_ds, batch_size=batch_size, shuffle=False,
+        collate_fn=collate_fn, num_workers=num_workers,
+        pin_memory=True,
+    )
+    return train_loader, val_loader

@@ -1,58 +1,33 @@
 """
 corpus.py — Text corpus cho synthetic data generation.
 
-Cung cấp các chuỗi text theo domain (UI labels, câu tiếng Việt/Anh,
-code snippets, số) để render lên ảnh synthetic.
+Cung cấp các chuỗi text từ Wikipedia/ICDAR để render lên ảnh synthetic.
 """
 from __future__ import annotations
 
+import os
 import random
 import string
 
-# ─── Domain corpus ────────────────────────────────────────────────────────────
-DOMAINS: dict[str, list[str]] = {
-    "ui_labels": [
-        "OK", "Cancel", "Apply", "Close", "Save", "Open", "Delete",
-        "Settings", "Help", "About", "File", "Edit", "View", "Tools",
-        "Cài đặt", "Đóng", "Lưu", "Mở file", "Xoá", "Thoát",
-        "Đăng nhập", "Đăng ký", "Xác nhận", "Hủy bỏ", "Tiếp tục"
-    ],
-    "sentences_vn": [
-        "Xin chào người dùng", "Tổng cộng: 1.234.567 VND",
-        "Ngày tạo: 09/06/2024", "Trạng thái: Đang xử lý",
-        "Mã đơn hàng: ORD-00421", "Họ tên: Nguyễn Văn A",
-        "Email: example@gmail.com", "Điện thoại: 0912 345 678",
-        "Vui lòng kiểm tra lại thông tin", "Dữ liệu đã được lưu thành công",
-        "Lỗi kết nối máy chủ", "Không tìm thấy kết quả phù hợp"
-    ],
-    "sentences_en": [
-        "Welcome to the system", "Total: $1,234.56",
-        "Status: Processing", "Order ID: ORD-00421",
-        "Please enter your password", "File not found",
-        "Connection established", "Loading... please wait",
-        "Are you sure you want to delete this?", "Changes saved successfully",
-        "Invalid username or password", "No matching results found"
-    ],
-    "code_snippets": [
-        "if __name__ == '__main__':", "import numpy as np",
-        "def forward(self, x):", "return torch.sigmoid(x)",
-        "print(f'Loss: {loss:.4f}')", "model.train()",
-        "for i in range(10):", "class MyNet(nn.Module):",
-        "return [x for x in lst if x > 0]"
-    ],
-    "numbers": [
-        "1,234,567", "3.14159", "0x1A2F", "100%",
-        "08:30:00", "2024-06-09", "v1.2.3", "#FF5733",
-        "192.168.1.1", "50.5 GB", "3,000 đ", "12/12/2024"
-    ],
-}
+# ─── Load Wiki & ICDAR Corpus ────────────────────────────────────────────────
+ICDAR_CORPUS = []
+for file_path in ["data/wiki_corpus.txt", "data/icdar_corpus.txt", "data/icdar_en_corpus.txt"]:
+    if os.path.exists(file_path):
+        try:
+            with open(file_path, "r", encoding="utf-8") as f:
+                lines = [line.strip() for line in f if len(line.strip()) >= 2]
+                ICDAR_CORPUS.extend(lines)
+            print(f"Đã load {len(lines)} câu từ {file_path}")
+        except Exception as e:
+            print(f"Lỗi load corpus {file_path}: {e}")
+            
+if ICDAR_CORPUS:
+    print(f"-> Tổng cộng có {len(ICDAR_CORPUS)} câu trong siêu Corpus!")
 
 
-def random_text(min_len: int = 2, max_len: int = 40) -> str:
+def random_text(min_len: int = 2, max_len: int = 40, corpus_prob: float = 0.8, word_prob: float = 0.3, phrase_prob: float = 0.4) -> str:
     """
-    Sinh text ngẫu nhiên từ corpus hoặc generate tổng hợp.
-
-    Xác suất 70% lấy từ corpus, 30% generate ngẫu nhiên.
+    Sinh text ngẫu nhiên từ corpus hoặc generate random string.
 
     Args:
         min_len: Độ dài tối thiểu.
@@ -61,12 +36,32 @@ def random_text(min_len: int = 2, max_len: int = 40) -> str:
     Returns:
         Chuỗi text, đã strip và truncate.
     """
-    if random.random() < 0.7:
-        # Lấy từ corpus
-        domain = random.choice(list(DOMAINS.keys()))
-        text = random.choice(DOMAINS[domain])
+    r = random.random()
+    
+    # Lấy từ siêu corpus Wiki/ICDAR (nếu có)
+    if ICDAR_CORPUS and r < corpus_prob:
+        text = random.choice(ICDAR_CORPUS)
+        
+        # Băm nhỏ câu theo level: Word (1-2 từ), Phrase (3-5 từ), hoặc Full Sentence
+        level = random.random()
+        words = text.split()
+        if len(words) > 1:
+            if level < word_prob:
+                # mức Word (1-2 từ)
+                num_words = random.randint(1, 2)
+            elif level < word_prob + phrase_prob:
+                # mức Phrase (3-5 từ)
+                num_words = random.randint(3, 5)
+            else:
+                # mức Full Sentence
+                num_words = len(words)
+                
+            # Lấy một đoạn con liên tiếp ngẫu nhiên
+            num_words = min(num_words, len(words))
+            start_idx = random.randint(0, len(words) - num_words)
+            text = " ".join(words[start_idx : start_idx + num_words])
+    # 20% sinh chữ/số ngẫu nhiên
     else:
-        # Generate ngẫu nhiên các chuỗi ngẫu nhiên
         length = random.randint(min_len, max_len)
         chars = string.ascii_letters + string.digits + " "
         text = "".join(random.choices(chars, k=length)).strip()

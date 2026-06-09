@@ -1,6 +1,6 @@
 # Tuần 1 — Data Pipeline
 
-> Mục tiêu: Có đủ data chất lượng để bắt đầu training. Cuối tuần phải có ít nhất **500k synthetic samples** và **crawler UIAutomation chạy được**.
+> Mục tiêu: Có đủ data chất lượng để bắt đầu training. Cuối tuần phải có ít nhất **900k synthetic samples** và **dữ liệu thực tế từ ICDAR đã được tích hợp**.
 
 ---
 
@@ -11,7 +11,7 @@
 | Thứ 2 | Setup môi trường, charset | `charset.txt`, env ready |
 | Thứ 3 | Synthetic generator cơ bản | ~100k samples/giờ |
 | Thứ 4 | Augmentation pipeline | Augmented dataset |
-| Thứ 5 | UIAutomation crawler | ~50k real samples |
+| Thứ 5 | Tích hợp ICDAR Dataset | ~50k real samples |
 | Thứ 6 | Dataset loader + validation | `DataLoader` ready cho train |
 
 ---
@@ -463,174 +463,9 @@ print("Saved reports/augmentation_check.png")
 
 ---
 
-## Ngày 4 — UIAutomation Crawler
+## Ngày 4 — Tích hợp Dữ liệu Thực tế (ICDAR)
 
-### 4.1 Crawler chính
-
-```python
-# src/crawler.py
-"""
-Thu thập real screen data bằng Windows UIAutomation.
-Chạy trong khi dùng máy bình thường — background collection.
-"""
-import cv2
-import json
-import time
-import logging
-import numpy as np
-import mss
-from pathlib import Path
-from threading import Thread, Event
-
-try:
-    import uiautomation as auto
-    HAS_UIA = True
-except ImportError:
-    HAS_UIA = False
-    logging.warning("uiautomation không cài — chạy: pip install uiautomation")
-
-logger = logging.getLogger(__name__)
-
-
-class ScreenCrawler:
-    def __init__(
-        self,
-        output_dir: str = "data/real",
-        max_samples: int = 50_000,
-        min_text_len: int = 2,
-        min_box_area: int = 200,
-    ):
-        self.output_dir = Path(output_dir)
-        self.output_dir.mkdir(parents=True, exist_ok=True)
-        self.max_samples = max_samples
-        self.min_text_len = min_text_len
-        self.min_box_area = min_box_area
-        self.count = self._count_existing()
-        self._stop = Event()
-        logger.info(f"Crawler init — existing: {self.count}, target: {max_samples}")
-
-    def _count_existing(self) -> int:
-        return len(list(self.output_dir.glob("*.png")))
-
-    def _capture_screen(self) -> np.ndarray:
-        with mss.mss() as sct:
-            return np.array(sct.grab(sct.monitors[1]))  # BGR + alpha
-
-    def _process_control(self, ctrl, screenshot: np.ndarray) -> bool:
-        """Xử lý một UI control, trả về True nếu save thành công."""
-        try:
-            name = ctrl.Name.strip()
-            if len(name) < self.min_text_len or len(name) > 200:
-                return False
-
-            rect = ctrl.BoundingRectangle
-            x1, y1 = rect.left, rect.top
-            x2, y2 = rect.right, rect.bottom
-
-            if x2 <= x1 or y2 <= y1:
-                return False
-            if (x2 - x1) * (y2 - y1) < self.min_box_area:
-                return False
-
-            # Clamp về bounds màn hình
-            h_screen, w_screen = screenshot.shape[:2]
-            x1, y1 = max(0, x1), max(0, y1)
-            x2, y2 = min(w_screen, x2), min(h_screen, y2)
-
-            crop = screenshot[y1:y2, x1:x2, :3]  # BGR, bỏ alpha
-            if crop.size == 0:
-                return False
-
-            # Save
-            idx = self.count
-            cv2.imwrite(str(self.output_dir / f"{idx:07d}.png"), crop)
-            meta = {
-                "label": name,
-                "box": [x1, y1, x2, y2],
-                "control_type": ctrl.ControlTypeName,
-            }
-            (self.output_dir / f"{idx:07d}.json").write_text(
-                json.dumps(meta, ensure_ascii=False), encoding="utf-8"
-            )
-            self.count += 1
-            return True
-
-        except Exception as e:
-            logger.debug(f"Control skip: {e}")
-            return False
-
-    def _walk_tree(self, ctrl, screenshot: np.ndarray, depth: int = 0) -> None:
-        if self._stop.is_set() or self.count >= self.max_samples:
-            return
-        if depth > 12:  # giới hạn depth tránh vòng lặp vô hạn
-            return
-
-        self._process_control(ctrl, screenshot)
-
-        try:
-            for child in ctrl.GetChildren():
-                self._walk_tree(child, screenshot, depth + 1)
-        except Exception:
-            pass
-
-    def collect_once(self) -> int:
-        """Chụp màn hình hiện tại và thu thập toàn bộ UI elements."""
-        if not HAS_UIA:
-            return 0
-        before = self.count
-        screenshot = self._capture_screen()
-        root = auto.GetRootControl()
-        self._walk_tree(root, screenshot)
-        collected = self.count - before
-        logger.info(f"Collected {collected} samples (total: {self.count})")
-        return collected
-
-    def run_background(self, interval_sec: float = 30.0) -> Thread:
-        """Chạy crawl liên tục trong background thread."""
-        def _loop():
-            logger.info("Crawler started in background")
-            while not self._stop.is_set() and self.count < self.max_samples:
-                self.collect_once()
-                self._stop.wait(interval_sec)
-            logger.info(f"Crawler stopped — total: {self.count}")
-
-        t = Thread(target=_loop, daemon=True)
-        t.start()
-        return t
-
-    def stop(self) -> None:
-        self._stop.set()
-```
-
-### 4.2 Chạy crawler
-
-```python
-# scripts/run_crawler.py
-import logging, time
-from src.crawler import ScreenCrawler
-
-logging.basicConfig(level=logging.INFO,
-                    format="%(asctime)s %(levelname)s %(message)s")
-
-crawler = ScreenCrawler(
-    output_dir="data/real",
-    max_samples=50_000,
-)
-
-# Chạy background — dùng máy bình thường trong lúc crawl
-thread = crawler.run_background(interval_sec=20)
-
-print("Crawler đang chạy background. Dùng máy bình thường...")
-print("Ctrl+C để dừng.")
-try:
-    while thread.is_alive():
-        time.sleep(5)
-        print(f"  Samples: {crawler.count:,}", end="\r")
-except KeyboardInterrupt:
-    crawler.stop()
-    thread.join(timeout=5)
-    print(f"\nDừng — đã thu: {crawler.count:,} samples")
-```
+Thay vì dùng Crawler UIAutomation (khá tốn thời gian chạy nền và dễ nhiễu), chúng ta sử dụng dữ liệu thực tế đã được cắt sẵn từ bộ ICDAR 2015/2017 Robust Reading (đã được parse thành file labels.jsonl chuẩn). Dữ liệu này cung cấp các mẫu văn bản và số thực tế trên màn hình, giúp mô hình mạnh mẽ và thực tế hơn rất nhiều.
 
 ---
 
@@ -857,7 +692,7 @@ if __name__ == "__main__":
     ok = True
     ok &= validate_split("data/synthetic/train", "Train")
     ok &= validate_split("data/synthetic/val",   "Val")
-    ok &= validate_split("data/real",            "Real")
+    ok &= validate_split("data/raw/Recognition", "ICDAR")
     print("\n" + ("Dataset OK" if ok else "Dataset có lỗi — sửa trước khi train"))
 ```
 
@@ -866,10 +701,10 @@ if __name__ == "__main__":
 ## Checklist cuối tuần 1
 
 - [ ] `charset.txt` đã tạo, có đủ ký tự Việt + UI extras
-- [ ] 480k train samples đã sinh xong (`data/synthetic/train/`)
-- [ ] 60k val samples đã sinh xong (`data/synthetic/val/`)
+- [ ] 800k train samples đã sinh xong (`data/synthetic/train/`)
+- [ ] 100k val samples đã sinh xong (`data/synthetic/val/`)
 - [ ] Val set dùng font khác train set (verify bằng `set` intersection)
-- [ ] Crawler UIAutomation thu được ít nhất 20k real samples
+- [ ] Tích hợp thành công dữ liệu thực tế (ICDAR Recognition)
 - [ ] `validate_dataset.py` chạy không ra error
 - [ ] OOV chars < 1% trên toàn dataset
 - [ ] `DataLoader` test: load 1 batch không báo lỗi
@@ -881,8 +716,8 @@ if __name__ == "__main__":
 
 | Metric | Target | Cách đo |
 |---|---|---|
-| Tổng synthetic samples | ≥ 500k | `wc -l data/synthetic/train/labels.jsonl` |
-| Real samples (crawler) | ≥ 20k | `ls data/real/*.png \| wc -l` |
+| Tổng synthetic samples | ≥ 900k | `wc -l data/synthetic/train/labels.jsonl` |
+| Real samples (ICDAR) | ≥ 20k | `wc -l data/raw/Recognition/labels.jsonl` |
 | OOV rate | < 1% | `validate_dataset.py` |
 | DataLoader throughput | ≥ 500 samples/s | `time_dataloader.py` |
 | Corrupt images | 0 | `validate_dataset.py` |

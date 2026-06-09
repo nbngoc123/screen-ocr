@@ -142,40 +142,45 @@ def generate_dataset(
     font_size_range: tuple[int, int] = (10, 52),
     font_weights: list[float] | None = None,
     worker_id: int = 0,
+    corpus_prob: float = 0.8,
+    word_split_prob: float = 0.3,
+    phrase_split_prob: float = 0.4,
 ) -> None:
     """Sinh toàn bộ synthetic dataset ra thư mục."""
     out = Path(output_dir)
     out.mkdir(parents=True, exist_ok=True)
 
-    meta = []
     count = 0
 
-    with tqdm(total=n_samples, desc=f"Worker {worker_id}", unit="img", position=worker_id) as pbar:
-        while count < n_samples:
-            if font_weights:
-                font_path = random.choices(font_list, weights=font_weights, k=1)[0]
-            else:
-                font_path = random.choice(font_list)
-            text = random_text()
-            if not text:
-                continue
+    # Mở file ghi liên tục (append hoặc write) để không bị mất dữ liệu nếu user bấm Ctrl+C
+    worker_label_file = out / f"labels_{worker_id}.jsonl"
+    with open(worker_label_file, "w", encoding="utf-8") as f_json:
+        with tqdm(total=n_samples, desc=f"Worker {worker_id}", unit="img", position=worker_id) as pbar:
+            while count < n_samples:
+                if font_weights:
+                    font_path = random.choices(font_list, weights=font_weights, k=1)[0]
+                else:
+                    font_path = random.choice(font_list)
+                
+                text = random_text(corpus_prob=corpus_prob, word_prob=word_split_prob, phrase_prob=phrase_split_prob)
+                if not text:
+                    continue
 
-            img = generate_sample(
-                text, font_path,
-                font_size=random.randint(*font_size_range),
-            )
-            
-            if img is None:
-                continue
+                img = generate_sample(
+                    text, font_path,
+                    font_size=random.randint(*font_size_range),
+                )
+                
+                if img is None:
+                    continue
 
-            img_path = out / f"{worker_id:02d}_{count:07d}.png"
-            cv2.imwrite(str(img_path), img)
-            
-            meta.append({"file": f"{worker_id:02d}_{count:07d}.png", "label": text})
-            count += 1
-            pbar.update(1)
-
-    # Lưu metadata của worker vào file tạm
-    with open(out / f"labels_{worker_id}.jsonl", "w", encoding="utf-8") as f:
-        for m in meta:
-            f.write(json.dumps(m, ensure_ascii=False) + "\n")
+                img_path = out / f"{worker_id:02d}_{count:07d}.png"
+                cv2.imwrite(str(img_path), img)
+                
+                # Ghi trực tiếp nhãn vào file
+                m = {"file": f"{worker_id:02d}_{count:07d}.png", "label": text}
+                f_json.write(json.dumps(m, ensure_ascii=False) + "\n")
+                f_json.flush()  # Ép xuống đĩa để tránh mất dữ liệu
+                
+                count += 1
+                pbar.update(1)
