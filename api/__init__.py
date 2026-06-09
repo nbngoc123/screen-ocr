@@ -1,0 +1,3 @@
+"""
+Screen OCR API.
+"""

@@ -1,0 +1,58 @@
+# ─── Python ───────────────────────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# ─── Virtual Environment ──────────────────────────────────────────────────────
+.venv/
+venv/
+env/
+
+# ─── Data (quá lớn để commit) ─────────────────────────────────────────────────
+data/synthetic/train/
+data/synthetic/val/
+data/real/
+data/errors/
+# Giữ lại structure (gitkeep)
+!data/synthetic/train/.gitkeep
+!data/synthetic/val/.gitkeep
+!data/real/.gitkeep
+!data/errors/.gitkeep
+
+# ─── Model Weights ────────────────────────────────────────────────────────────
+models/*.onnx
+models/*.pt
+models/archive/
+# Giữ lại structure
+!models/.gitkeep
+!models/archive/.gitkeep
+
+# ─── Jupyter ──────────────────────────────────────────────────────────────────
+.ipynb_checkpoints/
+notebooks/.ipynb_checkpoints/
+
+# ─── Reports / Outputs ────────────────────────────────────────────────────────
+reports/*.png
+reports/*.jpg
+reports/*.html
+
+# ─── Logs & WandB ─────────────────────────────────────────────────────────────
+*.log
+wandb/
+runs/
+
+# ─── IDE ──────────────────────────────────────────────────────────────────────
+.vscode/
+.idea/
+*.swp
+
+# ─── OS ───────────────────────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db

@@ -1,0 +1,77 @@
+# ─── Screen OCR Engine — Default Config ──────────────────────────────────────
+# Mọi path đều relative từ project root.
+# Không hardcode giá trị này trực tiếp trong source code.
+
+# ─── Paths ────────────────────────────────────────────────────────────────────
+paths:
+  charset:        data/charset.txt
+  font_list:      data/font_list.txt
+  synthetic_train: data/synthetic/train
+  synthetic_val:   data/synthetic/val
+  real_data:       data/real
+  error_samples:   data/errors
+  reports:         reports
+
+  # Model weights (điền sau khi có)
+  det_model:      models/dbnet.onnx        # TODO: chưa có — bổ sung sau
+  rec_model:      models/crnn.onnx         # TODO: chưa có — sinh ra sau training
+  checkpoint:     models/crnn_checkpoint.pt
+
+# ─── Data Generation ──────────────────────────────────────────────────────────
+data_gen:
+  n_train:        480000
+  n_val:          60000
+  font_size_min:  10
+  font_size_max:  52
+  min_text_len:   2
+  max_text_len:   40
+  n_workers:      4          # số process song song khi gen
+
+# ─── UIAutomation Crawler ─────────────────────────────────────────────────────
+crawler:
+  max_samples:    50000
+  min_text_len:   2
+  min_box_area:   200        # pixel²
+  interval_sec:   20.0       # khoảng cách giữa các lần crawl
+
+# ─── Preprocessing ────────────────────────────────────────────────────────────
+preprocess:
+  target_h:       32         # CRNN yêu cầu H=32px cố định
+  normalize_mean: 0.5
+  normalize_std:  0.5
+
+# ─── Training ─────────────────────────────────────────────────────────────────
+training:
+  batch_size:     256
+  num_workers:    4
+  max_label_len:  80
+  epochs_phase1:  15         # Foundation: font lớn, bg trắng
+  epochs_phase2:  20         # Robustness: augmentation mạnh
+  epochs_phase3:  10         # Fine-tune: real screen capture
+  lr:             0.001
+  lr_finetune:    0.0001
+  weight_decay:   0.0001
+  grad_clip:      5.0
+  amp:            true
+
+# ─── CRNN Architecture ────────────────────────────────────────────────────────
+model:
+  backbone:       resnet18   # pretrained ImageNet
+  lstm_hidden:    256
+  lstm_layers:    2
+  lstm_dropout:   0.1
+
+# ─── Inference / Production ───────────────────────────────────────────────────
+inference:
+  conf_threshold: 0.6        # Confidence score tối thiểu để output
+  min_box_area:   100        # Bỏ qua bbox quá nhỏ
+  max_text_length: 200       # Giới hạn text dài tối đa
+  timeout_sec:    0.5        # Timeout mỗi inference call
+  providers:                 # ONNX Runtime execution providers (thứ tự ưu tiên)
+    - CUDAExecutionProvider
+    - CPUExecutionProvider
+
+# ─── Logging ──────────────────────────────────────────────────────────────────
+logging:
+  level:    INFO             # DEBUG / INFO / WARNING / ERROR
+  format:   "%(asctime)s %(name)s %(levelname)s %(message)s"
