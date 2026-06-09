@@ -57,7 +57,7 @@ preprocess:
 
 # ─── Training ─────────────────────────────────────────────────────────────────
 training:
-  batch_size:     64
+  batch_size:     32
   num_workers:    1
   max_label_len:  80
   epochs_phase1:  15         # Foundation: font lớn, bg trắng
