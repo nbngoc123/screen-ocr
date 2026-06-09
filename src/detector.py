@@ -112,8 +112,10 @@ class DBNetDetector:
         resized = cv2.resize(image, (new_w, new_h))
         
         # Normalize
-        mean = np.array([0.485, 0.456, 0.406], dtype=np.float32)
-        std = np.array([0.229, 0.224, 0.225], dtype=np.float32)
+        c_mean = self.config.get("normalize_mean", [0.485, 0.456, 0.406])
+        c_std = self.config.get("normalize_std", [0.229, 0.224, 0.225])
+        mean = np.array(c_mean, dtype=np.float32)
+        std = np.array(c_std, dtype=np.float32)
         
         # Convert BGR to RGB
         img_rgb = cv2.cvtColor(resized, cv2.COLOR_BGR2RGB)

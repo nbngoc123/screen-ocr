@@ -13,9 +13,9 @@ paths:
   reports:         reports
 
   # Model weights (điền sau khi có)
-  det_model:      models/dbnet.onnx        # TODO: chưa có — bổ sung sau
-  rec_model:      models/crnn.onnx         # TODO: chưa có — sinh ra sau training
-  checkpoint:     models/crnn_checkpoint.pt
+  det_model:      data/models/dbnet.onnx   # Mô hình Text Detection ONNX
+  rec_model:      data/models/crnn.onnx    # Mô hình Text Recognition ONNX
+  checkpoint:     data/models/crnn_checkpoint.pt
 
 # ─── Data Generation ──────────────────────────────────────────────────────────
 data_gen:
@@ -40,8 +40,10 @@ data_gen:
 detector:
   max_size:       960        # Kích thước ảnh tối đa (pixel) đưa vào DBNet. Giúp tránh tràn RAM, đảm bảo tốc độ.
   prob_threshold: 0.3        # Ngưỡng xác suất (Probability Map) quyết định pixel nào là viền chữ.
-  unclip_ratio:   2.0        # Hệ số nới lỏng (padding) Bounding Box theo thuật toán Vatti. Chuẩn: 1.5 - 2.0.
+  unclip_ratio:   3.0        # Hệ số nới lỏng (padding) Bounding Box theo thuật toán Vatti. Chuẩn: 1.5 - 2.0.
   min_area:       10         # Bỏ qua các Box có diện tích nhỏ hơn mức này để lọc nhiễu.
+  normalize_mean: [0.485, 0.456, 0.406] # Tham số ImageNet Normalize (Mean)
+  normalize_std:  [0.229, 0.224, 0.225] # Tham số ImageNet Normalize (Std)
 
 # ─── Preprocessing ────────────────────────────────────────────────────────────
 preprocess:
