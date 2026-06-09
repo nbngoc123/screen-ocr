@@ -43,7 +43,7 @@ class CRNN(nn.Module):
         out = model(x)  # (4, W', 236)
     """
 
-    def __init__(self, num_classes: int) -> None:
+    def __init__(self, num_classes: int, lstm_hidden: int = 256, lstm_layers: int = 2, lstm_dropout: float = 0.1) -> None:
         super().__init__()
         # Load resnet18(weights=ResNet18_Weights.IMAGENET1K_V1)
         backbone = resnet18(weights=ResNet18_Weights.IMAGENET1K_V1)
@@ -78,16 +78,15 @@ class CRNN(nn.Module):
         # self.rnn = LSTM(input=512, hidden=256, layers=2, bidirectional=True)
         self.rnn = nn.LSTM(
             input_size=512,
-            hidden_size=256,
-            num_layers=2,
+            hidden_size=lstm_hidden,
+            num_layers=lstm_layers,
             bidirectional=True,
             batch_first=True,
-            dropout=0.1
+            dropout=lstm_dropout if lstm_layers > 1 else 0.0
         )
 
-        # self.fc  = Linear(512, num_classes + 1)
-        # BiLSTM xuất ra 256 * 2 = 512, map về num_classes + 1 (1 cho blank)
-        self.fc = nn.Linear(512, num_classes + 1)
+        # BiLSTM xuất ra lstm_hidden * 2, map về num_classes + 1 (1 cho blank)
+        self.fc = nn.Linear(lstm_hidden * 2, num_classes + 1)
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
         """
@@ -105,7 +104,9 @@ class CRNN(nn.Module):
         if x.size(1) == 1:
             x = x.repeat(1, 3, 1, 1)
             
-        feat = self.cnn(x)             # (B, 512, 1, W')
+        feat = self.cnn(x)             # (B, 512, H', W')
+        # Dùng AdaptiveAvgPool2d ép chiều cao về đúng 1 pixel để hỗ trợ mọi target_h (vd: 32, 48, 64)
+        feat = nn.functional.adaptive_avg_pool2d(feat, (1, None))
         feat = feat.squeeze(2)         # (B, 512, W')
         feat = feat.permute(0, 2, 1)   # (B, W', 512)
         

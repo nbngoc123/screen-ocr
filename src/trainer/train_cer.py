@@ -8,6 +8,7 @@ import logging
 import os
 import sys
 import time
+import yaml
 from pathlib import Path
 
 # Thêm thư mục gốc của project vào PYTHONPATH để import được thư mục src
@@ -77,15 +78,36 @@ def evaluate(model, val_loader, criterion, codec, device):
 
 def main():
     parser = argparse.ArgumentParser(description="Huấn luyện mô hình CRNN")
-    parser.add_argument("--train-dir", type=str, default="data/synthetic/train", help="Thư mục dữ liệu train")
-    parser.add_argument("--val-dir", type=str, default="data/synthetic/val", help="Thư mục dữ liệu val")
-    parser.add_argument("--charset", type=str, default="data/charset.txt", help="File charset")
-    parser.add_argument("--batch-size", type=int, default=32, help="Kích thước batch")
-    parser.add_argument("--epochs", type=int, default=50, help="Số lượng epoch")
-    parser.add_argument("--lr", type=float, default=1e-3, help="Learning rate ban đầu")
-    parser.add_argument("--num-workers", type=int, default=2, help="Số tiến trình load data (để 0 nếu lỗi Paging File Win10)")
+    parser.add_argument("--config", type=str, default="configs/default.yaml", help="Đường dẫn file cấu hình YAML")
+    parser.add_argument("--train-dir", type=str, default=None, help="Thư mục train data")
+    parser.add_argument("--val-dir", type=str, default=None, help="Thư mục val data")
+    parser.add_argument("--charset", type=str, default=None, help="File charset")
+    parser.add_argument("--batch-size", type=int, default=None, help="Kích thước batch")
+    parser.add_argument("--epochs", type=int, default=None, help="Số lượng epoch")
+    parser.add_argument("--lr", type=float, default=None, help="Learning rate ban đầu")
+    parser.add_argument("--num-workers", type=int, default=None, help="Số tiến trình load data")
     parser.add_argument("--debug", action="store_true", help="Giới hạn số mẫu để debug")
     args = parser.parse_args()
+
+    # Load config từ YAML
+    with open(args.config, "r", encoding="utf-8") as f:
+        config = yaml.safe_load(f)
+
+    # Ưu tiên args từ command line, nếu không có thì lấy từ config
+    train_dir = args.train_dir or config["paths"]["synthetic_train"]
+    val_dir = args.val_dir or config["paths"]["synthetic_val"]
+    charset_path = args.charset or config["paths"]["charset"]
+    batch_size = args.batch_size if args.batch_size is not None else config["training"]["batch_size"]
+    epochs = args.epochs if args.epochs is not None else config["training"]["epochs_phase1"] + config["training"]["epochs_phase2"]
+    lr = args.lr if args.lr is not None else config["training"]["lr"]
+    num_workers = args.num_workers if args.num_workers is not None else config["training"]["num_workers"]
+    target_h = config["preprocess"]["target_h"]
+    best_weight_path = Path(config["paths"]["best_weight"])
+    best_weight_path.parent.mkdir(parents=True, exist_ok=True)
+    
+    lstm_hidden = config["model"]["lstm_hidden"]
+    lstm_layers = config["model"]["lstm_layers"]
+    lstm_dropout = config["model"]["lstm_dropout"]
 
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     logger.info(f"Khởi chạy huấn luyện trên thiết bị: {device}")
@@ -97,11 +119,12 @@ def main():
     # 1. Khởi tạo DataLoader
     logger.info("Đang load dữ liệu...")
     train_loader, val_loader = get_dataloaders(
-        train_dirs=[args.train_dir],
-        val_dirs=[args.val_dir],
-        charset_path=args.charset,
-        batch_size=args.batch_size,
-        num_workers=args.num_workers
+        train_dirs=[train_dir],
+        val_dirs=[val_dir],
+        charset_path=charset_path,
+        batch_size=batch_size,
+        num_workers=num_workers,
+        target_h=target_h
     )
 
     if args.debug:
@@ -112,20 +135,25 @@ def main():
     
     logger.info(f"Số batch train: {len(train_loader)} | Số batch val: {len(val_loader)}")
 
-    # 2. Khởi tạo Model & Charset
-    codec = CharsetCodec(args.charset)
-    model = CRNN(num_classes=len(codec)).to(device)
+    # Khởi tạo model dựa trên tham số config
+    codec = CharsetCodec(charset_path)
+    model = CRNN(
+        num_classes=len(codec),
+        lstm_hidden=lstm_hidden,
+        lstm_layers=lstm_layers,
+        lstm_dropout=lstm_dropout
+    ).to(device)
     
     # 3. Khởi tạo Criterion, Optimizer, Scheduler
     criterion = nn.CTCLoss(blank=0, zero_infinity=True, reduction="mean")
-    optimizer = AdamW(model.parameters(), lr=args.lr, weight_decay=1e-4)
+    optimizer = AdamW(model.parameters(), lr=lr, weight_decay=config["training"]["weight_decay"])
     # Giảm LR đi một nửa nếu Val Loss không cải thiện sau 5 epochs
     scheduler = ReduceLROnPlateau(optimizer, mode="min", factor=0.5, patience=5, verbose=True)
 
     # 4. Vòng lặp huấn luyện
     best_val_loss = float("inf")
     
-    for epoch in range(1, args.epochs + 1):
+    for epoch in range(1, epochs + 1):
         start_time = time.time()
         model.train()
         batch_losses = []
@@ -157,14 +185,14 @@ def main():
         
         elapsed = time.time() - start_time
         
-        logger.info(f"Epoch {epoch:03d}/{args.epochs} | "
+        logger.info(f"Epoch {epoch:03d}/{epochs} | "
                     f"Train Loss: {train_loss:.4f} | Val Loss: {val_loss:.4f} | Val CER: {val_cer*100:.2f}% | "
                     f"LR: {optimizer.param_groups[0]['lr']:.6f} | Time: {elapsed:.1f}s")
         
         # Save model nếu Val Loss thấp nhất
         if val_loss < best_val_loss:
             best_val_loss = val_loss
-            ckpt_path = checkpoint_dir / "crnn_best.pth"
+            ckpt_path = best_weight_path
             torch.save(model.state_dict(), ckpt_path)
             logger.info(f"  [+] Đã lưu checkpoint mới tốt nhất tại {ckpt_path}")
             

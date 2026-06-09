@@ -44,7 +44,7 @@ VAL_TRANSFORM = A.Compose([
 
 def preprocess_for_crnn(
     image: np.ndarray,
-    target_h: int = 32,
+    target_h: int = 48,
     is_train: bool = True,
 ) -> np.ndarray:
     """

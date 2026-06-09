@@ -7,6 +7,7 @@ import sys
 import os
 import json
 import random
+import yaml
 from pathlib import Path
 
 # Thêm thư mục gốc vào PYTHONPATH
@@ -22,12 +23,12 @@ from src.dataset.charset import CharsetCodec
 from src.data_generation.augment import preprocess_for_crnn
 from src.recognizer.model import CRNN, ctc_greedy_decode
 
-def predict_single(model, codec, img_path, device):
+def predict_single(model, codec, img_path, device, target_h):
     img = cv2.imread(str(img_path))
     if img is None:
         return None, None
         
-    img_tensor_np = preprocess_for_crnn(img, target_h=32, is_train=False)
+    img_tensor_np = preprocess_for_crnn(img, target_h=target_h, is_train=False)
     img_tensor = torch.from_numpy(img_tensor_np).unsqueeze(0).unsqueeze(0).float().to(device)
     
     with torch.no_grad():
@@ -38,24 +39,39 @@ def predict_single(model, codec, img_path, device):
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--input", type=str, required=True, help="Đường dẫn tới ảnh lẻ hoặc thư mục chứa ảnh (vd: data/synthetic/val)")
-    parser.add_argument("--weights", type=str, default="checkpoints/crnn_best.pth", help="File trọng số model")
-    parser.add_argument("--charset", type=str, default="data/charset.txt", help="File charset")
+    parser.add_argument("--config", type=str, default="configs/default.yaml", help="File config YAML")
+    parser.add_argument("--input", type=str, required=True, help="Đường dẫn tới ảnh lẻ hoặc thư mục chứa ảnh")
+    parser.add_argument("--weights", type=str, default=None, help="File trọng số model")
+    parser.add_argument("--charset", type=str, default=None, help="File charset")
     parser.add_argument("--num-samples", type=int, default=5, help="Số lượng ảnh test nếu input là thư mục")
     parser.add_argument("--plot", action="store_true", help="Hiển thị ảnh và kết quả lên màn hình")
     args = parser.parse_args()
 
-    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-    codec = CharsetCodec(args.charset)
-    model = CRNN(num_classes=len(codec)).to(device)
+    # Load config từ YAML
+    with open(args.config, "r", encoding="utf-8") as f:
+        config = yaml.safe_load(f)
+
+    target_h = config["preprocess"]["target_h"]
+    charset_path = args.charset or config["paths"]["charset"]
+    weights_path = args.weights or config["paths"]["best_weight"]
     
-    if not os.path.exists(args.weights):
-        print(f"[!] Không tìm thấy file weights tại {args.weights}")
+    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    codec = CharsetCodec(charset_path)
+    model = CRNN(
+        num_classes=len(codec),
+        lstm_hidden=config["model"]["lstm_hidden"],
+        lstm_layers=config["model"]["lstm_layers"],
+        lstm_dropout=config["model"]["lstm_dropout"]
+    ).to(device)
+    
+    if not os.path.exists(weights_path):
+        print(f"[!] Không tìm thấy file weights tại {weights_path}")
         return
         
-    model.load_state_dict(torch.load(args.weights, map_location=device))
+    print(f"Đang load weights từ {weights_path}...")
+    model.load_state_dict(torch.load(weights_path, map_location=device, weights_only=True))
     model.eval()
-    print(f"[+] Đã load model thành công từ {args.weights}")
+    print(f"[+] Đã load model thành công từ {weights_path}")
 
     input_path = Path(args.input)
     if not input_path.exists():
@@ -86,7 +102,7 @@ def main():
     print("-" * 60)
     results_for_plot = []
     for img_path, true_label in samples:
-        pred_text, img = predict_single(model, codec, img_path, device)
+        pred_text, img = predict_single(model, codec, img_path, device, target_h)
         if pred_text is None:
             print(f"[!] Lỗi đọc ảnh {img_path.name}")
             continue

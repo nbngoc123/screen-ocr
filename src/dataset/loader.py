@@ -16,7 +16,7 @@ class OCRDataset(Dataset):
         charset_path: str = "data/charset.txt",
         is_train: bool = True,
         max_label_len: int = 80,
-        target_h: int = 32,
+        target_h: int = 48,
     ):
         self.codec = CharsetCodec(charset_path)
         self.is_train = is_train
@@ -83,7 +83,8 @@ def collate_fn(batch: list[dict]) -> dict:
     """Pad images về cùng width, pad labels về cùng length."""
     # Pad images (chiều rộng khác nhau)
     max_w = max(b["image"].shape[2] for b in batch)
-    images = torch.zeros(len(batch), 1, 32, max_w)
+    h = batch[0]["image"].shape[1]
+    images = torch.zeros(len(batch), 1, h, max_w)
     for i, b in enumerate(batch):
         w = b["image"].shape[2]
         images[i, :, :, :w] = b["image"]
@@ -112,10 +113,11 @@ def get_dataloaders(
     charset_path: str = "data/charset.txt",
     batch_size: int = 256,
     num_workers: int = 4,
+    target_h: int = 48,
 ) -> tuple[DataLoader, DataLoader]:
 
-    train_ds = OCRDataset(train_dirs, charset_path, is_train=True)
-    val_ds   = OCRDataset(val_dirs,   charset_path, is_train=False)
+    train_ds = OCRDataset(train_dirs, charset_path, is_train=True, target_h=target_h)
+    val_ds   = OCRDataset(val_dirs,   charset_path, is_train=False, target_h=target_h)
 
     train_loader = DataLoader(
         train_ds, batch_size=batch_size, shuffle=True,

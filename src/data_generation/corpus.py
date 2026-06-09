@@ -17,12 +17,12 @@ for file_path in ["data/wiki_corpus.txt", "data/icdar_corpus.txt", "data/icdar_e
             with open(file_path, "r", encoding="utf-8") as f:
                 lines = [line.strip() for line in f if len(line.strip()) >= 2]
                 ICDAR_CORPUS.extend(lines)
-            print(f"Đã load {len(lines)} câu từ {file_path}")
+            # Bỏ print để không bị spam khi chạy multi-worker
         except Exception as e:
-            print(f"Lỗi load corpus {file_path}: {e}")
+            pass
             
 if ICDAR_CORPUS:
-    print(f"-> Tổng cộng có {len(ICDAR_CORPUS)} câu trong siêu Corpus!")
+    pass
 
 
 def random_text(min_len: int = 2, max_len: int = 40, corpus_prob: float = 0.8, word_prob: float = 0.3, phrase_prob: float = 0.4) -> str:
