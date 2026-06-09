@@ -39,12 +39,7 @@ model:
   max_label_len: 80          # Chiều dài chuỗi tối đa
 
 
-# ─── UIAutomation Crawler ─────────────────────────────────────────────────────
-crawler:
-  max_samples:    50000
-  min_text_len:   2
-  min_box_area:   200        # pixel²
-  interval_sec:   20.0       # khoảng cách giữa các lần crawl
+
 
 # ─── Preprocessing ────────────────────────────────────────────────────────────
 preprocess:

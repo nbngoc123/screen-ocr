@@ -1,42 +1,49 @@
 """
-clean_data.py — Script dọn dẹp dữ liệu ảnh đã sinh.
+Script dọn dẹp dữ liệu (xóa rác, làm sạch tập huấn luyện)
 """
-import yaml
 import shutil
 from pathlib import Path
 
-def clean_dir(path: str):
-    p = Path(path)
+def clean_directory(dir_path: str):
+    p = Path(dir_path)
     if not p.exists():
+        print(f"[Bỏ qua] Không tìm thấy thư mục: {dir_path}")
         return
-    count = 0
-    for item in p.iterdir():
-        # Bỏ qua file .gitkeep để không làm hỏng cấu trúc git
-        if item.name == ".gitkeep":
-            continue
-        if item.is_dir():
-            shutil.rmtree(item)
-            count += 1
-        else:
-            item.unlink()
-            count += 1
-    print(f"Đã xóa {count} files/thư mục trong: {path}")
+
+    count_deleted = 0
+    for item in p.rglob("*"):
+        # Không xóa file .gitkeep để giữ cấu trúc thư mục
+        if item.is_file() and item.name != ".gitkeep":
+            try:
+                item.unlink()
+                count_deleted += 1
+            except Exception as e:
+                print(f"Lỗi khi xóa {item}: {e}")
+                
+    print(f"[Thành công] Đã xóa {count_deleted} file trong thư mục: {dir_path}")
+
+def main():
+    print("=== CÔNG CỤ DỌN DẸP DỮ LIỆU ===")
+    print("1. Xóa toàn bộ dữ liệu ICDAR (data/icdar)")
+    print("2. Xóa toàn bộ dữ liệu giả (Synthetic - data/synthetic)")
+    print("3. Xóa CẢ HAI")
+    print("0. Hủy bỏ")
+    
+    choice = input("\nNhập lựa chọn của bạn (0-3): ").strip()
+    
+    if choice == "1":
+        clean_directory("data/icdar")
+    elif choice == "2":
+        clean_directory("data/synthetic/train")
+        clean_directory("data/synthetic/val")
+    elif choice == "3":
+        clean_directory("data/icdar")
+        clean_directory("data/synthetic/train")
+        clean_directory("data/synthetic/val")
+    elif choice == "0":
+        print("Đã hủy thao tác.")
+    else:
+        print("Lựa chọn không hợp lệ!")
 
 if __name__ == "__main__":
-    with open("configs/default.yaml", "r", encoding="utf-8") as f:
-        config = yaml.safe_load(f)
-        
-    synthetic_train = config["paths"]["synthetic_train"]
-    synthetic_val = config["paths"]["synthetic_val"]
-    
-    print(f"CẢNH BÁO: Dữ liệu trong 2 thư mục sau sẽ bị xóa:")
-    print(f" - {synthetic_train}")
-    print(f" - {synthetic_val}")
-    confirm = input("Bạn có chắc chắn muốn xóa không? (y/N): ")
-    
-    if confirm.lower() == 'y':
-        clean_dir(synthetic_train)
-        clean_dir(synthetic_val)
-        print("Hoàn tất!")
-    else:
-        print("Đã hủy thao tác.")
+    main()
