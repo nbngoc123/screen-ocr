@@ -23,13 +23,13 @@ logger = logging.getLogger(__name__)
 # Lưu ý: Không dùng Rotation mạnh vì text trên màn hình đa số nằm ngang hoàn hảo
 TRAIN_TRANSFORM = A.Compose([
     A.GaussianBlur(blur_limit=(1, 3), p=0.25),
-    A.ImageCompression(quality_lower=70, quality_upper=95, p=0.2),
+    A.ImageCompression(quality_range=(70, 95), p=0.2),
     A.RandomBrightnessContrast(
         brightness_limit=0.15,
         contrast_limit=0.15,
         p=0.3,
     ),
-    A.GaussNoise(var_limit=(5.0, 25.0), mean=0, p=0.2),
+    A.GaussNoise(p=0.2),
     A.Sharpen(alpha=(0.1, 0.3), lightness=(0.8, 1.0), p=0.15),
     # Normalize về [-1, 1]
     A.Normalize(mean=(0.5,), std=(0.5,)),
