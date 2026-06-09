@@ -25,13 +25,47 @@ def get_font_weights(fonts: list[str], common_fonts: list[str], common_wt: float
 
 def worker_generate(args):
     """Worker function cho multiprocessing"""
-    font_list, output_dir, n_samples = args
-    # Để tránh overwrite, ta có thể sinh file vào các thư mục con hoặc dùng offset
-    # Tuy nhiên ở script demo này ta dùng tiến trình đơn giản hơn: 
-    # Mỗi worker gen vào một folder tạm, sau đó merge lại.
-    # Trong script này, vì để code gọn nhẹ, tôi sẽ gọi generate_dataset trực tiếp
-    # nhưng giảm số lượng mẫu xuống để test nhanh trước.
-    generate_dataset(font_list, output_dir, n_samples)
+    font_list, output_dir, n_samples, font_weights, worker_id = args
+    generate_dataset(font_list, output_dir, n_samples, font_weights=font_weights, worker_id=worker_id)
+
+def run_multiprocess(font_list, output_dir, total_samples, font_weights, n_workers=4):
+    """Chia nhỏ tổng số sample ra cho các worker chạy song song."""
+    if n_workers <= 1:
+        generate_dataset(font_list, output_dir, total_samples, font_weights=font_weights, worker_id=0)
+        # Rename file nhãn
+        lbl_file = Path(output_dir) / "labels_0.jsonl"
+        if lbl_file.exists():
+            lbl_file.rename(Path(output_dir) / "labels.jsonl")
+        print(f"Generated {total_samples} samples -> {output_dir}")
+        return
+
+    samples_per_worker = total_samples // n_workers
+    args_list = []
+    
+    for i in range(n_workers):
+        n = samples_per_worker
+        if i == n_workers - 1:
+            n += total_samples % n_workers
+        args_list.append((font_list, output_dir, n, font_weights, i))
+        
+    print(f"Khởi động {n_workers} workers...")
+    with multiprocessing.Pool(n_workers) as pool:
+        pool.map(worker_generate, args_list)
+        
+    # Gom tất cả file labels của các worker thành 1 file labels.jsonl duy nhất
+    out_path = Path(output_dir)
+    merged_labels = []
+    for i in range(n_workers):
+        lbl_file = out_path / f"labels_{i}.jsonl"
+        if lbl_file.exists():
+            merged_labels.extend(lbl_file.read_text(encoding='utf-8').splitlines())
+            lbl_file.unlink() # Xóa file tạm
+            
+    with open(out_path / "labels.jsonl", "w", encoding='utf-8') as f:
+        if merged_labels:
+            f.write("\n".join(merged_labels) + "\n")
+            
+    print(f"\n[Hoàn tất] Generated {total_samples} samples -> {output_dir}")
 
 if __name__ == "__main__":
     with open("configs/default.yaml", "r", encoding="utf-8") as f:
@@ -62,27 +96,33 @@ if __name__ == "__main__":
     n_train = cfg_dg["n_train"]
     n_val = cfg_dg["n_val"]
     
+    n_workers = cfg_dg.get("n_workers", 4)
+    
     print(f"Sử dụng {len(train_fonts)} fonts cho tập Train, {len(val_fonts)} fonts cho tập Val.")
-    print(f"Bắt đầu sinh dữ liệu ({n_train} Train, {n_val} Val)...")
+    print(f"Bắt đầu sinh dữ liệu ({n_train} Train, {n_val} Val) với {n_workers} processes...")
     
     # Tính toán trọng số xác suất cho các font
     train_weights = get_font_weights(train_fonts, common_fonts, common_wt, rare_wt)
     val_weights = get_font_weights(val_fonts, common_fonts, common_wt, rare_wt)
     
     # Train
-    generate_dataset(
+    print("\n--- Tập Train ---")
+    run_multiprocess(
         font_list=train_fonts,
         output_dir=config["paths"]["synthetic_train"],
-        n_samples=n_train,
+        total_samples=n_train,
         font_weights=train_weights,
+        n_workers=n_workers
     )
     
     # Val
-    generate_dataset(
+    print("\n--- Tập Validation ---")
+    run_multiprocess(
         font_list=val_fonts,
         output_dir=config["paths"]["synthetic_val"],
-        n_samples=n_val,
+        total_samples=n_val,
         font_weights=val_weights,
+        n_workers=n_workers
     )
     
     print("Hoàn tất!")

@@ -141,6 +141,7 @@ def generate_dataset(
     n_samples: int = 500_000,
     font_size_range: tuple[int, int] = (10, 52),
     font_weights: list[float] | None = None,
+    worker_id: int = 0,
 ) -> None:
     """Sinh toàn bộ synthetic dataset ra thư mục."""
     out = Path(output_dir)
@@ -149,7 +150,7 @@ def generate_dataset(
     meta = []
     count = 0
 
-    with tqdm(total=n_samples, desc="Generating", unit="img") as pbar:
+    with tqdm(total=n_samples, desc=f"Worker {worker_id}", unit="img", position=worker_id) as pbar:
         while count < n_samples:
             if font_weights:
                 font_path = random.choices(font_list, weights=font_weights, k=1)[0]
@@ -167,16 +168,14 @@ def generate_dataset(
             if img is None:
                 continue
 
-            img_path = out / f"{count:07d}.png"
+            img_path = out / f"{worker_id:02d}_{count:07d}.png"
             cv2.imwrite(str(img_path), img)
             
-            meta.append({"file": f"{count:07d}.png", "label": text})
+            meta.append({"file": f"{worker_id:02d}_{count:07d}.png", "label": text})
             count += 1
             pbar.update(1)
 
-    # Lưu metadata vào jsonl
-    with open(out / "labels.jsonl", "w", encoding="utf-8") as f:
+    # Lưu metadata của worker vào file tạm
+    with open(out / f"labels_{worker_id}.jsonl", "w", encoding="utf-8") as f:
         for m in meta:
             f.write(json.dumps(m, ensure_ascii=False) + "\n")
-
-    print(f"Generated {count} samples -> {output_dir}")
