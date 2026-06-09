@@ -1,0 +1,66 @@
+---
+title: "Xây dựng Screen OCR Engine từ con số 0: Từ Data Pipeline đến Real-time Inference"
+date: "2024-06-09"
+author: "nbngoc123"
+tags: ["Machine Learning", "OCR", "Computer Vision", "PyTorch", "ONNX"]
+description: "Hành trình tự build một hệ thống OCR tối ưu cho màn hình Windows với độ trễ dưới 100ms, phục vụ UI Automation và Game Modding."
+---
+
+# Giới thiệu
+
+Trong bài viết này, chúng ta sẽ cùng đi qua hành trình xây dựng một **Screen OCR Engine** hoàn toàn từ đầu. Mục tiêu là tạo ra một hệ thống nhận diện chữ trên màn hình (Windows) với độ chính xác cao (>98%), tốc độ siêu nhanh (latency < 100ms) để ứng dụng vào các bài toán như UI Automation, RAG hay dịch text trong game.
+
+Tại sao không dùng Tesseract hay EasyOCR có sẵn? Vì đặc thù của screen text rất khác với scanned document: nó ít nhiễu nhưng đa dạng font, có khử răng cưa (ClearType), nền phức tạp, và yêu cầu tốc độ real-time.
+
+Hệ thống của chúng ta chia làm 2 giai đoạn chính:
+1. **Text Detection**: DBNet++ (Nhận diện vị trí text)
+2. **Text Recognition**: CRNN custom model (Đọc chữ từ ảnh)
+
+---
+
+## Phần 1: Xây dựng Data Pipeline "Vô Hạn"
+
+Data luôn là vua trong Deep Learning. Vì chúng ta cần đọc chữ trên màn hình Windows, cách tốt nhất là **tự sinh ra dữ liệu (Synthetic Data)** bằng chính các font của Windows.
+
+### Thiết kế Charset cho Tiếng Việt và Tiếng Anh
+Bài toán đặt ra là cần cover Tiếng Việt, Tiếng Anh và các ký tự UI phổ biến (như `©`, `₫`, `→`). Chúng ta đã thiết kế một charset tinh gọn khoảng 235 ký tự, kết hợp thuật toán CTC (Connectionist Temporal Classification) để xử lý độ dài thay đổi của text.
+
+### Sinh Synthetic Data
+Thay vì gán nhãn bằng tay, tôi sử dụng thư viện `Pillow` để render text lên canvas.
+Một số trick để ảnh synthetic giống thật nhất:
+- Lấy random font từ `C:\Windows\Fonts`
+- Sinh text ngẫu nhiên dựa trên các tập **Domain Corpus** (UI labels, câu tiếng Việt, mã code, con số).
+- Tạo độ tương phản nền và chữ ngẫu nhiên.
+
+> **💡 Mẹo nhỏ:** Không dùng các phép biến đổi xoay (Rotation > 5 độ) hay Perspective Transform cho augmentation, vì text trên màn hình máy tính luôn nằm ngang!
+
+### Thu thập Real Data bằng UIAutomation
+Để model chạy thật mượt trên môi trường thực tế, tôi viết một background crawler sử dụng Windows UIAutomation API. Script này chạy ngầm, tự động cắt ảnh các UI element và dùng chính `Name` property của chúng làm Ground Truth label (độ chính xác ~99%).
+
+---
+
+## Phần 2: Kiến trúc CRNN và Quá trình Training
+*(Phần này sẽ tiếp tục cập nhật khi hoàn thành)*
+
+- ResNet18 làm backbone (Pretrained ImageNet)
+- BiLSTM xử lý chuỗi
+- AMP & Gradient Clipping
+- Curriculum Learning 3 giai đoạn
+
+---
+
+## Phần 3: Tối ưu Inference với ONNX Runtime
+*(Phần này sẽ tiếp tục cập nhật khi hoàn thành)*
+
+- Export sang định dạng ONNX
+- Xử lý Batch Inference
+- Thread-safety trong Python
+- FastAPI Backend
+
+---
+
+## Kết luận
+
+Xây dựng OCR engine riêng không phải là bài toán bất khả thi. Nếu kiểm soát tốt luồng Data Pipeline, kết quả đạt được sẽ hoàn toàn xứng đáng so với việc dùng các model "mì ăn liền".
+
+*Source code toàn bộ dự án hiện đang được push tại repo GitHub của mình, các bạn có thể tham khảo thêm cấu trúc.*

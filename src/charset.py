@@ -41,8 +41,11 @@ def build_charset() -> str:
     Returns:
         Chuỗi ký tự đã sort, không trùng lặp (~235 chars).
     """
-    # TODO: implement — xem week1-data-pipeline.md §1.3
-    raise NotImplementedError
+    base = string.ascii_letters + string.digits + string.punctuation + " "
+    full = sorted(set(base + _VIET_LOWER + _VIET_UPPER + _UI_EXTRAS))
+    charset_str = "".join(full)
+    logger.info(f"Charset size: {len(charset_str)} ký tự")
+    return charset_str
 
 
 def save_charset(path: str = "data/charset.txt") -> None:
@@ -52,8 +55,10 @@ def save_charset(path: str = "data/charset.txt") -> None:
     Args:
         path: Đường dẫn output, relative từ project root.
     """
-    # TODO: implement
-    raise NotImplementedError
+    charset = build_charset()
+    Path(path).parent.mkdir(parents=True, exist_ok=True)
+    Path(path).write_text(charset, encoding="utf-8")
+    logger.info(f"Saved charset to {path}")
 
 
 def load_charset(path: str = "data/charset.txt") -> str:
@@ -69,8 +74,9 @@ def load_charset(path: str = "data/charset.txt") -> str:
     Raises:
         FileNotFoundError: Nếu file không tồn tại.
     """
-    # TODO: implement
-    raise NotImplementedError
+    if not Path(path).exists():
+        raise FileNotFoundError(f"Không tìm thấy file charset tại: {path}")
+    return Path(path).read_text(encoding="utf-8")
 
 
 class CharsetCodec:
@@ -87,8 +93,10 @@ class CharsetCodec:
     """
 
     def __init__(self, charset_path: str = "data/charset.txt") -> None:
-        # TODO: implement — load charset, build char2idx + idx2char dicts
-        raise NotImplementedError
+        self.charset = load_charset(charset_path)
+        self.char2idx = {c: i + 1 for i, c in enumerate(self.charset)}
+        self.idx2char = {i + 1: c for i, c in enumerate(self.charset)}
+        self.blank_idx = 0
 
     def encode(self, text: str) -> list[int]:
         """
@@ -101,8 +109,7 @@ class CharsetCodec:
         Returns:
             List index tương ứng (không bao gồm blank).
         """
-        # TODO: implement
-        raise NotImplementedError
+        return [self.char2idx[c] for c in text if c in self.char2idx]
 
     def decode(self, indices: list[int]) -> str:
         """
@@ -114,10 +121,14 @@ class CharsetCodec:
         Returns:
             Chuỗi text đã decode.
         """
-        # TODO: implement
-        raise NotImplementedError
+        result = []
+        prev = self.blank_idx
+        for idx in indices:
+            if idx != self.blank_idx and idx != prev:
+                result.append(self.idx2char.get(idx, ""))
+            prev = idx
+        return "".join(result)
 
     def __len__(self) -> int:
         """Số ký tự trong charset (không tính blank)."""
-        # TODO: implement
-        raise NotImplementedError
+        return len(self.charset)
