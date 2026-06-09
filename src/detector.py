@@ -15,6 +15,8 @@ import cv2
 import numpy as np
 import yaml
 from pathlib import Path
+import pyclipper
+from shapely.geometry import Polygon
 
 try:
     import onnxruntime as ort
@@ -66,8 +68,13 @@ class DBNetDetector:
                 full_config = yaml.safe_load(f)
                 self.config = full_config.get("detector", {})
         
+        
         if providers is None:
-            providers = ["CPUExecutionProvider"]
+            # Ưu tiên cấu hình trong YAML, mặc định rớt về CPU
+            # providers thường nằm ở block "inference" hoặc "detector"
+            with open(config_path, "r", encoding="utf-8") as f:
+                full_config = yaml.safe_load(f)
+            providers = full_config.get("inference", {}).get("providers", ["CPUExecutionProvider"])
             
         logger.info(f"Loading DBNet from {model_path} with {providers}")
         self.sess = ort.InferenceSession(model_path, providers=providers)
@@ -127,11 +134,9 @@ class DBNetDetector:
         
         return img_tensor, (h, w)
 
-    def _postprocess(self, prob_map: np.ndarray, orig_shape: tuple[int, int], thresh: float = 0.3, unclip_ratio: float = 2.0, min_area: int = 10) -> list[BoundingBox]:
+    def _postprocess(self, prob_map: np.ndarray, orig_shape: tuple[int, int], thresh: float = 0.3, unclip_ratio: float = 2.0, min_area: int = 10, min_padding_x: int = 4, min_padding_y: int = 4) -> list[BoundingBox]:
         """
-        Hậu xử lý Probability Map -> BoundingBoxes.
-        - unclip_ratio: Hệ số nới lỏng (padding) box. Càng lớn thì box càng rộng. 
-                        Chuẩn của DBNet thường là 1.5 - 2.0.
+        Hậu xử lý Probability Map -> BoundingBoxes sử dụng pyclipper.
         """
         orig_h, orig_w = orig_shape
         pred_h, pred_w = prob_map.shape
@@ -145,11 +150,29 @@ class DBNetDetector:
         boxes = []
         for contour in contours:
             area = cv2.contourArea(contour)
-            # Bỏ qua các contour quá nhỏ
             if area < min_area:
                 continue
                 
-            x, y, w, h = cv2.boundingRect(contour)
+            # --- PADDING (UNCLIP) CHUẨN DBNET BẰNG PYCLIPPER ---
+            perimeter = cv2.arcLength(contour, True)
+            if perimeter == 0:
+                continue
+                
+            # Tính khoảng cách giãn nở polygon
+            distance = area * unclip_ratio / perimeter
+            
+            # Khởi tạo Pyclipper để nới rộng đa giác
+            offset = pyclipper.PyclipperOffset()
+            offset.AddPath(contour.squeeze(1).tolist(), pyclipper.JT_ROUND, pyclipper.ET_CLOSEDPOLYGON)
+            expanded = offset.Execute(distance)
+            
+            if len(expanded) == 0:
+                continue
+                
+            expanded_contour = np.array(expanded[0]).reshape(-1, 1, 2)
+            
+            # Lấy bounding box chữ nhật từ polygon ĐÃ GIÃN NỞ
+            x, y, w, h = cv2.boundingRect(expanded_contour)
             
             # Tính tỉ lệ phục hồi lại kích thước gốc
             scale_x = orig_w / pred_w
@@ -160,28 +183,19 @@ class DBNetDetector:
             x2 = int((x + w) * scale_x)
             y2 = int((y + h) * scale_y)
             
-            # --- PADDING (UNCLIP) ---
-            # Áp dụng công thức giãn nở chuẩn của DBNet: D = area * unclip_ratio / perimeter
-            perimeter = cv2.arcLength(contour, True)
-            if perimeter > 0:
-                dist = area * unclip_ratio / perimeter
-                pad_x = int(dist * scale_x)
-                pad_y = int(dist * scale_y)
-            else:
-                pad_x = int((x2 - x1) * 0.05)
-                pad_y = int((y2 - y1) * 0.1)
-                
-            # Thêm cấu hình pad cố định một chút xíu nữa để đảm bảo không bị lẹm viền chữ
-            pad_x += 2
-            pad_y += 2
-            
-            x1 = max(0, x1 - pad_x)
-            y1 = max(0, y1 - pad_y)
-            x2 = min(orig_w, x2 + pad_x)
-            y2 = min(orig_h, y2 + pad_y)
+            # Áp dụng min padding tránh trường hợp scale quá nhỏ hoặc bị lẹm chút xíu
+            x1 = max(0, x1 - min_padding_x)
+            y1 = max(0, y1 - min_padding_y)
+            x2 = min(orig_w, x2 + min_padding_x)
+            y2 = min(orig_h, y2 + min_padding_y)
             
             # Tính confidence trung bình trong vùng chữ nhật (trên prob_map)
-            score = np.mean(prob_map[y:y+h, x:x+w])
+            # Chú ý: Cần lấy vùng crop trong giới hạn ảnh
+            crop_y = max(0, y)
+            crop_x = max(0, x)
+            crop_h = min(pred_h - crop_y, h)
+            crop_w = min(pred_w - crop_x, w)
+            score = np.mean(prob_map[crop_y:crop_y+crop_h, crop_x:crop_x+crop_w])
             
             boxes.append(BoundingBox(x1=x1, y1=y1, x2=x2, y2=y2, confidence=float(score)))
             
@@ -199,6 +213,8 @@ class DBNetDetector:
         c_prob_thresh = prob_threshold if prob_threshold is not None else self.config.get("prob_threshold", 0.3)
         c_unclip = unclip_ratio if unclip_ratio is not None else self.config.get("unclip_ratio", 2.0)
         c_min_area = min_area if min_area is not None else self.config.get("min_area", 10)
+        c_min_pad_x = self.config.get("min_padding_x", 4)
+        c_min_pad_y = self.config.get("min_padding_y", 4)
             
         # 1. Preprocess
         input_tensor, orig_shape = self._preprocess(image, max_size=c_max_size)
@@ -211,5 +227,5 @@ class DBNetDetector:
         prob_map = outputs[0][0, 0, :, :]
         
         # 3. Postprocess
-        boxes = self._postprocess(prob_map, orig_shape, thresh=c_prob_thresh, unclip_ratio=c_unclip, min_area=c_min_area)
+        boxes = self._postprocess(prob_map, orig_shape, thresh=c_prob_thresh, unclip_ratio=c_unclip, min_area=c_min_area, min_padding_x=c_min_pad_x, min_padding_y=c_min_pad_y)
         return boxes
