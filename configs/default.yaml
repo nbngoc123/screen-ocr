@@ -36,13 +36,12 @@ data_gen:
   common_font_weight: 10.0
   rare_font_weight: 1.0
 
-# ─── Model Training Config ────────────────────────────────────────────────────
-model:
-  target_h: 32               # Input height bắt buộc của mạng CRNN
-  max_label_len: 80          # Chiều dài chuỗi tối đa
-
-
-
+# ─── Detector (DBNet) ─────────────────────────────────────────────────────────
+detector:
+  max_size:       960        # Kích thước ảnh tối đa (pixel) đưa vào DBNet. Giúp tránh tràn RAM, đảm bảo tốc độ.
+  prob_threshold: 0.3        # Ngưỡng xác suất (Probability Map) quyết định pixel nào là viền chữ.
+  unclip_ratio:   2.0        # Hệ số nới lỏng (padding) Bounding Box theo thuật toán Vatti. Chuẩn: 1.5 - 2.0.
+  min_area:       10         # Bỏ qua các Box có diện tích nhỏ hơn mức này để lọc nhiễu.
 
 # ─── Preprocessing ────────────────────────────────────────────────────────────
 preprocess:

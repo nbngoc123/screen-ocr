@@ -78,7 +78,7 @@ class DBNetDetector:
                 cls._instance = cls(model_path, providers)
             return cls._instance
 
-    def _preprocess(self, image: np.ndarray) -> tuple[np.ndarray, tuple[int, int]]:
+    def _preprocess(self, image: np.ndarray, max_size: int = 960) -> tuple[np.ndarray, tuple[int, int]]:
         """
         Tiền xử lý ảnh:
         1. Resize để có chiều rộng/cao là bội số của 32. Giữ nguyên tỷ lệ hoặc giới hạn kích thước tối đa.
@@ -87,8 +87,7 @@ class DBNetDetector:
         """
         h, w = image.shape[:2]
         
-        # Để nhanh và dễ tính, lấy max_size = 960
-        max_size = 960
+        # Để nhanh và dễ tính, giới hạn kích thước ảnh tối đa (max_size)
         scale = 1.0
         if max(h, w) > max_size:
             scale = max_size / max(h, w)
@@ -117,9 +116,11 @@ class DBNetDetector:
         
         return img_tensor, (h, w)
 
-    def _postprocess(self, prob_map: np.ndarray, orig_shape: tuple[int, int], thresh: float = 0.3) -> list[BoundingBox]:
+    def _postprocess(self, prob_map: np.ndarray, orig_shape: tuple[int, int], thresh: float = 0.3, unclip_ratio: float = 2.0, min_area: int = 10) -> list[BoundingBox]:
         """
         Hậu xử lý Probability Map -> BoundingBoxes.
+        - unclip_ratio: Hệ số nới lỏng (padding) box. Càng lớn thì box càng rộng. 
+                        Chuẩn của DBNet thường là 1.5 - 2.0.
         """
         orig_h, orig_w = orig_shape
         pred_h, pred_w = prob_map.shape
@@ -132,13 +133,11 @@ class DBNetDetector:
         
         boxes = []
         for contour in contours:
+            area = cv2.contourArea(contour)
             # Bỏ qua các contour quá nhỏ
-            if cv2.contourArea(contour) < 10:
+            if area < min_area:
                 continue
                 
-            # DBNet cần unclip (mở rộng) contour theo tỷ lệ giãn
-            # Tuy nhiên với BoundingBox hình chữ nhật (x1, y1, x2, y2),
-            # ta có thể tính bounding rect và nới lỏng nhẹ.
             x, y, w, h = cv2.boundingRect(contour)
             
             # Tính tỉ lệ phục hồi lại kích thước gốc
@@ -150,9 +149,20 @@ class DBNetDetector:
             x2 = int((x + w) * scale_x)
             y2 = int((y + h) * scale_y)
             
-            # Nới lỏng bbox một chút (khoảng padding)
-            pad_x = int((x2 - x1) * 0.05)
-            pad_y = int((y2 - y1) * 0.1)
+            # --- PADDING (UNCLIP) ---
+            # Áp dụng công thức giãn nở chuẩn của DBNet: D = area * unclip_ratio / perimeter
+            perimeter = cv2.arcLength(contour, True)
+            if perimeter > 0:
+                dist = area * unclip_ratio / perimeter
+                pad_x = int(dist * scale_x)
+                pad_y = int(dist * scale_y)
+            else:
+                pad_x = int((x2 - x1) * 0.05)
+                pad_y = int((y2 - y1) * 0.1)
+                
+            # Thêm cấu hình pad cố định một chút xíu nữa để đảm bảo không bị lẹm viền chữ
+            pad_x += 2
+            pad_y += 2
             
             x1 = max(0, x1 - pad_x)
             y1 = max(0, y1 - pad_y)
@@ -166,7 +176,7 @@ class DBNetDetector:
             
         return boxes
 
-    def detect(self, image: np.ndarray) -> list[BoundingBox]:
+    def detect(self, image: np.ndarray, max_size: int = 960, prob_threshold: float = 0.3, unclip_ratio: float = 2.0, min_area: int = 10) -> list[BoundingBox]:
         """
         Phát hiện text bounding boxes.
         """
@@ -174,7 +184,7 @@ class DBNetDetector:
             return []
             
         # 1. Preprocess
-        input_tensor, orig_shape = self._preprocess(image)
+        input_tensor, orig_shape = self._preprocess(image, max_size=max_size)
         
         # 2. Inference
         with self._lock:
@@ -184,5 +194,5 @@ class DBNetDetector:
         prob_map = outputs[0][0, 0, :, :]
         
         # 3. Postprocess
-        boxes = self._postprocess(prob_map, orig_shape)
+        boxes = self._postprocess(prob_map, orig_shape, thresh=prob_threshold, unclip_ratio=unclip_ratio, min_area=min_area)
         return boxes
