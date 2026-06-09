@@ -20,15 +20,15 @@ paths:
 
 # ─── Data Generation ──────────────────────────────────────────────────────────
 data_gen:
-  n_train:        2000    
-  n_val:          200     
+  n_train:        4000    
+  n_val:          2000     
   val_ratio:      0.1        # 10% font dành riêng cho tập validation
   font_size_min:  10
   font_size_max:  52
   min_text_len:   2
   max_text_len:   40
   n_workers:      4          # số process song song khi gen
-  corpus_prob:    0.85        # Xác suất lấy chữ từ Corpus thực tế
+  corpus_prob:    0.95        # Xác suất lấy chữ từ Corpus thực tế
   word_split_prob: 0.7       # Xác suất cắt thành từ ngắn (1-2 từ)
   phrase_split_prob: 0.2     # Xác suất cắt thành cụm từ (3-5 từ)
   
