@@ -33,6 +33,12 @@ data_gen:
   common_font_weight: 10.0
   rare_font_weight: 1.0
 
+# ─── Model Training Config ────────────────────────────────────────────────────
+model:
+  target_h: 32               # Input height bắt buộc của mạng CRNN
+  max_label_len: 80          # Chiều dài chuỗi tối đa
+
+
 # ─── UIAutomation Crawler ─────────────────────────────────────────────────────
 crawler:
   max_samples:    50000

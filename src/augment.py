@@ -14,16 +14,32 @@ import logging
 
 import cv2
 import numpy as np
+import albumentations as A
 
 logger = logging.getLogger(__name__)
 
 # ─── Training transform (moderate augmentation) ───────────────────────────────
-# TODO: khởi tạo A.Compose([...]) theo screen-ocr-project.md §Data Pipeline
-# Xem week1-data-pipeline.md §3.1 để biết chi tiết các transform
-TRAIN_TRANSFORM = None  # placeholder — thay bằng A.Compose([...])
+# Pipeline cho training — moderate augmentation
+# Lưu ý: Không dùng Rotation mạnh vì text trên màn hình đa số nằm ngang hoàn hảo
+TRAIN_TRANSFORM = A.Compose([
+    A.GaussianBlur(blur_limit=(1, 3), p=0.25),
+    A.ImageCompression(quality_lower=70, quality_upper=95, p=0.2),
+    A.RandomBrightnessContrast(
+        brightness_limit=0.15,
+        contrast_limit=0.15,
+        p=0.3,
+    ),
+    A.GaussNoise(var_limit=(5.0, 25.0), mean=0, p=0.2),
+    A.Sharpen(alpha=(0.1, 0.3), lightness=(0.8, 1.0), p=0.15),
+    # Normalize về [-1, 1]
+    A.Normalize(mean=(0.5,), std=(0.5,)),
+])
 
 # ─── Val/Test transform (normalize only) ─────────────────────────────────────
-VAL_TRANSFORM = None  # placeholder — thay bằng A.Compose([A.Normalize(...)])
+# Pipeline cho val/test — chỉ normalize
+VAL_TRANSFORM = A.Compose([
+    A.Normalize(mean=(0.5,), std=(0.5,)),
+])
 
 
 def preprocess_for_crnn(
@@ -51,5 +67,21 @@ def preprocess_for_crnn(
     Raises:
         ValueError: Nếu image có size không hợp lệ.
     """
-    # TODO: implement — xem week1-data-pipeline.md §3.1
-    raise NotImplementedError
+    h, w = image.shape[:2]
+    if h == 0 or w == 0:
+        raise ValueError(f"Invalid image size: {w}×{h}")
+
+    # Resize giữ nguyên tỉ lệ (Aspect Ratio)
+    new_w = max(int(w * target_h / h), 1)
+    image = cv2.resize(image, (new_w, target_h), interpolation=cv2.INTER_LINEAR)
+
+    # Convert grayscale
+    if image.ndim == 3:
+        image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+
+    # Augment (yêu cầu image có 3 chiều cho albumentations, ta phải expand_dims)
+    transform = TRAIN_TRANSFORM if is_train else VAL_TRANSFORM
+    augmented = transform(image=image[..., np.newaxis])["image"]
+
+    # Đưa về lại (H, W) float32
+    return augmented.squeeze(-1)
