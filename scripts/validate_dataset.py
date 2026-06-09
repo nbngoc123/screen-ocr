@@ -45,7 +45,6 @@ def test_dataloader():
             for i in range(min(5, len(label_strs))):
                 print(f"  [{i}] '{label_strs[i]}' (len={label_lens[i].item()})")
                 
-            # Đảm bảo Height cố định = 32
             assert images.shape[2] == 32, "Lỗi: Chiều cao ảnh phải luôn được resize về 32!"
             break
             

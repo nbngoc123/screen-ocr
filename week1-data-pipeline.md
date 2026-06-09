@@ -700,15 +700,15 @@ if __name__ == "__main__":
 
 ## Checklist cuối tuần 1
 
-- [ ] `charset.txt` đã tạo, có đủ ký tự Việt + UI extras
-- [ ] 800k train samples đã sinh xong (`data/synthetic/train/`)
-- [ ] 100k val samples đã sinh xong (`data/synthetic/val/`)
-- [ ] Val set dùng font khác train set (verify bằng `set` intersection)
-- [ ] Tích hợp thành công dữ liệu thực tế (ICDAR Recognition)
-- [ ] `validate_dataset.py` chạy không ra error
-- [ ] OOV chars < 1% trên toàn dataset
-- [ ] `DataLoader` test: load 1 batch không báo lỗi
-- [ ] Augmentation visualized và trông hợp lý
+- [x] `charset.txt` đã tạo, có đủ ký tự Việt + UI extras
+- [x] 800k train samples đã sinh xong (`data/synthetic/train/`)
+- [x] 100k val samples đã sinh xong (`data/synthetic/val/`)
+- [x] Val set dùng font khác train set (verify bằng `set` intersection)
+- [x] Tích hợp thành công dữ liệu thực tế (ICDAR Recognition)
+- [x] `validate_dataset.py` chạy không ra error
+- [x] OOV chars < 1% trên toàn dataset
+- [x] `DataLoader` test: load 1 batch không báo lỗi
+- [x] Augmentation visualized và trông hợp lý
 
 ---
 
