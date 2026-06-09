@@ -24,6 +24,9 @@ Data luôn là vua trong Deep Learning. Vì chúng ta cần đọc chữ trên m
 
 ### Thiết kế Charset cho Tiếng Việt và Tiếng Anh
 Bài toán đặt ra là cần cover Tiếng Việt, Tiếng Anh và các ký tự UI phổ biến (như `©`, `₫`, `→`). Chúng ta đã thiết kế một charset tinh gọn khoảng 235 ký tự, kết hợp thuật toán CTC (Connectionist Temporal Classification) để xử lý độ dài thay đổi của text.
+(Text Recognition) Vấn đề hiện tại là chúng ta cần cho mô hình học những gì vì các kí tự do ảnh chụp màn hình có vô vàn dạng chữ kiểu dáng khác nhau để giải quyết vấn đề mô hình có thể bị overfit thì việc bổ sung các font chữ cho mô hình học và nhìn thấy là một bài toán có ý nghĩa thật sự.
+(Text Recognition) Vấn đề nảy sinh nữa là khi kết hợp với các font chữ và tiếng việt khi không được xử lý sẽ phát sinh tình trạng xuất hiện các kí tự lạ kiểu như \u2026, \u201d, \u201c, □,....
+
 
 ### Sinh Synthetic Data
 Thay vì gán nhãn bằng tay, tôi sử dụng thư viện `Pillow` để render text lên canvas.

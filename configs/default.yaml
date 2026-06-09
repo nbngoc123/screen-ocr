@@ -19,13 +19,19 @@ paths:
 
 # ─── Data Generation ──────────────────────────────────────────────────────────
 data_gen:
-  n_train:        480000
-  n_val:          60000
+  n_train:        100
+  n_val:          30
+  val_ratio:      0.1        # 10% font dành riêng cho tập validation
   font_size_min:  10
   font_size_max:  52
   min_text_len:   2
   max_text_len:   40
   n_workers:      4          # số process song song khi gen
+  
+  # Font Selection
+  common_fonts: ["arial", "segoe", "tahoma", "times", "verdana", "calibri", "cambria", "consolas", "roboto", "opensans"]
+  common_font_weight: 10.0
+  rare_font_weight: 1.0
 
 # ─── UIAutomation Crawler ─────────────────────────────────────────────────────
 crawler:
