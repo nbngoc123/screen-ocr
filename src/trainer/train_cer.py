@@ -128,7 +128,7 @@ def main():
     )
 
     if args.debug:
-        sample = 64000
+        sample = 640
         logger.info(f"DEBUG MODE: Cắt tập dữ liệu xuống còn {sample} mẫu!")
         train_loader.dataset.samples = train_loader.dataset.samples[:sample]
         val_loader.dataset.samples = val_loader.dataset.samples[:sample]

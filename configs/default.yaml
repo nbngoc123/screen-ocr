@@ -20,8 +20,8 @@ paths:
 
 # ─── Data Generation ──────────────────────────────────────────────────────────
 data_gen:
-  n_train:        20000    
-  n_val:          2000     
+  n_train:        2000    
+  n_val:          200     
   val_ratio:      0.1        # 10% font dành riêng cho tập validation
   font_size_min:  10
   font_size_max:  52
@@ -57,7 +57,7 @@ preprocess:
 
 # ─── Training ─────────────────────────────────────────────────────────────────
 training:
-  batch_size:     256
+  batch_size:     64
   num_workers:    1
   max_label_len:  80
   epochs_phase1:  15         # Foundation: font lớn, bg trắng
