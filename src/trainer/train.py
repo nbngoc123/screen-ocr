@@ -62,6 +62,7 @@ def main():
     parser.add_argument("--lr", type=float, default=None, help="Learning rate ban đầu")
     parser.add_argument("--num-workers", type=int, default=None, help="Số tiến trình load data")
     parser.add_argument("--debug", action="store_true", help="Giới hạn 320 samples để debug")
+    parser.add_argument("--show-sample", action="store_true", help="Bật hiển thị mẫu suy luận thử khi lưu checkpoint")
     args = parser.parse_args()
 
     # Load config từ YAML
@@ -178,13 +179,14 @@ def main():
             torch.save(model.state_dict(), ckpt_path)
             logger.info(f"  [+] Đã lưu checkpoint mới tốt nhất tại {ckpt_path}")
             
-            # Thử decode ngay 1 batch để theo dõi
-            model.eval()
-            with torch.no_grad():
-                test_batch = next(iter(val_loader))
-                test_out = model(test_batch["image"].to(device))
-                preds = ctc_greedy_decode(test_out, codec.charset)
-                logger.info(f"  [>] Mẫu suy luận thử: '{preds[0]}'")
+            # Thử decode ngay 1 batch để theo dõi (nếu được bật)
+            if args.show_sample:
+                model.eval()
+                with torch.no_grad():
+                    test_batch = next(iter(val_loader))
+                    test_out = model(test_batch["image"].to(device))
+                    preds = ctc_greedy_decode(test_out, codec.charset)
+                    logger.info(f"  [>] Mẫu suy luận thử: '{preds[0]}'")
 
 if __name__ == "__main__":
     main()
