@@ -20,8 +20,8 @@ paths:
 
 # ─── Data Generation ──────────────────────────────────────────────────────────
 data_gen:
-  n_train:        2000    
-  n_val:          500     
+  n_train:        200    
+  n_val:          20     
   val_ratio:      0.1        # 10% font dành riêng cho tập validation
   font_size_min:  10
   font_size_max:  52
