@@ -4,6 +4,8 @@ import yaml
 from pathlib import Path
 import multiprocessing
 import shutil
+import random
+from collections import defaultdict
 
 # Thêm thư mục gốc vào đường dẫn hệ thống để Python tìm thấy module src
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -148,10 +150,29 @@ if __name__ == "__main__":
     neg_prob = cfg_dg.get("neg_prob", 0.05)
     multi_dpi_prob = cfg_dg.get("multi_dpi_prob", 0.20)
 
-    # Split train and val fonts theo nguyên tắc không trùng lặp
-    split_idx = int(len(fonts) * (1.0 - val_ratio))
-    train_fonts = fonts[:split_idx]
-    val_fonts = fonts[split_idx:]
+    # Split train and val fonts theo nguyên tắc không trùng lặp (group by family)
+    font_families = defaultdict(list)
+    for f in fonts:
+        # Tách tên họ font (VD: "Arial Bold.ttf" -> "arial")
+        base = os.path.basename(f)
+        family = base.replace('.ttf', '').replace('.otf', '').split('-')[0].split(' ')[0].split('_')[0].lower()
+        font_families[family].append(f)
+        
+    families = list(font_families.keys())
+    random.seed(42) # Giữ cho việc split luôn cố định qua các lần sinh
+    random.shuffle(families)
+    
+    split_idx = int(len(families) * (1.0 - val_ratio))
+    train_families = families[:split_idx]
+    val_families = families[split_idx:]
+    
+    train_fonts = []
+    for fam in train_families:
+        train_fonts.extend(font_families[fam])
+        
+    val_fonts = []
+    for fam in val_families:
+        val_fonts.extend(font_families[fam])
     
     # Số lượng ảnh lấy thẳng từ file cấu hình default.yaml
     n_train = cfg_dg["n_train"]

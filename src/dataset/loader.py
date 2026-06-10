@@ -101,9 +101,6 @@ def collate_fn(batch: list[dict]) -> dict:
         "label":       labels,
         "label_len":   torch.stack([b["label_len"] for b in batch]),
         "label_str":   [b["label_str"] for b in batch],
-        "input_len":   torch.tensor(
-            [max_w // 4 for _ in batch], dtype=torch.long  # output width sau CNN layer (stride = 4)
-        ),
     }
 
 

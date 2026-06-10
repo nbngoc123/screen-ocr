@@ -73,7 +73,7 @@ MIXED_SCRIPT = [
     "Confirm xoá item này?",
 ]
 
-def random_text(min_len: int = 2, max_len: int = 40, corpus_prob: float = 0.8, word_prob: float = 0.3, phrase_prob: float = 0.4, hard_prob: float = 0.10) -> str:
+def random_text(min_len: int = 2, max_len: int = 24, corpus_prob: float = 0.8, word_prob: float = 0.3, phrase_prob: float = 0.4, hard_prob: float = 0.25) -> str:
     """
     Sinh text ngẫu nhiên từ corpus hoặc generate random string.
 
@@ -90,10 +90,10 @@ def random_text(min_len: int = 2, max_len: int = 40, corpus_prob: float = 0.8, w
     if r < hard_prob:
         return random.choice(HARD_TEXTS)
         
-    # Cho thêm 10% cơ hội rơi vào UI_SPECIFIC hoặc MIXED_SCRIPT
+    # Cho thêm 25% cơ hội rơi vào UI_SPECIFIC hoặc MIXED_SCRIPT
     # Do hàm này được thiết kế dựa trên xác suất tích luỹ
     r2 = random.random()
-    if r2 < 0.10:
+    if r2 < 0.25:
         if random.random() < 0.7:
             return random.choice(UI_SPECIFIC)
         else:

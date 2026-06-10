@@ -33,7 +33,7 @@ data_gen:
   phrase_split_prob: 0.2     # Xác suất cắt thành cụm từ (3-5 từ)
   
   # Hard samples & UI Elements (Shadow/Stroke)
-  hard_prob:      0.10       # Xác suất sinh ra cụm kí tự dễ nhầm (I, l, 1, 0, O...) để mô hình bắt buộc phải học
+  hard_prob:      0.25       # Xác suất sinh ra cụm kí tự dễ nhầm (I, l, 1, 0, O...) để mô hình bắt buộc phải học
   shadow_prob:    0.25       # Xác suất đổ bóng cho chữ (giống text trên UI Windows)
   stroke_prob:    0.30       # Xác suất thêm viền ngoài (stroke) cho chữ
   
@@ -43,7 +43,7 @@ data_gen:
   real_bg_prob:   0.30       # Xác suất crop nền từ ảnh screenshot thật
   
   # Diversity
-  neg_prob:       0.05       # Xác suất sinh ảnh negative (không có text)
+  neg_prob:       0       # Xác suất sinh ảnh negative (không có text)
   multi_dpi_prob: 0.20       # Xác suất render text ở các scale lớn hơn rồi downscale
   
   # Font Selection

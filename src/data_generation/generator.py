@@ -286,6 +286,7 @@ def generate_dataset(
     out.mkdir(parents=True, exist_ok=True)
 
     count = 0
+    rejected_by_font = 0
     quality_rejected = {}
 
     # Mở file ghi liên tục (append hoặc write) để không bị mất dữ liệu nếu user bấm Ctrl+C
@@ -317,6 +318,10 @@ def generate_dataset(
                         continue
 
                     base_size = random.randint(*font_size_range)
+                    if not check_text_fits_font(text, font_path, base_size):
+                        rejected_by_font += 1
+                        continue
+
                     if random.random() < multi_dpi_prob:
                         img = generate_sample_multidpi(
                             text, font_path, base_size,
@@ -357,4 +362,6 @@ def generate_dataset(
                 count += 1
                 pbar.update(1)
 
+    # In ra báo cáo thống kê cho worker này
+    logger.info(f"Worker {worker_id} - Generated: {count} | Rejected by Font: {rejected_by_font} | Quality Rejected: {quality_rejected}")
     return count

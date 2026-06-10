@@ -14,7 +14,7 @@ def prepare_wiki_corpus(output_file="data/wiki_corpus.txt", target_sentences=500
     corpus = set()
     count = 0
     
-    print(f"Đang bóc tách lấy {target_sentences} câu (độ dài 5-80 ký tự)...")
+    print(f"Đang bóc tách lấy {target_sentences} câu (độ dài 5-24 ký tự)...")
     for item in ds:
         text = item.get('text', '')
         # Tách text thành các câu nhỏ dựa trên dấu câu và xuống dòng
@@ -23,14 +23,14 @@ def prepare_wiki_corpus(output_file="data/wiki_corpus.txt", target_sentences=500
         for chunk in chunks:
             chunk = chunk.strip()
             # Có thể cắt thêm theo dấu phẩy nếu đoạn quá dài
-            if len(chunk) > 80:
+            if len(chunk) > 24:
                 sub_chunks = chunk.split(',')
                 for sc in sub_chunks:
                     sc = sc.strip()
-                    if 5 <= len(sc) <= 80:
+                    if 5 <= len(sc) <= 24:
                         corpus.add(sc)
             else:
-                if 5 <= len(chunk) <= 80:
+                if 5 <= len(chunk) <= 24:
                     corpus.add(chunk)
                     
         # Update tiến độ
@@ -60,7 +60,7 @@ def prepare_english_corpus(output_file="data/icdar_en_corpus.txt", target_senten
         chunks = re.split(r'[.;!?"\n]+', text)
         for chunk in chunks:
             chunk = chunk.strip()
-            if 5 <= len(chunk) <= 80:
+            if 5 <= len(chunk) <= 24:
                 corpus.add(chunk)
                 
         if len(corpus) - count >= 10000:
@@ -91,8 +91,13 @@ def generate_charset_from_corpus(corpus_files, output_file="data/charset.txt", m
                 for line in f:
                     char_counter.update(line.strip())
                     
-    # Lấy các ký tự phổ biến nhất chưa nằm trong danh sách bắt buộc
-    top_chars = [c for c, _ in char_counter.most_common() if c not in essential_chars]
+    # Lọc lấy những ký tự nằm trong bộ siêu ký tự được phép (ASCII + Vietnamese NFC)
+    # Lấy các ký tự phổ biến nhất thuộc vào danh sách hợp lệ, loại bỏ hoàn toàn ký tự lạ (như tiếng Ả rập, tiếng Nga)
+    valid_charset = set("aáàảãạăắằẳẵặâấầẩẫậbcdđeéèẻẽẹêếềểễệghiíìỉĩịklmnoóòỏõọôốồổỗộơớờởỡợpqrstuúùủũụưứừửữựvxyýỳỷỹỵ"
+                        "AÁÀẢÃẠĂẮẰẲẴẶÂẤẦẨẪẬBCDĐEÉÈẺẼẸÊẾỀỂỄỆGHIÍÌỈĨỊKLMNOÓÒỎÕỌÔỐỒỔỖỘƠỚỜỞỠỢPQRSTUÚÙỦŨỤƯỨỪỬỮỰVXYÝỲỶỸỴ"
+                        "0123456789.,;:'\"!?-()[]{}<>%/*+=$#@&^|\\~_ ")
+    
+    top_chars = [c for c, _ in char_counter.most_common() if c not in essential_chars and c in valid_charset]
     
     # Ghép ký tự bắt buộc và ký tự phổ biến (tối đa max_chars)
     final_chars = list(essential_chars) + top_chars[:max_chars - len(essential_chars)]
