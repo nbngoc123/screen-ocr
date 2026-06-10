@@ -9,6 +9,7 @@ import os
 import sys
 import yaml
 import time
+import csv
 from pathlib import Path
 
 # Thêm thư mục gốc của project vào PYTHONPATH để import được thư mục src
@@ -119,6 +120,13 @@ def main():
     # Giảm LR đi một nửa nếu Val Loss không cải thiện sau 5 epochs
     scheduler = ReduceLROnPlateau(optimizer, mode="min", factor=0.5, patience=5)
 
+    # Chuẩn bị file log metric
+    log_file_path = Path(config["paths"].get("reports", "reports")) / "training_log.csv"
+    log_file_path.parent.mkdir(parents=True, exist_ok=True)
+    with open(log_file_path, "w", newline="", encoding="utf-8") as f:
+        writer = csv.writer(f)
+        writer.writerow(["epoch", "train_loss", "val_loss", "lr", "time"])
+
     # 4. Vòng lặp huấn luyện
     best_val_loss = float("inf")
     
@@ -157,6 +165,11 @@ def main():
         logger.info(f"Epoch {epoch:03d}/{epochs} | "
                     f"Train Loss: {train_loss:.4f} | Val Loss: {val_loss:.4f} | "
                     f"LR: {optimizer.param_groups[0]['lr']:.6f} | Thời gian: {elapsed:.1f}s")
+                    
+        # Lưu log vào CSV
+        with open(log_file_path, "a", newline="", encoding="utf-8") as f:
+            writer = csv.writer(f)
+            writer.writerow([epoch, f"{train_loss:.4f}", f"{val_loss:.4f}", f"{optimizer.param_groups[0]['lr']:.6f}", f"{elapsed:.1f}"])
         
         # Save model nếu Val Loss thấp nhất
         if val_loss < best_val_loss:

@@ -105,8 +105,8 @@ class CRNN(nn.Module):
             x = x.repeat(1, 3, 1, 1)
             
         feat = self.cnn(x)             # (B, 512, H', W')
-        # Dùng AdaptiveAvgPool2d ép chiều cao về đúng 1 pixel để hỗ trợ mọi target_h (vd: 32, 48, 64)
-        feat = nn.functional.adaptive_avg_pool2d(feat, (1, None))
+        # Dùng mean để ép chiều cao về 1 pixel (thay cho adaptive_avg_pool2d để hỗ trợ ONNX export)
+        feat = feat.mean(dim=2, keepdim=True)
         feat = feat.squeeze(2)         # (B, 512, W')
         feat = feat.permute(0, 2, 1)   # (B, W', 512)
         

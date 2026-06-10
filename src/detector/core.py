@@ -45,7 +45,9 @@ class DBNetDetector:
             providers = full_config.get("inference", {}).get("providers", ["CPUExecutionProvider"])
             
         logger.info(f"Loading DBNet from {model_path} with {providers}")
-        self.sess = ort.InferenceSession(model_path, providers=providers)
+        opts = ort.SessionOptions()
+        opts.graph_optimization_level = ort.GraphOptimizationLevel.ORT_ENABLE_BASIC
+        self.sess = ort.InferenceSession(model_path, sess_options=opts, providers=providers)
         
         self.input_name = self.sess.get_inputs()[0].name
         self.output_name = self.sess.get_outputs()[0].name

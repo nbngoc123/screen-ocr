@@ -46,7 +46,8 @@ class OCRPipeline:
         
         # Khởi tạo models (Singleton)
         self.detector = DBNetDetector.get_instance(det_path, providers)
-        self.recognizer = CRNNRecognizer.get_instance(rec_path, charset_path, providers)
+        target_h = config.get("preprocess", {}).get("target_h", 64)
+        self.recognizer = CRNNRecognizer.get_instance(rec_path, charset_path, target_h, providers)
 
     def run(self, image: np.ndarray) -> list[OCRResult]:
         """
@@ -58,5 +59,46 @@ class OCRPipeline:
         Returns:
             Danh sách kết quả OCR (bbox, text, conf).
         """
-        # TODO: implement
-        raise NotImplementedError
+        if image is None or image.size == 0:
+            return []
+
+        # 1. Detect bboxes using DBNet
+        bboxes = self.detector.detect(image)
+        if not bboxes:
+            return []
+
+        # 2. Lọc box theo diện tích (nếu có min_box_area)
+        valid_boxes = []
+        for b in bboxes:
+            area = (b.x2 - b.x1) * (b.y2 - b.y1)
+            if area >= self.min_box_area:
+                valid_boxes.append(b)
+                
+        # 3. Sort boxes: Hậu xử lý gom dòng (top-to-bottom) và sắp xếp (left-to-right)
+        from src.pipeline.postprocess import sort_boxes_to_lines
+        valid_boxes = sort_boxes_to_lines(valid_boxes)
+
+        results = []
+        for b in valid_boxes:
+            # Lấy toạ độ an toàn (có thể pad thêm nếu muốn)
+            x1 = max(0, b.x1)
+            y1 = max(0, b.y1)
+            x2 = min(image.shape[1], b.x2)
+            y2 = min(image.shape[0], b.y2)
+            
+            if x2 <= x1 or y2 <= y1:
+                continue
+                
+            crop = image[y1:y2, x1:x2]
+            
+            # 4. Recognize text
+            text, conf = self.recognizer.recognize(crop)
+            
+            # Áp dụng Hậu xử lý văn bản (sửa lỗi 0/O, khoảng trắng)
+            text = postprocess(text)
+            
+            # 5. Lọc kết quả rỗng và threshold
+            if text and conf >= self.conf_threshold:
+                results.append(OCRResult(box=b, text=text, conf=conf))
+
+        return results

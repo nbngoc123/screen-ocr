@@ -1,16 +1,11 @@
 """
 augment.py — Albumentations preprocessing pipeline cho CRNN.
-
-Quy tắc augmentation (screen-ocr-rules.md §2.4):
-    ĐƯỢC PHÉP: gaussian_blur, jpeg_compression, brightness_contrast,
-               gaussian_noise, slight_shear (max ±3°)
-    CẤM:       rotation > 5°, perspective_transform, elastic_transform
-
-    Lý do: Screen text luôn nằm ngang, không bị distort.
 """
 from __future__ import annotations
 
 import logging
+import yaml
+from pathlib import Path
 
 import cv2
 import numpy as np
@@ -18,19 +13,47 @@ import albumentations as A
 
 logger = logging.getLogger(__name__)
 
+# Load config
+_CONFIG_PATH = Path(__file__).resolve().parent.parent.parent / "configs" / "default.yaml"
+
+try:
+    with open(_CONFIG_PATH, "r", encoding="utf-8") as f:
+        _config = yaml.safe_load(f)
+    _aug_cfg = _config.get("augmentation", {})
+except Exception as e:
+    logger.warning(f"Không thể load cấu hình augmentation từ {_CONFIG_PATH}: {e}. Sẽ dùng giá trị mặc định.")
+    _aug_cfg = {}
+
+# Đọc các giá trị config hoặc lấy mặc định nếu không có
+BLUR_LIMIT = (_aug_cfg.get("blur_limit_min", 1), _aug_cfg.get("blur_limit_max", 3))
+BLUR_PROB = _aug_cfg.get("blur_prob", 0.25)
+
+COMP_QUAL = (_aug_cfg.get("compression_quality_min", 70), _aug_cfg.get("compression_quality_max", 95))
+COMP_PROB = _aug_cfg.get("compression_prob", 0.2)
+
+BRIGHTNESS_LIMIT = _aug_cfg.get("brightness_limit", 0.15)
+CONTRAST_LIMIT = _aug_cfg.get("contrast_limit", 0.15)
+BRIGHT_CONT_PROB = _aug_cfg.get("brightness_contrast_prob", 0.3)
+
+NOISE_PROB = _aug_cfg.get("noise_prob", 0.2)
+
+SHARPEN_ALPHA = (_aug_cfg.get("sharpen_alpha_min", 0.1), _aug_cfg.get("sharpen_alpha_max", 0.3))
+SHARPEN_LIGHT = (_aug_cfg.get("sharpen_lightness_min", 0.8), _aug_cfg.get("sharpen_lightness_max", 1.0))
+SHARPEN_PROB = _aug_cfg.get("sharpen_prob", 0.15)
+
 # ─── Training transform (moderate augmentation) ───────────────────────────────
 # Pipeline cho training — moderate augmentation
 # Lưu ý: Không dùng Rotation mạnh vì text trên màn hình đa số nằm ngang hoàn hảo
 TRAIN_TRANSFORM = A.Compose([
-    A.GaussianBlur(blur_limit=(1, 3), p=0.25),
-    A.ImageCompression(quality_range=(70, 95), p=0.2),
+    A.GaussianBlur(blur_limit=BLUR_LIMIT, p=BLUR_PROB),
+    A.ImageCompression(quality_range=COMP_QUAL, p=COMP_PROB),
     A.RandomBrightnessContrast(
-        brightness_limit=0.15,
-        contrast_limit=0.15,
-        p=0.3,
+        brightness_limit=BRIGHTNESS_LIMIT,
+        contrast_limit=CONTRAST_LIMIT,
+        p=BRIGHT_CONT_PROB,
     ),
-    A.GaussNoise(p=0.2),
-    A.Sharpen(alpha=(0.1, 0.3), lightness=(0.8, 1.0), p=0.15),
+    A.GaussNoise(p=NOISE_PROB),
+    A.Sharpen(alpha=SHARPEN_ALPHA, lightness=SHARPEN_LIGHT, p=SHARPEN_PROB),
     # Normalize về [-1, 1]
     A.Normalize(mean=(0.5,), std=(0.5,)),
 ])
@@ -44,7 +67,7 @@ VAL_TRANSFORM = A.Compose([
 
 def preprocess_for_crnn(
     image: np.ndarray,
-    target_h: int = 48,
+    target_h: int = 64,
     is_train: bool = True,
 ) -> np.ndarray:
     """
@@ -58,7 +81,7 @@ def preprocess_for_crnn(
 
     Args:
         image:    BGR uint8 numpy array.
-        target_h: Chiều cao target (CRNN cần H=32).
+        target_h: Chiều cao target (CRNN sẽ nhận H này).
         is_train: True → dùng TRAIN_TRANSFORM, False → VAL_TRANSFORM.
 
     Returns:

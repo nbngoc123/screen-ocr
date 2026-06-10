@@ -16,7 +16,7 @@ class OCRDataset(Dataset):
         charset_path: str = "data/charset.txt",
         is_train: bool = True,
         max_label_len: int = 80,
-        target_h: int = 48,
+        target_h: int = 64,
     ):
         self.codec = CharsetCodec(charset_path)
         self.is_train = is_train
@@ -113,7 +113,7 @@ def get_dataloaders(
     charset_path: str = "data/charset.txt",
     batch_size: int = 256,
     num_workers: int = 4,
-    target_h: int = 48,
+    target_h: int = 64,
 ) -> tuple[DataLoader, DataLoader]:
 
     train_ds = OCRDataset(train_dirs, charset_path, is_train=True, target_h=target_h)

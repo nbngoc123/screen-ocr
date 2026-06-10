@@ -24,8 +24,56 @@ for file_path in ["data/wiki_corpus.txt", "data/icdar_corpus.txt", "data/icdar_e
 if ICDAR_CORPUS:
     pass
 
+# ─── Hard Samples (Cho UI Windows) ────────────────────────────────────────────
+HARD_TEXTS = [
+    "Il1I|!",
+    "O0Oo",
+    "rnmvv",
+    "VVW",
+    "S5s",
+    "B8",
+    "2Zz",
+    "gq9",
+    "lIlIlI",
+    "OO00OO",
+    "HP:100",
+    "LV.99",
+    "+99999",
+]
 
-def random_text(min_len: int = 2, max_len: int = 40, corpus_prob: float = 0.8, word_prob: float = 0.3, phrase_prob: float = 0.4) -> str:
+# ─── Domain-Specific Corpus (UI Windows) ──────────────────────────────────────
+UI_SPECIFIC = [
+    # Số & đơn vị
+    "₫1.234.567", "$99.99", "€1,234.00", "100%", "3.14 GB",
+    "08:30 – 17:00", "2024-06-09", "09/06/2024", "T+2",
+    # Trạng thái UI
+    "Loading… (87%)", "Retry (3/5)", "Page 1 of 24",
+    "Step 2 of 4", "Updated 2 min ago", "Syncing…",
+    # Path / URL
+    r"C:\Users\Admin\Documents\report.pdf",
+    "https://example.com/api/v2/users?page=1",
+    "\\\\SERVER\\Share\\folder",
+    # Code trên screen
+    "git commit -m 'fix: null check'",
+    "npm run build --prod",
+    "pip install torch --index-url ...",
+    "SELECT * FROM users WHERE id = 42",
+    # VN-specific
+    "Mã số thuế: 0123456789",
+    "CMND: 079 123 456 789",
+    "SĐT: 0912.345.678",
+    "Tỉnh/TP: Hà Nội",
+]
+
+MIXED_SCRIPT = [
+    # EN+VN mixed — rất phổ biến trên Windows VN
+    "File đã lưu thành công",
+    "Upload ảnh (tối đa 5MB)",
+    "Password phải có ít nhất 8 ký tự",
+    "Confirm xoá item này?",
+]
+
+def random_text(min_len: int = 2, max_len: int = 40, corpus_prob: float = 0.8, word_prob: float = 0.3, phrase_prob: float = 0.4, hard_prob: float = 0.10) -> str:
     """
     Sinh text ngẫu nhiên từ corpus hoặc generate random string.
 
@@ -38,8 +86,24 @@ def random_text(min_len: int = 2, max_len: int = 40, corpus_prob: float = 0.8, w
     """
     r = random.random()
     
+    # Ưu tiên lấy từ danh sách hard samples (dễ nhầm)
+    if r < hard_prob:
+        return random.choice(HARD_TEXTS)
+        
+    # Cho thêm 10% cơ hội rơi vào UI_SPECIFIC hoặc MIXED_SCRIPT
+    # Do hàm này được thiết kế dựa trên xác suất tích luỹ
+    r2 = random.random()
+    if r2 < 0.10:
+        if random.random() < 0.7:
+            return random.choice(UI_SPECIFIC)
+        else:
+            return random.choice(MIXED_SCRIPT)
+    
+    # Tính lại xác suất lấy từ corpus
+    r3 = random.random()
+    
     # Lấy từ siêu corpus Wiki/ICDAR (nếu có)
-    if ICDAR_CORPUS and r < corpus_prob:
+    if ICDAR_CORPUS and r3 < corpus_prob:
         text = random.choice(ICDAR_CORPUS)
         
         # Băm nhỏ câu theo level: Word (1-2 từ), Phrase (3-5 từ), hoặc Full Sentence
@@ -75,3 +139,11 @@ def random_text(min_len: int = 2, max_len: int = 40, corpus_prob: float = 0.8, w
         text = "OCR"
         
     return text
+
+if not ICDAR_CORPUS:
+    import warnings
+    warnings.warn(
+        "ICDAR_CORPUS rỗng — toàn bộ text sẽ là random string. "
+        "Thêm file vào data/wiki_corpus.txt để cải thiện chất lượng.",
+        stacklevel=1,
+    )

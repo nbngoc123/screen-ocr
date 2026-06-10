@@ -1,11 +1,9 @@
-"""
-run_gen.py — Chạy data generator.
-"""
-import sys
 import os
+import sys
 import yaml
-import multiprocessing
 from pathlib import Path
+import multiprocessing
+import shutil
 
 # Thêm thư mục gốc vào đường dẫn hệ thống để Python tìm thấy module src
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -23,22 +21,60 @@ def get_font_weights(fonts: list[str], common_fonts: list[str], common_wt: float
             weights.append(rare_wt)
     return weights
 
+def check_output_dir(output_dir: str) -> bool:
+    """Trả về False nếu người dùng từ chối ghi đè dữ liệu, True nếu có thể tiếp tục."""
+    p = Path(output_dir)
+    if not p.exists():
+        return True
+    
+    existing_imgs = len(list(p.glob("*.png")))
+    if existing_imgs > 0:
+        print(f"[WARN] {output_dir} đã có {existing_imgs} ảnh.")
+        ans = input("Xoá và sinh lại? [y/N]: ").strip().lower()
+        if ans == "y":
+            shutil.rmtree(output_dir)
+            p.mkdir(parents=True)
+            print("Đã xoá.")
+            return True
+        else:
+            print("Bỏ qua thư mục này.")
+            return False
+    return True
+
 def worker_generate(args):
     """Worker function cho multiprocessing"""
-    font_list, output_dir, n_samples, font_weights, worker_id, corpus_prob, word_split_prob, phrase_split_prob = args
+    (font_list, output_dir, n_samples, font_weights, worker_id, 
+     corpus_prob, word_split_prob, phrase_split_prob,
+     hard_prob, shadow_prob, stroke_prob, bg_light_prob, bg_dark_prob,
+     real_bg_prob, neg_prob, multi_dpi_prob) = args
+    
     generate_dataset(
         font_list, output_dir, n_samples, 
         font_weights=font_weights, worker_id=worker_id, 
-        corpus_prob=corpus_prob, word_split_prob=word_split_prob, phrase_split_prob=phrase_split_prob
+        corpus_prob=corpus_prob, word_split_prob=word_split_prob, phrase_split_prob=phrase_split_prob,
+        hard_prob=hard_prob, shadow_prob=shadow_prob, stroke_prob=stroke_prob,
+        bg_light_prob=bg_light_prob, bg_dark_prob=bg_dark_prob,
+        real_bg_prob=real_bg_prob, 
+        neg_prob=neg_prob, multi_dpi_prob=multi_dpi_prob
     )
 
-def run_multiprocess(font_list, output_dir, total_samples, font_weights, n_workers=4, corpus_prob=0.8, word_split_prob=0.3, phrase_split_prob=0.4):
+def run_multiprocess(
+    font_list, output_dir, total_samples, font_weights, n_workers=4, 
+    corpus_prob=0.8, word_split_prob=0.3, phrase_split_prob=0.4,
+    hard_prob=0.10, shadow_prob=0.25, stroke_prob=0.30,
+    bg_light_prob=0.60, bg_dark_prob=0.20,
+    real_bg_prob=0.30, neg_prob=0.05, multi_dpi_prob=0.20
+):
     """Chia nhỏ tổng số sample ra cho các worker chạy song song."""
     if n_workers <= 1:
         generate_dataset(
             font_list, output_dir, total_samples, 
             font_weights=font_weights, worker_id=0, 
-            corpus_prob=corpus_prob, word_split_prob=word_split_prob, phrase_split_prob=phrase_split_prob
+            corpus_prob=corpus_prob, word_split_prob=word_split_prob, phrase_split_prob=phrase_split_prob,
+            hard_prob=hard_prob, shadow_prob=shadow_prob, stroke_prob=stroke_prob,
+            bg_light_prob=bg_light_prob, bg_dark_prob=bg_dark_prob,
+            real_bg_prob=real_bg_prob,
+            neg_prob=neg_prob, multi_dpi_prob=multi_dpi_prob
         )
         # Rename file nhãn
         lbl_file = Path(output_dir) / "labels_0.jsonl"
@@ -53,7 +89,12 @@ def run_multiprocess(font_list, output_dir, total_samples, font_weights, n_worke
     
     for i in range(n_workers):
         n = samples_per_worker + (1 if i < remainder else 0)
-        args_list.append((font_list, output_dir, n, font_weights, i, corpus_prob, word_split_prob, phrase_split_prob))
+        args_list.append((
+            font_list, output_dir, n, font_weights, i, 
+            corpus_prob, word_split_prob, phrase_split_prob,
+            hard_prob, shadow_prob, stroke_prob, bg_light_prob, bg_dark_prob,
+            real_bg_prob, neg_prob, multi_dpi_prob
+        ))
         
     print(f"Khởi động {n_workers} workers...")
     with multiprocessing.Pool(n_workers) as pool:
@@ -92,16 +133,26 @@ if __name__ == "__main__":
     common_wt = cfg_dg.get("common_font_weight", 10.0)
     rare_wt = cfg_dg.get("rare_font_weight", 1.0)
     val_ratio = cfg_dg.get("val_ratio", 0.1)
+    
     corpus_prob = cfg_dg.get("corpus_prob", 0.8)
     word_split_prob = cfg_dg.get("word_split_prob", 0.3)
     phrase_split_prob = cfg_dg.get("phrase_split_prob", 0.4)
+    
+    # UI/Hard parameters
+    hard_prob = cfg_dg.get("hard_prob", 0.10)
+    shadow_prob = cfg_dg.get("shadow_prob", 0.25)
+    stroke_prob = cfg_dg.get("stroke_prob", 0.30)
+    bg_light_prob = cfg_dg.get("bg_light_prob", 0.60)
+    bg_dark_prob = cfg_dg.get("bg_dark_prob", 0.20)
+    real_bg_prob = cfg_dg.get("real_bg_prob", 0.30)
+    neg_prob = cfg_dg.get("neg_prob", 0.05)
+    multi_dpi_prob = cfg_dg.get("multi_dpi_prob", 0.20)
 
     # Split train and val fonts theo nguyên tắc không trùng lặp
     split_idx = int(len(fonts) * (1.0 - val_ratio))
     train_fonts = fonts[:split_idx]
     val_fonts = fonts[split_idx:]
     
-    # Ở đây để demo test thử nhanh, tôi đặt số lượng rất nhỏ (100 ảnh)
     # Số lượng ảnh lấy thẳng từ file cấu hình default.yaml
     n_train = cfg_dg["n_train"]
     n_val = cfg_dg["n_val"]
@@ -109,6 +160,17 @@ if __name__ == "__main__":
     n_workers = cfg_dg.get("n_workers", 4)
     
     print(f"Sử dụng {len(train_fonts)} fonts cho tập Train, {len(val_fonts)} fonts cho tập Val.")
+    
+    train_dir = config["paths"]["synthetic_train"]
+    val_dir = config["paths"]["synthetic_val"]
+    
+    do_train = check_output_dir(train_dir)
+    do_val = check_output_dir(val_dir)
+    
+    if not do_train and not do_val:
+        print("Đã bỏ qua cả Train và Val. Thoát.")
+        exit(0)
+    
     print(f"Bắt đầu sinh dữ liệu ({n_train} Train, {n_val} Val) với {n_workers} processes...")
     
     # Tính toán trọng số xác suất cho các font
@@ -116,29 +178,47 @@ if __name__ == "__main__":
     val_weights = get_font_weights(val_fonts, common_fonts, common_wt, rare_wt)
     
     # Train
-    print("\n--- Tập Train ---")
-    run_multiprocess(
-        font_list=train_fonts,
-        output_dir=config["paths"]["synthetic_train"],
-        total_samples=n_train,
-        font_weights=train_weights,
-        n_workers=n_workers,
-        corpus_prob=corpus_prob,
-        word_split_prob=word_split_prob,
-        phrase_split_prob=phrase_split_prob
-    )
+    if do_train:
+        print("\n--- Tập Train ---")
+        run_multiprocess(
+            font_list=train_fonts,
+            output_dir=train_dir,
+            total_samples=n_train,
+            font_weights=train_weights,
+            n_workers=n_workers,
+            corpus_prob=corpus_prob,
+            word_split_prob=word_split_prob,
+            phrase_split_prob=phrase_split_prob,
+            hard_prob=hard_prob,
+            shadow_prob=shadow_prob,
+            stroke_prob=stroke_prob,
+            bg_light_prob=bg_light_prob,
+            bg_dark_prob=bg_dark_prob,
+            real_bg_prob=real_bg_prob,
+            neg_prob=neg_prob,
+            multi_dpi_prob=multi_dpi_prob
+        )
     
     # Val
-    print("\n--- Tập Validation ---")
-    run_multiprocess(
-        font_list=val_fonts,
-        output_dir=config["paths"]["synthetic_val"],
-        total_samples=n_val,
-        font_weights=val_weights,
-        n_workers=n_workers,
-        corpus_prob=corpus_prob,
-        word_split_prob=word_split_prob,
-        phrase_split_prob=phrase_split_prob
-    )
+    if do_val:
+        print("\n--- Tập Validation ---")
+        run_multiprocess(
+            font_list=val_fonts,
+            output_dir=val_dir,
+            total_samples=n_val,
+            font_weights=val_weights,
+            n_workers=n_workers,
+            corpus_prob=corpus_prob,
+            word_split_prob=word_split_prob,
+            phrase_split_prob=phrase_split_prob,
+            hard_prob=hard_prob,
+            shadow_prob=shadow_prob,
+            stroke_prob=stroke_prob,
+            bg_light_prob=bg_light_prob,
+            bg_dark_prob=bg_dark_prob,
+            real_bg_prob=real_bg_prob,
+            neg_prob=neg_prob,
+            multi_dpi_prob=multi_dpi_prob
+        )
     
     print("Hoàn tất!")

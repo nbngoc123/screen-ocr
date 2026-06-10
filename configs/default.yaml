@@ -20,17 +20,31 @@ paths:
 
 # ─── Data Generation ──────────────────────────────────────────────────────────
 data_gen:
-  n_train:        4000    
-  n_val:          2000     
+  n_train:        2000    
+  n_val:          500     
   val_ratio:      0.1        # 10% font dành riêng cho tập validation
   font_size_min:  10
   font_size_max:  52
   min_text_len:   2
   max_text_len:   40
   n_workers:      4          # số process song song khi gen
-  corpus_prob:    0.95        # Xác suất lấy chữ từ Corpus thực tế
+  corpus_prob:    0.95       # Xác suất lấy chữ từ Corpus thực tế
   word_split_prob: 0.7       # Xác suất cắt thành từ ngắn (1-2 từ)
   phrase_split_prob: 0.2     # Xác suất cắt thành cụm từ (3-5 từ)
+  
+  # Hard samples & UI Elements (Shadow/Stroke)
+  hard_prob:      0.10       # Xác suất sinh ra cụm kí tự dễ nhầm (I, l, 1, 0, O...) để mô hình bắt buộc phải học
+  shadow_prob:    0.25       # Xác suất đổ bóng cho chữ (giống text trên UI Windows)
+  stroke_prob:    0.30       # Xác suất thêm viền ngoài (stroke) cho chữ
+  
+  # Background variation
+  bg_light_prob:  0.60       # Xác suất sinh nền sáng
+  bg_dark_prob:   0.20       # Xác suất sinh nền tối (phần còn lại sẽ sinh nền nhiễu mờ / texture)
+  real_bg_prob:   0.30       # Xác suất crop nền từ ảnh screenshot thật
+  
+  # Diversity
+  neg_prob:       0.05       # Xác suất sinh ảnh negative (không có text)
+  multi_dpi_prob: 0.20       # Xác suất render text ở các scale lớn hơn rồi downscale
   
   # Font Selection
   common_fonts: ["arial", "segoe", "tahoma", "times", "verdana", "calibri", "cambria", "consolas", "roboto", "opensans"]
@@ -41,19 +55,37 @@ data_gen:
 detector:
   max_size:       960        # Kích thước ảnh tối đa (pixel) đưa vào DBNet. Giúp tránh tràn RAM, đảm bảo tốc độ.
   prob_threshold: 0.3        # Ngưỡng xác suất (Probability Map) quyết định pixel nào là viền chữ.
-  unclip_ratio:   1.0        # Hệ số nới lỏng (padding) Bounding Box theo báo cáo phân tích
-  min_area:       15         # Bỏ qua các Box có diện tích nhỏ hơn mức này để lọc nhiễu.
+  unclip_ratio:   1.3        # Hệ số nới lỏng (padding) Bounding Box theo báo cáo phân tích
+  min_area:       10         # Bỏ qua các Box có diện tích nhỏ hơn mức này để lọc nhiễu.
   min_padding_x:  2          # Padding an toàn tối thiểu (pixel) theo chiều X
   min_padding_y:  4          # Padding an toàn tối thiểu (pixel) theo chiều Y
-  box_score_threshold: 0.5   # Confidence score tối thiểu của cả vùng bounding box
+  box_score_threshold: 0.3   # Confidence score tối thiểu của cả vùng bounding box
   normalize_mean: [0.485, 0.456, 0.406] # Tham số ImageNet Normalize (Mean)
   normalize_std:  [0.229, 0.224, 0.225] # Tham số ImageNet Normalize (Std)
 
 # ─── Preprocessing ────────────────────────────────────────────────────────────
 preprocess:
-  target_h:       64         # Chiều cao 48 giúp giữ lại dấu tiếng Việt tốt hơn
+  target_h:       64         # Chiều cao ảnh CRNN, 64 giúp nhận diện tiếng Việt cực rõ nét
   normalize_mean: 0.5
   normalize_std:  0.5
+
+# ─── Augmentation ─────────────────────────────────────────────────────────────
+augmentation:
+  blur_limit_min: 1
+  blur_limit_max: 3
+  blur_prob: 0.25             # Xác suất làm mờ ảnh (Gaussian Blur)
+  compression_quality_min: 70
+  compression_quality_max: 95
+  compression_prob: 0.2       # Xác suất nén ảnh JPEG (giảm chất lượng/độ nét)
+  brightness_limit: 0.15
+  contrast_limit: 0.15
+  brightness_contrast_prob: 0.3 # Xác suất thay đổi ngẫu nhiên độ sáng và độ tương phản
+  noise_prob: 0.2             # Xác suất thêm nhiễu hạt (GaussNoise)
+  sharpen_alpha_min: 0.1
+  sharpen_alpha_max: 0.3
+  sharpen_lightness_min: 0.8
+  sharpen_lightness_max: 1.0
+  sharpen_prob: 0.15          # Xác suất làm sắc nét ảnh (Sharpen)
 
 # ─── Training ─────────────────────────────────────────────────────────────────
 training:
