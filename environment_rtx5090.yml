@@ -5,12 +5,13 @@ channels:
   - defaults
 dependencies:
   - python=3.11
-  # Cài PyTorch với CUDA 12.1 qua channel chính thức
-  - pytorch>=2.2.0
-  - torchvision>=0.17.0
-  - pytorch-cuda=12.1
+  # Cài PyTorch qua pip để đảm bảo lấy đúng bản hỗ trợ CUDA 12.4 (RTX 5090)
   - pip
   - pip:
+      # PyTorch cho RTX 5090 (Blackwell - sm_120 đòi hỏi tối thiểu CUDA 13.0+)
+      - --extra-index-url https://download.pytorch.org/whl/nightly/cu132
+      - torch>=2.10.0
+      - torchvision>=0.23.0
       # ONNX Runtime (GPU)
       - onnxruntime-gpu>=1.17.0
       - onnx>=1.16.0
