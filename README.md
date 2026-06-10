@@ -94,6 +94,8 @@ Dưới đây là một số hình ảnh kết quả nhận diện sinh ra trong
 
 ![Kết quả nhận diện mẫu 2](reports/train2.png)
 
+![Kết quả nhận diện mẫu 3](reports/test_3.png)
+
 ![Kết quả phát hiện văn bản toàn màn hình](reports/dbnet_test_output.png)
 
 **3. Đánh giá độ chính xác (Evaluation)**
@@ -106,6 +108,8 @@ Dưới đây là một số hình ảnh kết quả nhận diện sinh ra trong
 | ICDAR 2015 Task 3 (Test thực tế) - v1 | 1441 | 47.60% | 23.16% | [Xem chi tiết HTML](reports/test_task3_evaluation.html) |
 | ICDAR 2015 Task 3 (Test thực tế) - v2 | 1439 | 51.49% | 17.83% | [Xem chi tiết HTML](reports/evaluation_report_v2.html) |
 | ICDAR 2015 Task 3 (Test thực tế) - v3 | 1439 | 48.64% | 19.64% | [Xem chi tiết HTML](reports/evaluation_report_v3.html) |
+
+![Biểu đồ đánh giá Synthetic Test v3](reports/synthetic_test_evaluation_v3.png)
 
 > [!NOTE]
 > Bảng kết quả trên là của bản baseline đào tạo ban đầu (100 epoch). CER trên tập thực tế (ICDAR) vẫn còn khá cao (23%), cần Fine-tune thêm bằng dữ liệu thật (Real data) kết hợp với các kỹ thuật Data Augmentation đa dạng hơn để đạt được chỉ tiêu `< 20% CER` đề ra trong Roadmap. Xem thêm ví dụ Augmentation tại đây: 
