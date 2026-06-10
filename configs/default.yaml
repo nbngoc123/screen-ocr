@@ -16,7 +16,7 @@ paths:
   det_model:      data/models/dbnet.onnx   # Mô hình Text Detection ONNX
   rec_model:      data/models/crnn.onnx    # Mô hình Text Recognition ONNX
   checkpoint_dir: checkpoints              # Thư mục lưu checkpoint khi train
-  best_weight:    checkpoints/crnn_best.pth # File weights tốt nhất để chạy predict
+  best_weight:    checkpoints/crnn.pth # File weights tốt nhất để chạy predict
 
 # ─── Data Generation ──────────────────────────────────────────────────────────
 data_gen:
@@ -41,24 +41,24 @@ data_gen:
 detector:
   max_size:       960        # Kích thước ảnh tối đa (pixel) đưa vào DBNet. Giúp tránh tràn RAM, đảm bảo tốc độ.
   prob_threshold: 0.3        # Ngưỡng xác suất (Probability Map) quyết định pixel nào là viền chữ.
-  unclip_ratio:   2.0        # Hệ số nới lỏng (padding) Bounding Box theo báo cáo phân tích
-  min_area:       10         # Bỏ qua các Box có diện tích nhỏ hơn mức này để lọc nhiễu.
-  min_padding_x:  4          # Padding an toàn tối thiểu (pixel) theo chiều X
-  min_padding_y:  6          # Padding an toàn tối thiểu (pixel) theo chiều Y
+  unclip_ratio:   1.0        # Hệ số nới lỏng (padding) Bounding Box theo báo cáo phân tích
+  min_area:       15         # Bỏ qua các Box có diện tích nhỏ hơn mức này để lọc nhiễu.
+  min_padding_x:  2          # Padding an toàn tối thiểu (pixel) theo chiều X
+  min_padding_y:  4          # Padding an toàn tối thiểu (pixel) theo chiều Y
   box_score_threshold: 0.5   # Confidence score tối thiểu của cả vùng bounding box
   normalize_mean: [0.485, 0.456, 0.406] # Tham số ImageNet Normalize (Mean)
   normalize_std:  [0.229, 0.224, 0.225] # Tham số ImageNet Normalize (Std)
 
 # ─── Preprocessing ────────────────────────────────────────────────────────────
 preprocess:
-  target_h:       48         # Chiều cao 48 giúp giữ lại dấu tiếng Việt tốt hơn
+  target_h:       64         # Chiều cao 48 giúp giữ lại dấu tiếng Việt tốt hơn
   normalize_mean: 0.5
   normalize_std:  0.5
 
 # ─── Training ─────────────────────────────────────────────────────────────────
 training:
-  batch_size:     32
-  num_workers:    1
+  batch_size:     16
+  num_workers:    0
   max_label_len:  80
   epochs_phase1:  15         # Foundation: font lớn, bg trắng
   epochs_phase2:  20         # Robustness: augmentation mạnh
