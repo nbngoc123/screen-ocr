@@ -1,0 +1,1001 @@
+<html><head><meta charset='utf-8'><title>Báo cáo Đánh giá CRNN</title><style>table { border-collapse: collapse; width: 100%; font-family: sans-serif; }th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }th { background-color: #f2f2f2; }.incorrect { background-color: #ffe6e6; }img { max-height: 40px; }</style></head><body><h2>Báo cáo Đánh giá Nhận dạng (CRNN)</h2><p><strong>Đoán đúng:</strong> 371/1000 (37.10%) | <strong>CER:</strong> 14.91% | <strong>WER:</strong> 83.20%</p><table><tr><th>Ảnh</th><th>Tên File</th><th>Thực tế (Target)</th><th>Dự đoán (Prediction)</th><th>CER (%)</th></tr><tr class='incorrect'><td><img src='../data/synthetic/test/00_0000000.png' alt='00_0000000.png' loading='lazy'></td><td>00_0000000.png</td><td>File đã lưu thành công</td><td>ileđãlưuthànhcông</td><td>22.73</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/00_0000002.png' alt='00_0000002.png' loading='lazy'></td><td>00_0000002.png</td><td>damaged in the Blitz</td><td>damagedintheBlit</td><td>20.0</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/00_0000004.png' alt='00_0000004.png' loading='lazy'></td><td>00_0000004.png</td><td>Hãn lại xâm chiếm</td><td>Hãnlạixâmchiếm</td><td>17.65</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/00_0000006.png' alt='00_0000006.png' loading='lazy'></td><td>00_0000006.png</td><td>Password phải có ít nhất 8 ký tự</td><td>Passordphảicóítnhất8kýtự</td><td>25.0</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/00_0000007.png' alt='00_0000007.png' loading='lazy'></td><td>00_0000007.png</td><td>nhiều sĩ phu</td><td>nhiềusĩphu</td><td>16.67</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/00_0000008.png' alt='00_0000008.png' loading='lazy'></td><td>00_0000008.png</td><td>\\SERVER\Share\folder</td><td>\\SERVER\Share\older</td><td>4.76</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/00_0000009.png' alt='00_0000009.png' loading='lazy'></td><td>00_0000009.png</td><td>VVW</td><td>VV</td><td>33.33</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/00_0000010.png' alt='00_0000010.png' loading='lazy'></td><td>00_0000010.png</td><td>March 8</td><td>March8</td><td>14.29</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/00_0000011.png' alt='00_0000011.png' loading='lazy'></td><td>00_0000011.png</td><td>VVW</td><td>VV</td><td>33.33</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/00_0000014.png' alt='00_0000014.png' loading='lazy'></td><td>00_0000014.png</td><td>Upload ảnh (tối đa 5MB)</td><td>Uploadảnh(tốiđa5MB)</td><td>17.39</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/00_0000016.png' alt='00_0000016.png' loading='lazy'></td><td>00_0000016.png</td><td>tuyến gọi</td><td>tuyếngọi</td><td>11.11</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/00_0000022.png' alt='00_0000022.png' loading='lazy'></td><td>00_0000022.png</td><td>Hyperpolarized xenon</td><td>Hyperpolariedxenon</td><td>10.0</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/00_0000023.png' alt='00_0000023.png' loading='lazy'></td><td>00_0000023.png</td><td>vương quốc Chân</td><td>vươngquốcChân</td><td>13.33</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/00_0000025.png' alt='00_0000025.png' loading='lazy'></td><td>00_0000025.png</td><td>Step 2 of 4</td><td>Step2o4</td><td>36.36</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/00_0000026.png' alt='00_0000026.png' loading='lazy'></td><td>00_0000026.png</td><td>của mình</td><td>củamình</td><td>12.5</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/00_0000028.png' alt='00_0000028.png' loading='lazy'></td><td>00_0000028.png</td><td>\\SERVER\Share\folder</td><td>\\SERVER\Share\older</td><td>4.76</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/00_0000029.png' alt='00_0000029.png' loading='lazy'></td><td>00_0000029.png</td><td>Confirm xoá item này?</td><td>Conirmxoáitemnày?</td><td>19.05</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/00_0000031.png' alt='00_0000031.png' loading='lazy'></td><td>00_0000031.png</td><td>Nam không</td><td>Namkhông</td><td>11.11</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/00_0000032.png' alt='00_0000032.png' loading='lazy'></td><td>00_0000032.png</td><td>Vi khuẩn</td><td>Vikhuẩn</td><td>12.5</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/00_0000033.png' alt='00_0000033.png' loading='lazy'></td><td>00_0000033.png</td><td>Mã số thuế: 0123456789</td><td>Mãsốthuế:0123456789</td><td>13.64</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/00_0000034.png' alt='00_0000034.png' loading='lazy'></td><td>00_0000034.png</td><td>lnET9HrgmolaHr9IRh2E2KDB</td><td>InET9HrgmolaHr9IRh2E2KDB</td><td>4.17</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/00_0000035.png' alt='00_0000035.png' loading='lazy'></td><td>00_0000035.png</td><td>\\SERVER\Share\folder</td><td>\\SERVER\Share\older</td><td>4.76</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/00_0000036.png' alt='00_0000036.png' loading='lazy'></td><td>00_0000036.png</td><td>SELECT * FROM users WHERE id = 42</td><td>SELECT*ROMusersHEREid=42</td><td>27.27</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/00_0000037.png' alt='00_0000037.png' loading='lazy'></td><td>00_0000037.png</td><td>directed by Paul</td><td>directedbyPaul</td><td>12.5</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/00_0000038.png' alt='00_0000038.png' loading='lazy'></td><td>00_0000038.png</td><td>Ly đều</td><td>Lyđều</td><td>16.67</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/00_0000039.png' alt='00_0000039.png' loading='lazy'></td><td>00_0000039.png</td><td>skull measurements</td><td>skullmeasurements</td><td>5.56</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/00_0000041.png' alt='00_0000041.png' loading='lazy'></td><td>00_0000041.png</td><td>3.14 GB</td><td>3.14GB</td><td>14.29</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/00_0000042.png' alt='00_0000042.png' loading='lazy'></td><td>00_0000042.png</td><td>tạo ra</td><td>tạora</td><td>16.67</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/00_0000044.png' alt='00_0000044.png' loading='lazy'></td><td>00_0000044.png</td><td>2Zz</td><td>2</td><td>66.67</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/00_0000046.png' alt='00_0000046.png' loading='lazy'></td><td>00_0000046.png</td><td>Khi đó hệ có nghiệm khi </td><td>Khiđóhệcónghiệmkhi</td><td>21.74</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/00_0000047.png' alt='00_0000047.png' loading='lazy'></td><td>00_0000047.png</td><td>npm run build --prod</td><td>npmrunbuild--prod</td><td>15.0</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/00_0000048.png' alt='00_0000048.png' loading='lazy'></td><td>00_0000048.png</td><td>Password phải có ít nhất 8 ký tự</td><td>Passordphảicóítnhất8kýtự</td><td>25.0</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/00_0000051.png' alt='00_0000051.png' loading='lazy'></td><td>00_0000051.png</td><td>Khitruk và Aleksandr Tat</td><td>KhitrukvàAleksandrTat</td><td>12.5</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/00_0000052.png' alt='00_0000052.png' loading='lazy'></td><td>00_0000052.png</td><td>biological importance</td><td>biologicalimportance</td><td>4.76</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/00_0000053.png' alt='00_0000053.png' loading='lazy'></td><td>00_0000053.png</td><td>SELECT * FROM users WHERE id = 42</td><td>SELECT*ROMusersHEREid=42</td><td>27.27</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/00_0000055.png' alt='00_0000055.png' loading='lazy'></td><td>00_0000055.png</td><td>git commit -m 'fix: null check'</td><td>gitcommit-m'ix:nullcheck'</td><td>19.35</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/00_0000058.png' alt='00_0000058.png' loading='lazy'></td><td>00_0000058.png</td><td>của giao</td><td>củagiao</td><td>12.5</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/00_0000059.png' alt='00_0000059.png' loading='lazy'></td><td>00_0000059.png</td><td>lập Thanh</td><td>lậpThanh</td><td>11.11</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/00_0000061.png' alt='00_0000061.png' loading='lazy'></td><td>00_0000061.png</td><td>long flyby</td><td>longlyby</td><td>20.0</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/00_0000065.png' alt='00_0000065.png' loading='lazy'></td><td>00_0000065.png</td><td>SpecialRelativity</td><td>SpccialRelatvity</td><td>11.76</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/00_0000067.png' alt='00_0000067.png' loading='lazy'></td><td>00_0000067.png</td><td>ZojmLVPlWFVVC6JON2NjeB</td><td>omLVPIVVC6ON2NeB</td><td>31.82</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/00_0000069.png' alt='00_0000069.png' loading='lazy'></td><td>00_0000069.png</td><td>hoạch hơn</td><td>hoạchhơn</td><td>11.11</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/00_0000071.png' alt='00_0000071.png' loading='lazy'></td><td>00_0000071.png</td><td>tín hiệu</td><td>tínhiệu</td><td>12.5</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/00_0000072.png' alt='00_0000072.png' loading='lazy'></td><td>00_0000072.png</td><td>Updated 2 min ago</td><td>Updated2minago</td><td>17.65</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/00_0000074.png' alt='00_0000074.png' loading='lazy'></td><td>00_0000074.png</td><td>2Zz</td><td>2</td><td>66.67</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/00_0000075.png' alt='00_0000075.png' loading='lazy'></td><td>00_0000075.png</td><td>đàn áp</td><td>đànáp</td><td>16.67</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/00_0000076.png' alt='00_0000076.png' loading='lazy'></td><td>00_0000076.png</td><td>000 người</td><td>000người</td><td>11.11</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/00_0000077.png' alt='00_0000077.png' loading='lazy'></td><td>00_0000077.png</td><td>File đã lưu thành công</td><td>ileđãlưuthànhcông</td><td>22.73</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/00_0000078.png' alt='00_0000078.png' loading='lazy'></td><td>00_0000078.png</td><td>SĐT: 0912.345.678</td><td>SĐT:0912.345.678</td><td>5.88</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/00_0000079.png' alt='00_0000079.png' loading='lazy'></td><td>00_0000079.png</td><td>tiếp thay vào công</td><td>tiếpthayvàocông</td><td>16.67</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/00_0000083.png' alt='00_0000083.png' loading='lazy'></td><td>00_0000083.png</td><td>lớn nhất trong số đó là </td><td>lớnnhấttrongsốđólà</td><td>21.74</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/00_0000084.png' alt='00_0000084.png' loading='lazy'></td><td>00_0000084.png</td><td>và thậm chí là voi bụi r</td><td>vàthậmchílàvoibụir</td><td>25.0</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/00_0000085.png' alt='00_0000085.png' loading='lazy'></td><td>00_0000085.png</td><td>sông Luộc</td><td>sôngLuộc</td><td>11.11</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/00_0000087.png' alt='00_0000087.png' loading='lazy'></td><td>00_0000087.png</td><td>cực</td><td>Cực</td><td>33.33</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/00_0000088.png' alt='00_0000088.png' loading='lazy'></td><td>00_0000088.png</td><td>định và</td><td>địnhvà</td><td>14.29</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/00_0000089.png' alt='00_0000089.png' loading='lazy'></td><td>00_0000089.png</td><td>Ông bị</td><td>Ôngbị</td><td>16.67</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/00_0000091.png' alt='00_0000091.png' loading='lazy'></td><td>00_0000091.png</td><td>là cụ</td><td>làcụ</td><td>20.0</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/00_0000092.png' alt='00_0000092.png' loading='lazy'></td><td>00_0000092.png</td><td>Confirm xoá item này?</td><td>Conirmxoáitemnày?</td><td>19.05</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/00_0000093.png' alt='00_0000093.png' loading='lazy'></td><td>00_0000093.png</td><td>Upload ảnh (tối đa 5MB)</td><td>Uploadảnh(tốiđa5MB)</td><td>17.39</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/00_0000095.png' alt='00_0000095.png' loading='lazy'></td><td>00_0000095.png</td><td>tư</td><td>tự</td><td>50.0</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/00_0000096.png' alt='00_0000096.png' loading='lazy'></td><td>00_0000096.png</td><td>5vwWTORMmpJo9ssn</td><td>5vTORMmpo9ssn</td><td>18.75</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/00_0000097.png' alt='00_0000097.png' loading='lazy'></td><td>00_0000097.png</td><td>nhạc Tết này dùng làm hì</td><td>nhạcTếtnàydùnglàmhì</td><td>20.83</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/00_0000098.png' alt='00_0000098.png' loading='lazy'></td><td>00_0000098.png</td><td>một số</td><td>mộtsổ</td><td>33.33</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/00_0000103.png' alt='00_0000103.png' loading='lazy'></td><td>00_0000103.png</td><td>đồng tâm với người quan</td><td>đồngtâmvớingườiquan</td><td>17.39</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/00_0000105.png' alt='00_0000105.png' loading='lazy'></td><td>00_0000105.png</td><td>File đã lưu thành công</td><td>ileđãlưuthànhcông</td><td>22.73</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/00_0000106.png' alt='00_0000106.png' loading='lazy'></td><td>00_0000106.png</td><td>1310 được</td><td>1310được</td><td>11.11</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/00_0000108.png' alt='00_0000108.png' loading='lazy'></td><td>00_0000108.png</td><td>Nam Phi</td><td>NamPhi</td><td>14.29</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/00_0000109.png' alt='00_0000109.png' loading='lazy'></td><td>00_0000109.png</td><td>của Perseus</td><td>củaPerseus</td><td>9.09</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/00_0000111.png' alt='00_0000111.png' loading='lazy'></td><td>00_0000111.png</td><td>Upload ảnh (tối đa 5MB)</td><td>Uploadảnh(tốiđa5MB)</td><td>17.39</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/00_0000114.png' alt='00_0000114.png' loading='lazy'></td><td>00_0000114.png</td><td>Khai thác khoáng sản đã </td><td>Khaitháckhoángsảnđã</td><td>17.39</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/00_0000118.png' alt='00_0000118.png' loading='lazy'></td><td>00_0000118.png</td><td>các chiến</td><td>cácchiến</td><td>11.11</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/00_0000121.png' alt='00_0000121.png' loading='lazy'></td><td>00_0000121.png</td><td>Tỉnh/TP: Hà Nội</td><td>Tỉnh/TP:HàNội</td><td>13.33</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/00_0000123.png' alt='00_0000123.png' loading='lazy'></td><td>00_0000123.png</td><td>khoảng từ vài milimét đế</td><td>khoảngtừvàimilimétđế</td><td>16.67</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/00_0000124.png' alt='00_0000124.png' loading='lazy'></td><td>00_0000124.png</td><td>npm run build --prod</td><td>npmrunbuild--prod</td><td>15.0</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/00_0000126.png' alt='00_0000126.png' loading='lazy'></td><td>00_0000126.png</td><td>sát đất đai</td><td>sátđấtđai</td><td>18.18</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/00_0000127.png' alt='00_0000127.png' loading='lazy'></td><td>00_0000127.png</td><td>quý tộc ngoại thích là</td><td>quýtộcngoạithíchlà</td><td>18.18</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/00_0000128.png' alt='00_0000128.png' loading='lazy'></td><td>00_0000128.png</td><td>trực tiếp được sự hướng </td><td>trựctiếpđượcsựhướng</td><td>17.39</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/00_0000129.png' alt='00_0000129.png' loading='lazy'></td><td>00_0000129.png</td><td>Năm 1860</td><td>Năm1860</td><td>12.5</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/00_0000131.png' alt='00_0000131.png' loading='lazy'></td><td>00_0000131.png</td><td>trình đến</td><td>trìnhđến</td><td>11.11</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/00_0000133.png' alt='00_0000133.png' loading='lazy'></td><td>00_0000133.png</td><td>Vua Đế Minh là cháu ba đ</td><td>VuaĐếMinhlàcháubađ</td><td>25.0</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/00_0000134.png' alt='00_0000134.png' loading='lazy'></td><td>00_0000134.png</td><td>đích cắt</td><td>đíchcắt</td><td>12.5</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/00_0000135.png' alt='00_0000135.png' loading='lazy'></td><td>00_0000135.png</td><td>nUR2MAMXZ</td><td>nUR2MAMX</td><td>11.11</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/00_0000137.png' alt='00_0000137.png' loading='lazy'></td><td>00_0000137.png</td><td>, General Arthur</td><td>,GeneralArthur</td><td>12.5</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/00_0000141.png' alt='00_0000141.png' loading='lazy'></td><td>00_0000141.png</td><td>2Zz</td><td>2</td><td>66.67</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/00_0000142.png' alt='00_0000142.png' loading='lazy'></td><td>00_0000142.png</td><td>2Zz</td><td>2</td><td>66.67</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/00_0000145.png' alt='00_0000145.png' loading='lazy'></td><td>00_0000145.png</td><td>₫1.234.567</td><td>1.234.567</td><td>10.0</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/00_0000146.png' alt='00_0000146.png' loading='lazy'></td><td>00_0000146.png</td><td>Password phải có ít nhất 8 ký tự</td><td>Passordphảicóítnhất8kýtự</td><td>25.0</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/00_0000147.png' alt='00_0000147.png' loading='lazy'></td><td>00_0000147.png</td><td>trận lưới nhện</td><td>trậnlướinhện</td><td>14.29</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/00_0000148.png' alt='00_0000148.png' loading='lazy'></td><td>00_0000148.png</td><td>thần khác</td><td>thầnkhác</td><td>11.11</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/00_0000149.png' alt='00_0000149.png' loading='lazy'></td><td>00_0000149.png</td><td>an American</td><td>anAmerican</td><td>9.09</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/00_0000150.png' alt='00_0000150.png' loading='lazy'></td><td>00_0000150.png</td><td>Page 1 of 24</td><td>Page1o24</td><td>33.33</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/00_0000151.png' alt='00_0000151.png' loading='lazy'></td><td>00_0000151.png</td><td>Diễn biến</td><td>Diễnbiến</td><td>11.11</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/00_0000152.png' alt='00_0000152.png' loading='lazy'></td><td>00_0000152.png</td><td>KFOy</td><td>KOy</td><td>25.0</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/00_0000153.png' alt='00_0000153.png' loading='lazy'></td><td>00_0000153.png</td><td>Syncing…</td><td>Syncing</td><td>12.5</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/00_0000157.png' alt='00_0000157.png' loading='lazy'></td><td>00_0000157.png</td><td>ô tô công</td><td>ôtôcông</td><td>22.22</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/00_0000158.png' alt='00_0000158.png' loading='lazy'></td><td>00_0000158.png</td><td>Experience of the French</td><td>Experienceotherench</td><td>20.83</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/00_0000160.png' alt='00_0000160.png' loading='lazy'></td><td>00_0000160.png</td><td>dân trên đảo chấp</td><td>dântrênđảochấp</td><td>17.65</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/00_0000162.png' alt='00_0000162.png' loading='lazy'></td><td>00_0000162.png</td><td>Khwarezm đã</td><td>Kharemđã</td><td>27.27</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/00_0000163.png' alt='00_0000163.png' loading='lazy'></td><td>00_0000163.png</td><td>OgFuevuO8</td><td>0guevu08</td><td>33.33</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/00_0000164.png' alt='00_0000164.png' loading='lazy'></td><td>00_0000164.png</td><td>Step 2 of 4</td><td>Step2o4</td><td>36.36</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/00_0000165.png' alt='00_0000165.png' loading='lazy'></td><td>00_0000165.png</td><td>2Zz</td><td>2</td><td>66.67</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/00_0000167.png' alt='00_0000167.png' loading='lazy'></td><td>00_0000167.png</td><td>Rayner ,</td><td>Rayner,</td><td>12.5</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/00_0000168.png' alt='00_0000168.png' loading='lazy'></td><td>00_0000168.png</td><td>năm 2005</td><td>năm2005</td><td>12.5</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/00_0000169.png' alt='00_0000169.png' loading='lazy'></td><td>00_0000169.png</td><td>Step 2 of 4</td><td>Step2o4</td><td>36.36</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/00_0000170.png' alt='00_0000170.png' loading='lazy'></td><td>00_0000170.png</td><td>= Republican</td><td>=Republican</td><td>8.33</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/00_0000172.png' alt='00_0000172.png' loading='lazy'></td><td>00_0000172.png</td><td>Password phải có ít nhất 8 ký tự</td><td>Passordphảicóítnhất8kýtự</td><td>25.0</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/00_0000173.png' alt='00_0000173.png' loading='lazy'></td><td>00_0000173.png</td><td>và nhân</td><td>vànhân</td><td>14.29</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/00_0000174.png' alt='00_0000174.png' loading='lazy'></td><td>00_0000174.png</td><td>nhiệt độ</td><td>nhiệtđộ</td><td>12.5</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/00_0000175.png' alt='00_0000175.png' loading='lazy'></td><td>00_0000175.png</td><td>California (tiếng Anh)</td><td>Caliornia(tiếngAnh)</td><td>13.64</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/00_0000176.png' alt='00_0000176.png' loading='lazy'></td><td>00_0000176.png</td><td>r41CntGNKa 80JLrREvrur</td><td>r41CntGNKa80LrREvrur</td><td>9.09</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/00_0000177.png' alt='00_0000177.png' loading='lazy'></td><td>00_0000177.png</td><td>chức nắm đa số trong</td><td>chứcnắmđasốtrong</td><td>20.0</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/00_0000181.png' alt='00_0000181.png' loading='lazy'></td><td>00_0000181.png</td><td>her face</td><td>herace</td><td>25.0</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/00_0000182.png' alt='00_0000182.png' loading='lazy'></td><td>00_0000182.png</td><td>có người</td><td>cóngười</td><td>12.5</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/00_0000183.png' alt='00_0000183.png' loading='lazy'></td><td>00_0000183.png</td><td>File đã lưu thành công</td><td>ileđãlưuthànhcông</td><td>22.73</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/00_0000184.png' alt='00_0000184.png' loading='lazy'></td><td>00_0000184.png</td><td>₫1.234.567</td><td>1.234.567</td><td>10.0</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/00_0000185.png' alt='00_0000185.png' loading='lazy'></td><td>00_0000185.png</td><td>Từ năm 1985 đến 1989, đỉ</td><td>Từnăm1985đến1989,đi</td><td>25.0</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/00_0000187.png' alt='00_0000187.png' loading='lazy'></td><td>00_0000187.png</td><td>File đã lưu thành công</td><td>ileđãlưuthànhcông</td><td>22.73</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/00_0000188.png' alt='00_0000188.png' loading='lazy'></td><td>00_0000188.png</td><td>Tác giả Yoshizawa Minami</td><td>TácgiảYoshiaaMinami</td><td>20.83</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/00_0000189.png' alt='00_0000189.png' loading='lazy'></td><td>00_0000189.png</td><td>đầu nguồn rất xa</td><td>đầunguồnrấtxa</td><td>18.75</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/00_0000190.png' alt='00_0000190.png' loading='lazy'></td><td>00_0000190.png</td><td>Hề Sa</td><td>Hềsa</td><td>40.0</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/00_0000191.png' alt='00_0000191.png' loading='lazy'></td><td>00_0000191.png</td><td>các hydrocarbon</td><td>cáchydrocarbon</td><td>6.67</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/00_0000192.png' alt='00_0000192.png' loading='lazy'></td><td>00_0000192.png</td><td>Bush trills</td><td>Bushtrills</td><td>9.09</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/00_0000193.png' alt='00_0000193.png' loading='lazy'></td><td>00_0000193.png</td><td>Die Zeit</td><td>Dieeit</td><td>25.0</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/00_0000195.png' alt='00_0000195.png' loading='lazy'></td><td>00_0000195.png</td><td>Under Pennsylvanian law </td><td>UnderPennsylvanianla</td><td>13.04</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/00_0000196.png' alt='00_0000196.png' loading='lazy'></td><td>00_0000196.png</td><td>Alabama Crimson Tide foo</td><td>AlabamaCrimsonTideoo</td><td>16.67</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/00_0000197.png' alt='00_0000197.png' loading='lazy'></td><td>00_0000197.png</td><td>hai năm tài chính 1958</td><td>hainămtàichinh1958</td><td>22.73</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/00_0000198.png' alt='00_0000198.png' loading='lazy'></td><td>00_0000198.png</td><td>(nghiên cứu các lớp trầm</td><td>(nghiêncứucáclớptrầm</td><td>16.67</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/00_0000200.png' alt='00_0000200.png' loading='lazy'></td><td>00_0000200.png</td><td>Trong môn tin học</td><td>Trongmôntinhọc</td><td>17.65</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/00_0000201.png' alt='00_0000201.png' loading='lazy'></td><td>00_0000201.png</td><td>tháng 3</td><td>tháng3</td><td>14.29</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/00_0000202.png' alt='00_0000202.png' loading='lazy'></td><td>00_0000202.png</td><td>Đoạn mồi</td><td>Đoạnmồi</td><td>12.5</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/00_0000203.png' alt='00_0000203.png' loading='lazy'></td><td>00_0000203.png</td><td>SELECT * FROM users WHERE id = 42</td><td>SELECT*ROMusersHEREid=42</td><td>27.27</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/00_0000204.png' alt='00_0000204.png' loading='lazy'></td><td>00_0000204.png</td><td>các kết</td><td>cáckết</td><td>14.29</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/00_0000205.png' alt='00_0000205.png' loading='lazy'></td><td>00_0000205.png</td><td>là trình</td><td>làtrình</td><td>12.5</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/00_0000206.png' alt='00_0000206.png' loading='lazy'></td><td>00_0000206.png</td><td>Kỹ thuật này vận dụng cá</td><td>Kỹthuậtnàyvậndụngcá</td><td>20.83</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/00_0000207.png' alt='00_0000207.png' loading='lazy'></td><td>00_0000207.png</td><td>đó, xã</td><td>đó,xả</td><td>33.33</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/00_0000208.png' alt='00_0000208.png' loading='lazy'></td><td>00_0000208.png</td><td>C:\Users\Admin\Documents\report.pdf</td><td>C:\Users\Admin\Documents\report.pd</td><td>2.86</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/00_0000209.png' alt='00_0000209.png' loading='lazy'></td><td>00_0000209.png</td><td>kinh lược</td><td>kinhlược</td><td>11.11</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/00_0000213.png' alt='00_0000213.png' loading='lazy'></td><td>00_0000213.png</td><td>yếu đuối</td><td>yếuđuối</td><td>12.5</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/00_0000214.png' alt='00_0000214.png' loading='lazy'></td><td>00_0000214.png</td><td>tại đảo Phú Lâm)</td><td>tạiđảoPhúLâm)</td><td>18.75</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/00_0000215.png' alt='00_0000215.png' loading='lazy'></td><td>00_0000215.png</td><td>it was funny</td><td>itasunny</td><td>33.33</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/00_0000219.png' alt='00_0000219.png' loading='lazy'></td><td>00_0000219.png</td><td>Ủy viên</td><td>ủyviên</td><td>28.57</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/00_0000220.png' alt='00_0000220.png' loading='lazy'></td><td>00_0000220.png</td><td>Lịch sử chiến tranh Việt</td><td>LịchsửchiếntranhViệt</td><td>16.67</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/00_0000222.png' alt='00_0000222.png' loading='lazy'></td><td>00_0000222.png</td><td>will</td><td>ill</td><td>25.0</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/00_0000224.png' alt='00_0000224.png' loading='lazy'></td><td>00_0000224.png</td><td>tổng thống khi phải đối</td><td>tốngthốngkhiphảiđối</td><td>21.74</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/00_0000225.png' alt='00_0000225.png' loading='lazy'></td><td>00_0000225.png</td><td>phố này bao gồm</td><td>phốnàybaogồm</td><td>20.0</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/00_0000228.png' alt='00_0000228.png' loading='lazy'></td><td>00_0000228.png</td><td>Confirm xoá item này?</td><td>Conirmxoáitemnày?</td><td>19.05</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/00_0000229.png' alt='00_0000229.png' loading='lazy'></td><td>00_0000229.png</td><td>Praeger, 1999</td><td>Praeger,1999</td><td>7.69</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/00_0000231.png' alt='00_0000231.png' loading='lazy'></td><td>00_0000231.png</td><td>cần thiết</td><td>cầnthiết</td><td>11.11</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/00_0000233.png' alt='00_0000233.png' loading='lazy'></td><td>00_0000233.png</td><td>Pháp thiệt hại 16 người</td><td>Phápthiệthại16người</td><td>17.39</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/00_0000234.png' alt='00_0000234.png' loading='lazy'></td><td>00_0000234.png</td><td>compozit</td><td>compoit</td><td>12.5</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/00_0000237.png' alt='00_0000237.png' loading='lazy'></td><td>00_0000237.png</td><td>Confirm xoá item này?</td><td>Conirmxoáitemnày?</td><td>19.05</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/00_0000239.png' alt='00_0000239.png' loading='lazy'></td><td>00_0000239.png</td><td>₫1.234.567</td><td>1.234.567</td><td>10.0</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/00_0000241.png' alt='00_0000241.png' loading='lazy'></td><td>00_0000241.png</td><td>nghiên cứu</td><td>nghiêncứu</td><td>10.0</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/00_0000243.png' alt='00_0000243.png' loading='lazy'></td><td>00_0000243.png</td><td>VVW</td><td>VV</td><td>33.33</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/00_0000244.png' alt='00_0000244.png' loading='lazy'></td><td>00_0000244.png</td><td>Càng xuống thấp</td><td>cảngsuốngthấp</td><td>33.33</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/00_0000245.png' alt='00_0000245.png' loading='lazy'></td><td>00_0000245.png</td><td>với nữ giới</td><td>vớinữgiới</td><td>18.18</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/00_0000246.png' alt='00_0000246.png' loading='lazy'></td><td>00_0000246.png</td><td>book titles</td><td>booktitles</td><td>9.09</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/00_0000248.png' alt='00_0000248.png' loading='lazy'></td><td>00_0000248.png</td><td>were divided</td><td>eredivided</td><td>16.67</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/00_0000249.png' alt='00_0000249.png' loading='lazy'></td><td>00_0000249.png</td><td>||Le jour</td><td>||Leour</td><td>22.22</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/01_0000003.png' alt='01_0000003.png' loading='lazy'></td><td>01_0000003.png</td><td>có tục thờ</td><td>cótụcthờ</td><td>20.0</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/01_0000009.png' alt='01_0000009.png' loading='lazy'></td><td>01_0000009.png</td><td>Trở thành Thủ tướng</td><td>TrởthànhThủtướng</td><td>15.79</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/01_0000011.png' alt='01_0000011.png' loading='lazy'></td><td>01_0000011.png</td><td>triều cùng</td><td>triềucùng</td><td>10.0</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/01_0000015.png' alt='01_0000015.png' loading='lazy'></td><td>01_0000015.png</td><td>Password phải có ít nhất 8 ký tự</td><td>Passordphảicóítnhất8kýtự</td><td>25.0</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/01_0000016.png' alt='01_0000016.png' loading='lazy'></td><td>01_0000016.png</td><td>Loading… (87%)</td><td>Loading(87%)</td><td>14.29</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/01_0000017.png' alt='01_0000017.png' loading='lazy'></td><td>01_0000017.png</td><td>Ví dụ,</td><td>Vídụ,</td><td>16.67</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/01_0000018.png' alt='01_0000018.png' loading='lazy'></td><td>01_0000018.png</td><td>Albania (13/3/1950)</td><td>Albania(13/3/1950)</td><td>5.26</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/01_0000019.png' alt='01_0000019.png' loading='lazy'></td><td>01_0000019.png</td><td>Phú Bổn</td><td>PhúBổn</td><td>14.29</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/01_0000021.png' alt='01_0000021.png' loading='lazy'></td><td>01_0000021.png</td><td>including partner</td><td>includingpartner</td><td>5.88</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/01_0000024.png' alt='01_0000024.png' loading='lazy'></td><td>01_0000024.png</td><td>Mã số thuế: 0123456789</td><td>Mãsốthuế:0123456789</td><td>13.64</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/01_0000025.png' alt='01_0000025.png' loading='lazy'></td><td>01_0000025.png</td><td>At the end of issue # 18</td><td>Attheendoissue#18</td><td>29.17</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/01_0000026.png' alt='01_0000026.png' loading='lazy'></td><td>01_0000026.png</td><td>Caribe về</td><td>Caribevề</td><td>11.11</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/01_0000028.png' alt='01_0000028.png' loading='lazy'></td><td>01_0000028.png</td><td>ông gặp</td><td>ônggặp</td><td>14.29</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/01_0000029.png' alt='01_0000029.png' loading='lazy'></td><td>01_0000029.png</td><td>Tỉnh/TP: Hà Nội</td><td>Tỉnh/TP:HàNội</td><td>13.33</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/01_0000030.png' alt='01_0000030.png' loading='lazy'></td><td>01_0000030.png</td><td>pip install torch --index-url ...</td><td>pipinstalltorch-index-url...</td><td>15.15</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/01_0000031.png' alt='01_0000031.png' loading='lazy'></td><td>01_0000031.png</td><td>of MTV</td><td>oMTV</td><td>33.33</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/01_0000033.png' alt='01_0000033.png' loading='lazy'></td><td>01_0000033.png</td><td>Năm 16 tuổi</td><td>Năm16tuổi</td><td>18.18</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/01_0000034.png' alt='01_0000034.png' loading='lazy'></td><td>01_0000034.png</td><td>(Tổng thống</td><td>(Tổngthống</td><td>9.09</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/01_0000036.png' alt='01_0000036.png' loading='lazy'></td><td>01_0000036.png</td><td>tuyến</td><td>tuyển</td><td>20.0</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/01_0000037.png' alt='01_0000037.png' loading='lazy'></td><td>01_0000037.png</td><td>Thị trưởng Hoàng Thạch</td><td>ThịtrưởngHoàngThạch</td><td>13.64</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/01_0000038.png' alt='01_0000038.png' loading='lazy'></td><td>01_0000038.png</td><td>https://example.com/api/v2/users?page=1</td><td>https/example.com/api/v2/uisers?page=1</td><td>7.69</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/01_0000042.png' alt='01_0000042.png' loading='lazy'></td><td>01_0000042.png</td><td>và cũng tạo điều kiện th</td><td>vàcũngtạođiềukiệnth</td><td>20.83</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/01_0000046.png' alt='01_0000046.png' loading='lazy'></td><td>01_0000046.png</td><td>chúng không</td><td>chúngkhông</td><td>9.09</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/01_0000048.png' alt='01_0000048.png' loading='lazy'></td><td>01_0000048.png</td><td>trung tâm</td><td>trungtâm</td><td>11.11</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/01_0000049.png' alt='01_0000049.png' loading='lazy'></td><td>01_0000049.png</td><td>2Zz</td><td>2</td><td>66.67</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/01_0000050.png' alt='01_0000050.png' loading='lazy'></td><td>01_0000050.png</td><td>Tân Mùi</td><td>TânMùi</td><td>14.29</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/01_0000051.png' alt='01_0000051.png' loading='lazy'></td><td>01_0000051.png</td><td>\\SERVER\Share\folder</td><td>\\SERVER\Share\older</td><td>4.76</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/01_0000052.png' alt='01_0000052.png' loading='lazy'></td><td>01_0000052.png</td><td>có quyền thảo</td><td>cóquyềnthảo</td><td>15.38</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/01_0000053.png' alt='01_0000053.png' loading='lazy'></td><td>01_0000053.png</td><td>€1,234.00</td><td>1,234.00</td><td>11.11</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/01_0000055.png' alt='01_0000055.png' loading='lazy'></td><td>01_0000055.png</td><td>C được</td><td>Cđược</td><td>16.67</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/01_0000057.png' alt='01_0000057.png' loading='lazy'></td><td>01_0000057.png</td><td>VVW</td><td>VV</td><td>33.33</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/01_0000058.png' alt='01_0000058.png' loading='lazy'></td><td>01_0000058.png</td><td>Rượu Vodka</td><td>RượuVodka</td><td>10.0</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/01_0000059.png' alt='01_0000059.png' loading='lazy'></td><td>01_0000059.png</td><td>bảo kê</td><td>bảokê</td><td>16.67</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/01_0000061.png' alt='01_0000061.png' loading='lazy'></td><td>01_0000061.png</td><td>khiêm tốn giản dị</td><td>khiêmtốngiảndị</td><td>17.65</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/01_0000062.png' alt='01_0000062.png' loading='lazy'></td><td>01_0000062.png</td><td>thì bạn</td><td>thìbạn</td><td>14.29</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/01_0000063.png' alt='01_0000063.png' loading='lazy'></td><td>01_0000063.png</td><td>Mã số thuế: 0123456789</td><td>Mãsốthuế:0123456789</td><td>13.64</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/01_0000065.png' alt='01_0000065.png' loading='lazy'></td><td>01_0000065.png</td><td>cây Dó</td><td>câyDó</td><td>16.67</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/01_0000066.png' alt='01_0000066.png' loading='lazy'></td><td>01_0000066.png</td><td>CMND: 079 123 456 789</td><td>CMND:079123456789</td><td>19.05</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/01_0000067.png' alt='01_0000067.png' loading='lazy'></td><td>01_0000067.png</td><td>What me and my band are </td><td>hatmeandmybandare</td><td>26.09</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/01_0000069.png' alt='01_0000069.png' loading='lazy'></td><td>01_0000069.png</td><td>minh chứng</td><td>minhchứng</td><td>10.0</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/01_0000070.png' alt='01_0000070.png' loading='lazy'></td><td>01_0000070.png</td><td>thứ nhì</td><td>thứnhì</td><td>14.29</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/01_0000071.png' alt='01_0000071.png' loading='lazy'></td><td>01_0000071.png</td><td>Retry (3/5)</td><td>Retry(3/5)</td><td>9.09</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/01_0000072.png' alt='01_0000072.png' loading='lazy'></td><td>01_0000072.png</td><td>Page 1 of 24</td><td>Page1o24</td><td>33.33</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/01_0000074.png' alt='01_0000074.png' loading='lazy'></td><td>01_0000074.png</td><td>Page 1 of 24</td><td>Page1o24</td><td>33.33</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/01_0000076.png' alt='01_0000076.png' loading='lazy'></td><td>01_0000076.png</td><td>Play it fucking loud</td><td>Playituckingloud</td><td>20.0</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/01_0000077.png' alt='01_0000077.png' loading='lazy'></td><td>01_0000077.png</td><td>Á có hai thẩm phán</td><td>Ácóhaithẩmphán</td><td>22.22</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/01_0000078.png' alt='01_0000078.png' loading='lazy'></td><td>01_0000078.png</td><td>từ 65 tuổi trở</td><td>từ65tuổitrở</td><td>21.43</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/01_0000079.png' alt='01_0000079.png' loading='lazy'></td><td>01_0000079.png</td><td>₫1.234.567</td><td>1.234.567</td><td>10.0</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/01_0000080.png' alt='01_0000080.png' loading='lazy'></td><td>01_0000080.png</td><td>VVW</td><td>VV</td><td>33.33</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/01_0000081.png' alt='01_0000081.png' loading='lazy'></td><td>01_0000081.png</td><td>Nanaimo và</td><td>Nanaimovà</td><td>10.0</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/01_0000082.png' alt='01_0000082.png' loading='lazy'></td><td>01_0000082.png</td><td>chất tím</td><td>chấttím</td><td>12.5</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/01_0000084.png' alt='01_0000084.png' loading='lazy'></td><td>01_0000084.png</td><td>nguồn gốc tự nhiên</td><td>nguồngốctựnhiên</td><td>16.67</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/01_0000085.png' alt='01_0000085.png' loading='lazy'></td><td>01_0000085.png</td><td>Fe2+,</td><td>e2+,</td><td>20.0</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/01_0000086.png' alt='01_0000086.png' loading='lazy'></td><td>01_0000086.png</td><td>di tản</td><td>ditản</td><td>16.67</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/01_0000087.png' alt='01_0000087.png' loading='lazy'></td><td>01_0000087.png</td><td>Tiến Thắng</td><td>TiếnThắng</td><td>10.0</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/01_0000088.png' alt='01_0000088.png' loading='lazy'></td><td>01_0000088.png</td><td>thuyết tương</td><td>thuyếttương</td><td>8.33</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/01_0000091.png' alt='01_0000091.png' loading='lazy'></td><td>01_0000091.png</td><td>Địa hình đa dạng bao gồm</td><td>Địahìnhđadạngbaogồm</td><td>20.83</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/01_0000093.png' alt='01_0000093.png' loading='lazy'></td><td>01_0000093.png</td><td>khi đất nước Đại Cồ Việt</td><td>KhiđấtnướcĐạicồviệt</td><td>33.33</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/01_0000095.png' alt='01_0000095.png' loading='lazy'></td><td>01_0000095.png</td><td>phòng không</td><td>phòngkhông</td><td>9.09</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/01_0000096.png' alt='01_0000096.png' loading='lazy'></td><td>01_0000096.png</td><td>là thẩm</td><td>làthẩm</td><td>14.29</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/01_0000097.png' alt='01_0000097.png' loading='lazy'></td><td>01_0000097.png</td><td>thứ 9</td><td>thứ9</td><td>20.0</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/01_0000098.png' alt='01_0000098.png' loading='lazy'></td><td>01_0000098.png</td><td>báo Cứu Quốc,</td><td>báoCứuQuốc,</td><td>15.38</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/01_0000101.png' alt='01_0000101.png' loading='lazy'></td><td>01_0000101.png</td><td>ở Puerto</td><td>ởPuerto</td><td>12.5</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/01_0000102.png' alt='01_0000102.png' loading='lazy'></td><td>01_0000102.png</td><td>Vệ tinh nằm xa nhất, Lar</td><td>Vệtinhnằmxanhất,Lar</td><td>20.83</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/01_0000106.png' alt='01_0000106.png' loading='lazy'></td><td>01_0000106.png</td><td>pip install torch --index-url ...</td><td>pipinstalltorch--index-url...</td><td>12.12</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/01_0000107.png' alt='01_0000107.png' loading='lazy'></td><td>01_0000107.png</td><td>The Negro Speaks of Rive</td><td>TheNegroSpeaksoRive</td><td>20.83</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/01_0000108.png' alt='01_0000108.png' loading='lazy'></td><td>01_0000108.png</td><td>2Zz</td><td>2</td><td>66.67</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/01_0000110.png' alt='01_0000110.png' loading='lazy'></td><td>01_0000110.png</td><td>khi cháy</td><td>khicháy</td><td>12.5</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/01_0000111.png' alt='01_0000111.png' loading='lazy'></td><td>01_0000111.png</td><td>đến ngày 10</td><td>đếnngày10</td><td>18.18</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/01_0000112.png' alt='01_0000112.png' loading='lazy'></td><td>01_0000112.png</td><td>Step 2 of 4</td><td>Step2o4</td><td>36.36</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/01_0000116.png' alt='01_0000116.png' loading='lazy'></td><td>01_0000116.png</td><td>mạch DNA</td><td>mạchDNA</td><td>12.5</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/01_0000117.png' alt='01_0000117.png' loading='lazy'></td><td>01_0000117.png</td><td>nhiều người</td><td>nhiềungười</td><td>9.09</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/01_0000118.png' alt='01_0000118.png' loading='lazy'></td><td>01_0000118.png</td><td>File đã lưu thành công</td><td>ileđãlưuthànhcông</td><td>22.73</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/01_0000120.png' alt='01_0000120.png' loading='lazy'></td><td>01_0000120.png</td><td>git commit -m 'fix: null check'</td><td>gitcommit-m'ix:nullcheck'</td><td>19.35</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/01_0000123.png' alt='01_0000123.png' loading='lazy'></td><td>01_0000123.png</td><td>Anh và</td><td>Anhvà</td><td>16.67</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/01_0000124.png' alt='01_0000124.png' loading='lazy'></td><td>01_0000124.png</td><td>văn hóa</td><td>vănhóa</td><td>14.29</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/01_0000126.png' alt='01_0000126.png' loading='lazy'></td><td>01_0000126.png</td><td>những thay</td><td>nhữngthay</td><td>10.0</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/01_0000127.png' alt='01_0000127.png' loading='lazy'></td><td>01_0000127.png</td><td>SĐT: 0912.345.678</td><td>SĐT:0912.345.678</td><td>5.88</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/01_0000128.png' alt='01_0000128.png' loading='lazy'></td><td>01_0000128.png</td><td>trong SI</td><td>trongSI</td><td>12.5</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/01_0000129.png' alt='01_0000129.png' loading='lazy'></td><td>01_0000129.png</td><td>₫1.234.567</td><td>1.234.567</td><td>10.0</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/01_0000130.png' alt='01_0000130.png' loading='lazy'></td><td>01_0000130.png</td><td>Các nhà máy sản xuất thé</td><td>Cácnhàmáysảnxuấtthé</td><td>20.83</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/01_0000131.png' alt='01_0000131.png' loading='lazy'></td><td>01_0000131.png</td><td>Updated 2 min ago</td><td>Updated2minago</td><td>17.65</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/01_0000132.png' alt='01_0000132.png' loading='lazy'></td><td>01_0000132.png</td><td>diễn viên</td><td>diễnviên</td><td>11.11</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/01_0000133.png' alt='01_0000133.png' loading='lazy'></td><td>01_0000133.png</td><td>thiệu với Lý</td><td>thiệuvớiLý</td><td>16.67</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/01_0000135.png' alt='01_0000135.png' loading='lazy'></td><td>01_0000135.png</td><td>Lộc Văn Lùng tức Văn Tiê</td><td>LộcVănLùngtứcVănTiê</td><td>20.83</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/01_0000137.png' alt='01_0000137.png' loading='lazy'></td><td>01_0000137.png</td><td>cook Delia Smith admits</td><td>cook:Deliasmithadmits</td><td>17.39</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/01_0000138.png' alt='01_0000138.png' loading='lazy'></td><td>01_0000138.png</td><td>cỡ 0</td><td>cỡ0</td><td>25.0</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/01_0000141.png' alt='01_0000141.png' loading='lazy'></td><td>01_0000141.png</td><td>và bốn đồng đội của</td><td>vàbốnđồngđộicủa</td><td>21.05</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/01_0000142.png' alt='01_0000142.png' loading='lazy'></td><td>01_0000142.png</td><td>khách quan</td><td>kháchquan</td><td>10.0</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/01_0000143.png' alt='01_0000143.png' loading='lazy'></td><td>01_0000143.png</td><td>tại Việt</td><td>tạiViệt</td><td>12.5</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/01_0000147.png' alt='01_0000147.png' loading='lazy'></td><td>01_0000147.png</td><td>cao cả</td><td>caocả</td><td>16.67</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/01_0000148.png' alt='01_0000148.png' loading='lazy'></td><td>01_0000148.png</td><td>2Zz</td><td>2</td><td>66.67</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/01_0000150.png' alt='01_0000150.png' loading='lazy'></td><td>01_0000150.png</td><td>File đã lưu thành công</td><td>ileđãlưuthànhcông</td><td>22.73</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/01_0000154.png' alt='01_0000154.png' loading='lazy'></td><td>01_0000154.png</td><td>€1,234.00</td><td>1,234.00</td><td>11.11</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/01_0000156.png' alt='01_0000156.png' loading='lazy'></td><td>01_0000156.png</td><td>của nó</td><td>củanó</td><td>16.67</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/01_0000157.png' alt='01_0000157.png' loading='lazy'></td><td>01_0000157.png</td><td>VVW</td><td>VV</td><td>33.33</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/01_0000158.png' alt='01_0000158.png' loading='lazy'></td><td>01_0000158.png</td><td>Password phải có ít nhất 8 ký tự</td><td>Possordphảicóítnhất8kýtự</td><td>28.12</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/01_0000160.png' alt='01_0000160.png' loading='lazy'></td><td>01_0000160.png</td><td>vực lẽ</td><td>vựclẽ</td><td>16.67</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/01_0000161.png' alt='01_0000161.png' loading='lazy'></td><td>01_0000161.png</td><td>Dữ liệu chỉ được truyền </td><td>Dữliệuchiđượctruyền</td><td>21.74</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/01_0000162.png' alt='01_0000162.png' loading='lazy'></td><td>01_0000162.png</td><td>ức chế ăn</td><td>ứcchếăn</td><td>22.22</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/01_0000164.png' alt='01_0000164.png' loading='lazy'></td><td>01_0000164.png</td><td>Robert McNeil</td><td>RobertMcNeii</td><td>15.38</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/01_0000166.png' alt='01_0000166.png' loading='lazy'></td><td>01_0000166.png</td><td>Retry (3/5)</td><td>Retry(3/5)</td><td>9.09</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/01_0000167.png' alt='01_0000167.png' loading='lazy'></td><td>01_0000167.png</td><td>và mây Sao Hỏa đóng</td><td>vàmâySaoHỏađóng</td><td>21.05</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/01_0000168.png' alt='01_0000168.png' loading='lazy'></td><td>01_0000168.png</td><td>Hoa kiều</td><td>Hoakiều</td><td>12.5</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/01_0000170.png' alt='01_0000170.png' loading='lazy'></td><td>01_0000170.png</td><td>Địa lý khu vực</td><td>Địalýkhuvực</td><td>21.43</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/01_0000171.png' alt='01_0000171.png' loading='lazy'></td><td>01_0000171.png</td><td>tịch Quốc</td><td>tịchQuốc</td><td>11.11</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/01_0000172.png' alt='01_0000172.png' loading='lazy'></td><td>01_0000172.png</td><td>Password phải có ít nhất 8 ký tự</td><td>Passordphảicóítnhất8kýtự</td><td>25.0</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/01_0000173.png' alt='01_0000173.png' loading='lazy'></td><td>01_0000173.png</td><td>hạ cánh</td><td>hạcánh</td><td>14.29</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/01_0000175.png' alt='01_0000175.png' loading='lazy'></td><td>01_0000175.png</td><td>Tổng thống Pháp Léon Blu</td><td>TổngthốngPhápLéonBlu</td><td>16.67</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/01_0000176.png' alt='01_0000176.png' loading='lazy'></td><td>01_0000176.png</td><td>lịch sử</td><td>lịchsử</td><td>14.29</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/01_0000177.png' alt='01_0000177.png' loading='lazy'></td><td>01_0000177.png</td><td>của Marx</td><td>củaMarx</td><td>12.5</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/01_0000178.png' alt='01_0000178.png' loading='lazy'></td><td>01_0000178.png</td><td>lIlIlI</td><td>lIlIl|</td><td>16.67</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/01_0000181.png' alt='01_0000181.png' loading='lazy'></td><td>01_0000181.png</td><td>được gọi</td><td>đượcgọi</td><td>12.5</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/01_0000182.png' alt='01_0000182.png' loading='lazy'></td><td>01_0000182.png</td><td>Retry (3/5)</td><td>Retry(3/5)</td><td>9.09</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/01_0000184.png' alt='01_0000184.png' loading='lazy'></td><td>01_0000184.png</td><td>tại là</td><td>tạilà</td><td>16.67</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/01_0000185.png' alt='01_0000185.png' loading='lazy'></td><td>01_0000185.png</td><td>couldn 't stand it</td><td>couldn'tstandit</td><td>16.67</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/01_0000188.png' alt='01_0000188.png' loading='lazy'></td><td>01_0000188.png</td><td>tranh (Concurrency)</td><td>tranh(Concurrency)</td><td>5.26</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/01_0000191.png' alt='01_0000191.png' loading='lazy'></td><td>01_0000191.png</td><td>Tiền-Tocharia (3700 TCN)</td><td>Tiền-Tocharia(3700TCN)</td><td>8.33</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/01_0000195.png' alt='01_0000195.png' loading='lazy'></td><td>01_0000195.png</td><td>Ngày 22</td><td>Ngày22</td><td>14.29</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/01_0000196.png' alt='01_0000196.png' loading='lazy'></td><td>01_0000196.png</td><td>L7W5JbQfL5mEIcw</td><td>L75bQL5mElc</td><td>33.33</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/01_0000197.png' alt='01_0000197.png' loading='lazy'></td><td>01_0000197.png</td><td>và 500</td><td>và500</td><td>16.67</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/01_0000198.png' alt='01_0000198.png' loading='lazy'></td><td>01_0000198.png</td><td>Rau răm ở lại</td><td>Raurămởlại</td><td>23.08</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/01_0000200.png' alt='01_0000200.png' loading='lazy'></td><td>01_0000200.png</td><td>2Zz</td><td>2</td><td>66.67</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/01_0000202.png' alt='01_0000202.png' loading='lazy'></td><td>01_0000202.png</td><td>€1,234.00</td><td>1,234.00</td><td>11.11</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/01_0000203.png' alt='01_0000203.png' loading='lazy'></td><td>01_0000203.png</td><td>một đường</td><td>mộtđường</td><td>11.11</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/01_0000206.png' alt='01_0000206.png' loading='lazy'></td><td>01_0000206.png</td><td>552 người</td><td>552người</td><td>11.11</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/01_0000207.png' alt='01_0000207.png' loading='lazy'></td><td>01_0000207.png</td><td>Tỉnh/TP: Hà Nội</td><td>Tỉnh/TP:HàNội</td><td>13.33</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/01_0000210.png' alt='01_0000210.png' loading='lazy'></td><td>01_0000210.png</td><td>Upload ảnh (tối đa 5MB)</td><td>Uploadảnh(tốiđa5MB)</td><td>17.39</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/01_0000211.png' alt='01_0000211.png' loading='lazy'></td><td>01_0000211.png</td><td>2Zz</td><td>2</td><td>66.67</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/01_0000212.png' alt='01_0000212.png' loading='lazy'></td><td>01_0000212.png</td><td>gian bay</td><td>gianbay</td><td>12.5</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/01_0000214.png' alt='01_0000214.png' loading='lazy'></td><td>01_0000214.png</td><td>tại Kamakura</td><td>tạiKamakura</td><td>8.33</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/01_0000215.png' alt='01_0000215.png' loading='lazy'></td><td>01_0000215.png</td><td>đổ bộ</td><td>đổbộ</td><td>20.0</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/01_0000216.png' alt='01_0000216.png' loading='lazy'></td><td>01_0000216.png</td><td>hưởng tư</td><td>hưỏngtư</td><td>25.0</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/01_0000217.png' alt='01_0000217.png' loading='lazy'></td><td>01_0000217.png</td><td>là rộng</td><td>làrộng</td><td>14.29</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/01_0000218.png' alt='01_0000218.png' loading='lazy'></td><td>01_0000218.png</td><td>audience ,</td><td>audience,</td><td>10.0</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/01_0000221.png' alt='01_0000221.png' loading='lazy'></td><td>01_0000221.png</td><td>Di Đà</td><td>DiĐà</td><td>20.0</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/01_0000222.png' alt='01_0000222.png' loading='lazy'></td><td>01_0000222.png</td><td>khoảng 25% một</td><td>khoảng25%một</td><td>14.29</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/01_0000223.png' alt='01_0000223.png' loading='lazy'></td><td>01_0000223.png</td><td>has a</td><td>hasa</td><td>20.0</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/01_0000224.png' alt='01_0000224.png' loading='lazy'></td><td>01_0000224.png</td><td>The manual itself uses o</td><td>Themanualitseluseso</td><td>20.83</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/01_0000228.png' alt='01_0000228.png' loading='lazy'></td><td>01_0000228.png</td><td>Điểm cực</td><td>Điểmcực</td><td>12.5</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/01_0000230.png' alt='01_0000230.png' loading='lazy'></td><td>01_0000230.png</td><td>3.14 GB</td><td>3.14GB</td><td>14.29</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/01_0000232.png' alt='01_0000232.png' loading='lazy'></td><td>01_0000232.png</td><td>Ackerknecht 1982:151</td><td>Ackerknecht1982:151</td><td>5.0</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/01_0000233.png' alt='01_0000233.png' loading='lazy'></td><td>01_0000233.png</td><td>Upload ảnh (tối đa 5MB)</td><td>Uploadảnh(tốiđa5MB)</td><td>17.39</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/01_0000234.png' alt='01_0000234.png' loading='lazy'></td><td>01_0000234.png</td><td>với Ngô Đình Diệm là tổn</td><td>vớiNgôĐinhDiệmlàtốn</td><td>29.17</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/01_0000238.png' alt='01_0000238.png' loading='lazy'></td><td>01_0000238.png</td><td>VVW</td><td>VV</td><td>33.33</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/01_0000239.png' alt='01_0000239.png' loading='lazy'></td><td>01_0000239.png</td><td>File đã lưu thành công</td><td>ileđãlưuthànhcông</td><td>22.73</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/01_0000240.png' alt='01_0000240.png' loading='lazy'></td><td>01_0000240.png</td><td>SELECT * FROM users WHERE id = 42</td><td>SELECT*ROMusersHEREid=42</td><td>27.27</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/01_0000241.png' alt='01_0000241.png' loading='lazy'></td><td>01_0000241.png</td><td>Syncing…</td><td>Syncing</td><td>12.5</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/01_0000242.png' alt='01_0000242.png' loading='lazy'></td><td>01_0000242.png</td><td>won 2</td><td>on2</td><td>40.0</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/01_0000243.png' alt='01_0000243.png' loading='lazy'></td><td>01_0000243.png</td><td>Thuộc địa miền</td><td>Thuộcđịamiền</td><td>14.29</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/01_0000245.png' alt='01_0000245.png' loading='lazy'></td><td>01_0000245.png</td><td>hơn 151 loại polypeptide</td><td>hơn151loạipolypeptide</td><td>12.5</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/01_0000246.png' alt='01_0000246.png' loading='lazy'></td><td>01_0000246.png</td><td>€1,234.00</td><td>1,234.00</td><td>11.11</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/02_0000000.png' alt='02_0000000.png' loading='lazy'></td><td>02_0000000.png</td><td>₫1.234.567</td><td>1.234.567</td><td>10.0</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/02_0000001.png' alt='02_0000001.png' loading='lazy'></td><td>02_0000001.png</td><td>WiFi</td><td>ii</td><td>50.0</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/02_0000002.png' alt='02_0000002.png' loading='lazy'></td><td>02_0000002.png</td><td>in contact with him</td><td>incontactithhim</td><td>21.05</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/02_0000005.png' alt='02_0000005.png' loading='lazy'></td><td>02_0000005.png</td><td>9 VXuYeEzt</td><td>9VXuYeEt</td><td>20.0</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/02_0000006.png' alt='02_0000006.png' loading='lazy'></td><td>02_0000006.png</td><td>Confirm xoá item này?</td><td>Conirmxoáitemnày?</td><td>19.05</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/02_0000007.png' alt='02_0000007.png' loading='lazy'></td><td>02_0000007.png</td><td>2Zz</td><td>2</td><td>66.67</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/02_0000008.png' alt='02_0000008.png' loading='lazy'></td><td>02_0000008.png</td><td>€1,234.00</td><td>1,234.00</td><td>11.11</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/02_0000010.png' alt='02_0000010.png' loading='lazy'></td><td>02_0000010.png</td><td>Confirm xoá item này?</td><td>Conirmxoáitemnày?</td><td>19.05</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/02_0000012.png' alt='02_0000012.png' loading='lazy'></td><td>02_0000012.png</td><td>Vạn Xuân (vùng Tam Đảo q</td><td>VạnXuân(vùngTamĐảoq</td><td>20.83</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/02_0000013.png' alt='02_0000013.png' loading='lazy'></td><td>02_0000013.png</td><td>VVW</td><td>VV</td><td>33.33</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/02_0000014.png' alt='02_0000014.png' loading='lazy'></td><td>02_0000014.png</td><td>₫1.234.567</td><td>1.234.567</td><td>10.0</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/02_0000015.png' alt='02_0000015.png' loading='lazy'></td><td>02_0000015.png</td><td>Gerolf</td><td>Gerol</td><td>16.67</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/02_0000017.png' alt='02_0000017.png' loading='lazy'></td><td>02_0000017.png</td><td>, taking</td><td>,taking</td><td>12.5</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/02_0000018.png' alt='02_0000018.png' loading='lazy'></td><td>02_0000018.png</td><td>trực tiếp</td><td>trựctiếp</td><td>11.11</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/02_0000020.png' alt='02_0000020.png' loading='lazy'></td><td>02_0000020.png</td><td>€1,234.00</td><td>1,234.00</td><td>11.11</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/02_0000022.png' alt='02_0000022.png' loading='lazy'></td><td>02_0000022.png</td><td>Giao dịch và xử lý giao </td><td>Giaodịchvàxửlýgiao</td><td>21.74</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/02_0000025.png' alt='02_0000025.png' loading='lazy'></td><td>02_0000025.png</td><td>kiện tự</td><td>kiệntự</td><td>14.29</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/02_0000026.png' alt='02_0000026.png' loading='lazy'></td><td>02_0000026.png</td><td>ifB6O5c8fjxMX3</td><td>iB6O5c8xMX3</td><td>21.43</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/02_0000027.png' alt='02_0000027.png' loading='lazy'></td><td>02_0000027.png</td><td>VVW</td><td>VV</td><td>33.33</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/02_0000029.png' alt='02_0000029.png' loading='lazy'></td><td>02_0000029.png</td><td>ABIMyNKGcA0zNVX</td><td>ABIMyNKGcA0NVX</td><td>6.67</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/02_0000030.png' alt='02_0000030.png' loading='lazy'></td><td>02_0000030.png</td><td>chủ nghĩa cứu thế hay ch</td><td>chủnghĩacứuthếhaych</td><td>20.83</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/02_0000031.png' alt='02_0000031.png' loading='lazy'></td><td>02_0000031.png</td><td>sau đó mới tìm thấy trên</td><td>sauđómớitìmthấytrên</td><td>20.83</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/02_0000032.png' alt='02_0000032.png' loading='lazy'></td><td>02_0000032.png</td><td>cảng Thị Vải</td><td>cảngThịVải</td><td>16.67</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/02_0000033.png' alt='02_0000033.png' loading='lazy'></td><td>02_0000033.png</td><td>đại Trần</td><td>đạiTrần</td><td>12.5</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/02_0000037.png' alt='02_0000037.png' loading='lazy'></td><td>02_0000037.png</td><td>File đã lưu thành công</td><td>ileđãlưuthànhcông</td><td>22.73</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/02_0000038.png' alt='02_0000038.png' loading='lazy'></td><td>02_0000038.png</td><td>William Duiker, Ho Chi M</td><td>illiamDuiker,HoChiM</td><td>20.83</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/02_0000041.png' alt='02_0000041.png' loading='lazy'></td><td>02_0000041.png</td><td>|<center> 88</td><td>|<center>88</td><td>8.33</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/02_0000042.png' alt='02_0000042.png' loading='lazy'></td><td>02_0000042.png</td><td>Golgi bản</td><td>Golgibản</td><td>11.11</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/02_0000044.png' alt='02_0000044.png' loading='lazy'></td><td>02_0000044.png</td><td>It :</td><td>It:</td><td>25.0</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/02_0000045.png' alt='02_0000045.png' loading='lazy'></td><td>02_0000045.png</td><td>2Zz</td><td>2</td><td>66.67</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/02_0000050.png' alt='02_0000050.png' loading='lazy'></td><td>02_0000050.png</td><td>hôn nhân</td><td>hônnhân</td><td>12.5</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/02_0000051.png' alt='02_0000051.png' loading='lazy'></td><td>02_0000051.png</td><td>Phục và</td><td>Phụcvà</td><td>14.29</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/02_0000052.png' alt='02_0000052.png' loading='lazy'></td><td>02_0000052.png</td><td>git commit -m 'fix: null check'</td><td>gitcommit-m'ix:nullcheck'</td><td>19.35</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/02_0000053.png' alt='02_0000053.png' loading='lazy'></td><td>02_0000053.png</td><td>học Zürich</td><td>họcrich</td><td>30.0</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/02_0000054.png' alt='02_0000054.png' loading='lazy'></td><td>02_0000054.png</td><td>Chức năng</td><td>Chứcnăng</td><td>11.11</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/02_0000055.png' alt='02_0000055.png' loading='lazy'></td><td>02_0000055.png</td><td>000 km²),</td><td>000km),</td><td>22.22</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/02_0000057.png' alt='02_0000057.png' loading='lazy'></td><td>02_0000057.png</td><td>SĐT: 0912.345.678</td><td>SĐT:0912.345.678</td><td>5.88</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/02_0000058.png' alt='02_0000058.png' loading='lazy'></td><td>02_0000058.png</td><td>Comedy: In the Baghdad o</td><td>Comedy:IntheBaghdado</td><td>16.67</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/02_0000060.png' alt='02_0000060.png' loading='lazy'></td><td>02_0000060.png</td><td>Trung Quốc có</td><td>TrungQuốccó</td><td>15.38</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/02_0000061.png' alt='02_0000061.png' loading='lazy'></td><td>02_0000061.png</td><td>loài ăn</td><td>loàiăn</td><td>14.29</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/02_0000063.png' alt='02_0000063.png' loading='lazy'></td><td>02_0000063.png</td><td>trường chính</td><td>trườngchính</td><td>8.33</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/02_0000067.png' alt='02_0000067.png' loading='lazy'></td><td>02_0000067.png</td><td>@,@</td><td>O,@</td><td>33.33</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/02_0000068.png' alt='02_0000068.png' loading='lazy'></td><td>02_0000068.png</td><td>EahJD</td><td>EahD</td><td>20.0</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/02_0000069.png' alt='02_0000069.png' loading='lazy'></td><td>02_0000069.png</td><td>VVW</td><td>VV</td><td>33.33</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/02_0000070.png' alt='02_0000070.png' loading='lazy'></td><td>02_0000070.png</td><td>(dân số 1</td><td>(dânsố1</td><td>22.22</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/02_0000071.png' alt='02_0000071.png' loading='lazy'></td><td>02_0000071.png</td><td>3.14 GB</td><td>3.14GB</td><td>14.29</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/02_0000073.png' alt='02_0000073.png' loading='lazy'></td><td>02_0000073.png</td><td>toàn bộ bao gồm phần</td><td>toànbộbaogồmphần</td><td>20.0</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/02_0000077.png' alt='02_0000077.png' loading='lazy'></td><td>02_0000077.png</td><td>lIlIlI</td><td>lI</td><td>66.67</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/02_0000078.png' alt='02_0000078.png' loading='lazy'></td><td>02_0000078.png</td><td>hy vọng</td><td>hyvọng</td><td>14.29</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/02_0000079.png' alt='02_0000079.png' loading='lazy'></td><td>02_0000079.png</td><td>DRon1IA8jcCC3NjUE</td><td>DRon1LA8cCC3NUE</td><td>17.65</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/02_0000080.png' alt='02_0000080.png' loading='lazy'></td><td>02_0000080.png</td><td>VVW</td><td>VV</td><td>33.33</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/02_0000081.png' alt='02_0000081.png' loading='lazy'></td><td>02_0000081.png</td><td>cảnh phá</td><td>cảnhphá</td><td>12.5</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/02_0000083.png' alt='02_0000083.png' loading='lazy'></td><td>02_0000083.png</td><td>Cá nước ngọt châu Âu</td><td>CánướcngọtchâuÂu</td><td>20.0</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/02_0000085.png' alt='02_0000085.png' loading='lazy'></td><td>02_0000085.png</td><td>Confirm xoá item này?</td><td>Conirmxoáitemnày?</td><td>19.05</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/02_0000086.png' alt='02_0000086.png' loading='lazy'></td><td>02_0000086.png</td><td>hZRiYsI9yHWTOVRaH0GuK9</td><td>hRiYsI9yHIOVRaH0GuK9</td><td>13.64</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/02_0000087.png' alt='02_0000087.png' loading='lazy'></td><td>02_0000087.png</td><td>nghi nhất</td><td>nghinhất</td><td>11.11</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/02_0000088.png' alt='02_0000088.png' loading='lazy'></td><td>02_0000088.png</td><td>vốn là</td><td>vốnlà</td><td>16.67</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/02_0000089.png' alt='02_0000089.png' loading='lazy'></td><td>02_0000089.png</td><td>Password phải có ít nhất 8 ký tự</td><td>Passordphảicóítnhất8kýtự</td><td>25.0</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/02_0000090.png' alt='02_0000090.png' loading='lazy'></td><td>02_0000090.png</td><td>SĐT: 0912.345.678</td><td>SĐT:0912.345.678</td><td>5.88</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/02_0000092.png' alt='02_0000092.png' loading='lazy'></td><td>02_0000092.png</td><td>Thái giáo hoặc Hồi giáo)</td><td>TháigiáohoặcHồigiáo)</td><td>16.67</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/02_0000093.png' alt='02_0000093.png' loading='lazy'></td><td>02_0000093.png</td><td>2Zz</td><td>2</td><td>66.67</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/02_0000094.png' alt='02_0000094.png' loading='lazy'></td><td>02_0000094.png</td><td>với sai</td><td>vớisai</td><td>14.29</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/02_0000095.png' alt='02_0000095.png' loading='lazy'></td><td>02_0000095.png</td><td>0vC bBhKyfF6T</td><td>0vCbBhKy6T</td><td>23.08</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/02_0000096.png' alt='02_0000096.png' loading='lazy'></td><td>02_0000096.png</td><td>156 tỷ đồng là một trong</td><td>156tỷđồnglàmộttrong</td><td>20.83</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/02_0000097.png' alt='02_0000097.png' loading='lazy'></td><td>02_0000097.png</td><td>Tỉnh/TP: Hà Nội</td><td>Tỉnh/TP:HàNội</td><td>13.33</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/02_0000098.png' alt='02_0000098.png' loading='lazy'></td><td>02_0000098.png</td><td>rồi mỗi khi có đám tang,</td><td>rồimỗikhicóđámtang,</td><td>20.83</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/02_0000099.png' alt='02_0000099.png' loading='lazy'></td><td>02_0000099.png</td><td>warfarin</td><td>ararin</td><td>25.0</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/02_0000101.png' alt='02_0000101.png' loading='lazy'></td><td>02_0000101.png</td><td>were</td><td>ere</td><td>25.0</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/02_0000102.png' alt='02_0000102.png' loading='lazy'></td><td>02_0000102.png</td><td>Film Institute</td><td>ilmInstitute</td><td>14.29</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/02_0000103.png' alt='02_0000103.png' loading='lazy'></td><td>02_0000103.png</td><td>và tác chiến</td><td>vàtácchiến</td><td>16.67</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/02_0000105.png' alt='02_0000105.png' loading='lazy'></td><td>02_0000105.png</td><td>(psychoactive) của thổ d</td><td>(psychoactive)củathổd</td><td>12.5</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/02_0000106.png' alt='02_0000106.png' loading='lazy'></td><td>02_0000106.png</td><td>2Zz</td><td>2</td><td>66.67</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/02_0000107.png' alt='02_0000107.png' loading='lazy'></td><td>02_0000107.png</td><td>Upload ảnh (tối đa 5MB)</td><td>Uploadảnh(tốiđa5MB)</td><td>17.39</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/02_0000108.png' alt='02_0000108.png' loading='lazy'></td><td>02_0000108.png</td><td>haklenayaśa,</td><td>haklenayaa,</td><td>8.33</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/02_0000110.png' alt='02_0000110.png' loading='lazy'></td><td>02_0000110.png</td><td>\\SERVER\Share\folder</td><td>\\SERVER\Share\older</td><td>4.76</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/02_0000111.png' alt='02_0000111.png' loading='lazy'></td><td>02_0000111.png</td><td>Password phải có ít nhất 8 ký tự</td><td>Passordphảicóítnhất8kýtự</td><td>25.0</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/02_0000112.png' alt='02_0000112.png' loading='lazy'></td><td>02_0000112.png</td><td>Upload ảnh (tối đa 5MB)</td><td>Uploadảnh(tốiđa5MB)</td><td>17.39</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/02_0000114.png' alt='02_0000114.png' loading='lazy'></td><td>02_0000114.png</td><td>VVW</td><td>VV</td><td>33.33</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/02_0000115.png' alt='02_0000115.png' loading='lazy'></td><td>02_0000115.png</td><td>dụng cụ</td><td>dụngcụ</td><td>14.29</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/02_0000116.png' alt='02_0000116.png' loading='lazy'></td><td>02_0000116.png</td><td>khu vực</td><td>khuvực</td><td>14.29</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/02_0000117.png' alt='02_0000117.png' loading='lazy'></td><td>02_0000117.png</td><td>The most common solution</td><td>Themostcommonsolution</td><td>12.5</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/02_0000119.png' alt='02_0000119.png' loading='lazy'></td><td>02_0000119.png</td><td>VVW</td><td>VV</td><td>33.33</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/02_0000122.png' alt='02_0000122.png' loading='lazy'></td><td>02_0000122.png</td><td>SELECT * FROM users WHERE id = 42</td><td>SELECT*ROMusersHEREid=42</td><td>27.27</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/02_0000123.png' alt='02_0000123.png' loading='lazy'></td><td>02_0000123.png</td><td>\\SERVER\Share\folder</td><td>\\SERVER\Share\older</td><td>4.76</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/02_0000125.png' alt='02_0000125.png' loading='lazy'></td><td>02_0000125.png</td><td>File đã lưu thành công</td><td>ileđãlưuthànhcông</td><td>22.73</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/02_0000126.png' alt='02_0000126.png' loading='lazy'></td><td>02_0000126.png</td><td>Retry (3/5)</td><td>Retry(3/5)</td><td>9.09</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/02_0000129.png' alt='02_0000129.png' loading='lazy'></td><td>02_0000129.png</td><td>dụ với</td><td>dụvới</td><td>16.67</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/02_0000130.png' alt='02_0000130.png' loading='lazy'></td><td>02_0000130.png</td><td>hoặc có thể sinh sống</td><td>hoặccóthểshhsống</td><td>28.57</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/02_0000131.png' alt='02_0000131.png' loading='lazy'></td><td>02_0000131.png</td><td>2Zz</td><td>2</td><td>66.67</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/02_0000132.png' alt='02_0000132.png' loading='lazy'></td><td>02_0000132.png</td><td>hiệu ứng</td><td>hiệuứng</td><td>12.5</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/02_0000133.png' alt='02_0000133.png' loading='lazy'></td><td>02_0000133.png</td><td>Step 2 of 4</td><td>Step2o4</td><td>36.36</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/02_0000134.png' alt='02_0000134.png' loading='lazy'></td><td>02_0000134.png</td><td>nguy hiểm</td><td>nguyhiểm</td><td>11.11</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/02_0000136.png' alt='02_0000136.png' loading='lazy'></td><td>02_0000136.png</td><td>Họ rất chăm học</td><td>Họrấtchămhọc</td><td>20.0</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/02_0000139.png' alt='02_0000139.png' loading='lazy'></td><td>02_0000139.png</td><td>được biết đến</td><td>đượcbiếtđến</td><td>15.38</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/02_0000142.png' alt='02_0000142.png' loading='lazy'></td><td>02_0000142.png</td><td>sông Hồng</td><td>sôngHồng</td><td>11.11</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/02_0000143.png' alt='02_0000143.png' loading='lazy'></td><td>02_0000143.png</td><td>Bộ quốc</td><td>Bộquốc</td><td>14.29</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/02_0000145.png' alt='02_0000145.png' loading='lazy'></td><td>02_0000145.png</td><td>number 23 ,</td><td>number23,</td><td>18.18</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/02_0000146.png' alt='02_0000146.png' loading='lazy'></td><td>02_0000146.png</td><td>còn trên toàn Vương quốc</td><td>còntrêntoànVươngquốc</td><td>16.67</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/02_0000148.png' alt='02_0000148.png' loading='lazy'></td><td>02_0000148.png</td><td>sách</td><td>sốch</td><td>25.0</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/02_0000149.png' alt='02_0000149.png' loading='lazy'></td><td>02_0000149.png</td><td>Password phải có ít nhất 8 ký tự</td><td>Passordphảicóítnhất8kýtự</td><td>25.0</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/02_0000151.png' alt='02_0000151.png' loading='lazy'></td><td>02_0000151.png</td><td>git commit -m 'fix: null check'</td><td>gitcommit-m'ix:nullcheck'</td><td>19.35</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/02_0000152.png' alt='02_0000152.png' loading='lazy'></td><td>02_0000152.png</td><td>trên sông</td><td>trênsông</td><td>11.11</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/02_0000153.png' alt='02_0000153.png' loading='lazy'></td><td>02_0000153.png</td><td>syBZ</td><td>syB</td><td>25.0</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/02_0000156.png' alt='02_0000156.png' loading='lazy'></td><td>02_0000156.png</td><td>lIlIlI</td><td>IlIlI</td><td>16.67</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/02_0000158.png' alt='02_0000158.png' loading='lazy'></td><td>02_0000158.png</td><td>VVW</td><td>VV</td><td>33.33</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/02_0000160.png' alt='02_0000160.png' loading='lazy'></td><td>02_0000160.png</td><td>= Demographics</td><td>=Demographics</td><td>7.14</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/02_0000161.png' alt='02_0000161.png' loading='lazy'></td><td>02_0000161.png</td><td>Upload ảnh (tối đa 5MB)</td><td>Uploadảnh(tốiđa5MB)</td><td>17.39</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/02_0000164.png' alt='02_0000164.png' loading='lazy'></td><td>02_0000164.png</td><td>Pháp có kinh tế hỗn hợp</td><td>Phápcókinhtếhỗnhợp</td><td>21.74</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/02_0000165.png' alt='02_0000165.png' loading='lazy'></td><td>02_0000165.png</td><td>File đã lưu thành công</td><td>ileđãlưuthànhcông</td><td>22.73</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/02_0000169.png' alt='02_0000169.png' loading='lazy'></td><td>02_0000169.png</td><td>500 năm trước công nguyê</td><td>500nămtrướccôngnguyê</td><td>16.67</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/02_0000171.png' alt='02_0000171.png' loading='lazy'></td><td>02_0000171.png</td><td>VVW</td><td>VV</td><td>33.33</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/02_0000174.png' alt='02_0000174.png' loading='lazy'></td><td>02_0000174.png</td><td>Loading… (87%)</td><td>Loading(87%)</td><td>14.29</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/02_0000175.png' alt='02_0000175.png' loading='lazy'></td><td>02_0000175.png</td><td>119 xã</td><td>119xã</td><td>16.67</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/02_0000176.png' alt='02_0000176.png' loading='lazy'></td><td>02_0000176.png</td><td>Retry (3/5)</td><td>Retry(3/5)</td><td>9.09</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/02_0000177.png' alt='02_0000177.png' loading='lazy'></td><td>02_0000177.png</td><td>các tướng</td><td>cáctướng</td><td>11.11</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/02_0000180.png' alt='02_0000180.png' loading='lazy'></td><td>02_0000180.png</td><td>và tiếng Hà Lan</td><td>vàtiếngHàLan</td><td>20.0</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/02_0000181.png' alt='02_0000181.png' loading='lazy'></td><td>02_0000181.png</td><td>reprinted in Horrors Unk</td><td>reprintedinHorrorsUnk</td><td>12.5</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/02_0000182.png' alt='02_0000182.png' loading='lazy'></td><td>02_0000182.png</td><td>Hệ thống</td><td>Hệthống</td><td>12.5</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/02_0000184.png' alt='02_0000184.png' loading='lazy'></td><td>02_0000184.png</td><td>Tới đầu</td><td>Tớiđầu</td><td>14.29</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/02_0000185.png' alt='02_0000185.png' loading='lazy'></td><td>02_0000185.png</td><td>Mã số thuế: 0123456789</td><td>Mãsốthuế:0123456789</td><td>13.64</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/02_0000186.png' alt='02_0000186.png' loading='lazy'></td><td>02_0000186.png</td><td>Retry (3/5)</td><td>Retry(3/5)</td><td>9.09</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/02_0000187.png' alt='02_0000187.png' loading='lazy'></td><td>02_0000187.png</td><td>cách giết</td><td>cáchgiết</td><td>11.11</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/02_0000190.png' alt='02_0000190.png' loading='lazy'></td><td>02_0000190.png</td><td>Confirm xoá item này?</td><td>Conirmxoáitemnày?</td><td>19.05</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/02_0000191.png' alt='02_0000191.png' loading='lazy'></td><td>02_0000191.png</td><td>He noted that the graphi</td><td>Henotedthatthegraphi</td><td>16.67</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/02_0000192.png' alt='02_0000192.png' loading='lazy'></td><td>02_0000192.png</td><td>Syncing…</td><td>Syncing</td><td>12.5</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/02_0000193.png' alt='02_0000193.png' loading='lazy'></td><td>02_0000193.png</td><td>far we</td><td>are</td><td>50.0</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/02_0000194.png' alt='02_0000194.png' loading='lazy'></td><td>02_0000194.png</td><td>poverty of spirit</td><td>povertyospirit</td><td>17.65</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/02_0000196.png' alt='02_0000196.png' loading='lazy'></td><td>02_0000196.png</td><td>Các hợp chất của sắt</td><td>Cáchơpchấtcủasất</td><td>30.0</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/02_0000197.png' alt='02_0000197.png' loading='lazy'></td><td>02_0000197.png</td><td>và các</td><td>vàcác</td><td>16.67</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/02_0000200.png' alt='02_0000200.png' loading='lazy'></td><td>02_0000200.png</td><td>VVW</td><td>VV</td><td>33.33</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/02_0000203.png' alt='02_0000203.png' loading='lazy'></td><td>02_0000203.png</td><td>3.14 GB</td><td>3.14GB</td><td>14.29</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/02_0000204.png' alt='02_0000204.png' loading='lazy'></td><td>02_0000204.png</td><td>năm 1999)</td><td>năm1999)</td><td>11.11</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/02_0000205.png' alt='02_0000205.png' loading='lazy'></td><td>02_0000205.png</td><td>Confirm xoá item này?</td><td>Conirmxoáitemnày?</td><td>19.05</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/02_0000206.png' alt='02_0000206.png' loading='lazy'></td><td>02_0000206.png</td><td>Vectơ đơn vị theo hướng </td><td>Vectơđơnvịtheohướng</td><td>17.39</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/02_0000207.png' alt='02_0000207.png' loading='lazy'></td><td>02_0000207.png</td><td>\\SERVER\Share\folder</td><td>\\SERVER\Share\older</td><td>4.76</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/02_0000208.png' alt='02_0000208.png' loading='lazy'></td><td>02_0000208.png</td><td>tính thiện</td><td>tínhthiện</td><td>10.0</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/02_0000210.png' alt='02_0000210.png' loading='lazy'></td><td>02_0000210.png</td><td>VVW</td><td>VV</td><td>33.33</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/02_0000211.png' alt='02_0000211.png' loading='lazy'></td><td>02_0000211.png</td><td>08:30 – 17:00</td><td>08:3017:00</td><td>23.08</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/02_0000214.png' alt='02_0000214.png' loading='lazy'></td><td>02_0000214.png</td><td>tức là</td><td>tứclà</td><td>16.67</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/02_0000218.png' alt='02_0000218.png' loading='lazy'></td><td>02_0000218.png</td><td>Step 2 of 4</td><td>Step2o4</td><td>36.36</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/02_0000219.png' alt='02_0000219.png' loading='lazy'></td><td>02_0000219.png</td><td>người vẽ</td><td>ngườivẽ</td><td>12.5</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/02_0000222.png' alt='02_0000222.png' loading='lazy'></td><td>02_0000222.png</td><td>Confirm xoá item này?</td><td>Conirmxoáitemnày?</td><td>19.05</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/02_0000223.png' alt='02_0000223.png' loading='lazy'></td><td>02_0000223.png</td><td>khung kim loại chứa nguồ</td><td>khungkimloạichứanguồ</td><td>16.67</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/02_0000224.png' alt='02_0000224.png' loading='lazy'></td><td>02_0000224.png</td><td>000 sinh viên</td><td>000sinhviên</td><td>15.38</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/02_0000225.png' alt='02_0000225.png' loading='lazy'></td><td>02_0000225.png</td><td>Password phải có ít nhất 8 ký tự</td><td>Passordphảicóítnhất8kýtự</td><td>25.0</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/02_0000226.png' alt='02_0000226.png' loading='lazy'></td><td>02_0000226.png</td><td>File đã lưu thành công</td><td>ileđãlưuthànhcông</td><td>22.73</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/02_0000227.png' alt='02_0000227.png' loading='lazy'></td><td>02_0000227.png</td><td>văn minh</td><td>vănminh</td><td>12.5</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/02_0000228.png' alt='02_0000228.png' loading='lazy'></td><td>02_0000228.png</td><td>\\SERVER\Share\folder</td><td>\\SERVER\Share\older</td><td>4.76</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/02_0000229.png' alt='02_0000229.png' loading='lazy'></td><td>02_0000229.png</td><td>Khu vực này bốn hướng đề</td><td>Khuvựcnàybốnhướngđề</td><td>20.83</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/02_0000233.png' alt='02_0000233.png' loading='lazy'></td><td>02_0000233.png</td><td>Đặc biệt ông rất mê đọc </td><td>Đặcbiệtôngrấtmêđọc</td><td>21.74</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/02_0000234.png' alt='02_0000234.png' loading='lazy'></td><td>02_0000234.png</td><td>o Aj355cnEt60vUN</td><td>oA355cnEt60vUN</td><td>12.5</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/02_0000236.png' alt='02_0000236.png' loading='lazy'></td><td>02_0000236.png</td><td>từ sông Thu Bồn trở</td><td>từsôngThuBồntrở</td><td>21.05</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/02_0000239.png' alt='02_0000239.png' loading='lazy'></td><td>02_0000239.png</td><td>Nhân vật</td><td>NhânVật</td><td>25.0</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/02_0000240.png' alt='02_0000240.png' loading='lazy'></td><td>02_0000240.png</td><td>cuộc (Đời Gia Long 33</td><td>cuộc(ĐờiGiaLong33</td><td>19.05</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/02_0000241.png' alt='02_0000241.png' loading='lazy'></td><td>02_0000241.png</td><td>iZgTKDR</td><td>igTKDR</td><td>14.29</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/02_0000242.png' alt='02_0000242.png' loading='lazy'></td><td>02_0000242.png</td><td>File đã lưu thành công</td><td>ilcđãlưuthànhcông</td><td>27.27</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/02_0000243.png' alt='02_0000243.png' loading='lazy'></td><td>02_0000243.png</td><td>cận) được</td><td>cận)được</td><td>11.11</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/02_0000245.png' alt='02_0000245.png' loading='lazy'></td><td>02_0000245.png</td><td>Quần đảo Trung Quốc</td><td>QuầnđảoTrungQuốc</td><td>15.79</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/02_0000247.png' alt='02_0000247.png' loading='lazy'></td><td>02_0000247.png</td><td>Son Relics</td><td>SonRelics</td><td>10.0</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/02_0000248.png' alt='02_0000248.png' loading='lazy'></td><td>02_0000248.png</td><td>VVW</td><td>VV</td><td>33.33</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/03_0000001.png' alt='03_0000001.png' loading='lazy'></td><td>03_0000001.png</td><td>feathered</td><td>eathered</td><td>11.11</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/03_0000003.png' alt='03_0000003.png' loading='lazy'></td><td>03_0000003.png</td><td>cho vào</td><td>chovào</td><td>14.29</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/03_0000005.png' alt='03_0000005.png' loading='lazy'></td><td>03_0000005.png</td><td>Mã số thuế: 0123456789</td><td>Mãsốthuế:0123456789</td><td>13.64</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/03_0000006.png' alt='03_0000006.png' loading='lazy'></td><td>03_0000006.png</td><td>of</td><td>o</td><td>50.0</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/03_0000007.png' alt='03_0000007.png' loading='lazy'></td><td>03_0000007.png</td><td>tác cây</td><td>táccây</td><td>14.29</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/03_0000008.png' alt='03_0000008.png' loading='lazy'></td><td>03_0000008.png</td><td>journey</td><td>oumney</td><td>28.57</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/03_0000012.png' alt='03_0000012.png' loading='lazy'></td><td>03_0000012.png</td><td>16 tỉnh</td><td>16tinh</td><td>28.57</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/03_0000015.png' alt='03_0000015.png' loading='lazy'></td><td>03_0000015.png</td><td>VVW</td><td>VV</td><td>33.33</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/03_0000016.png' alt='03_0000016.png' loading='lazy'></td><td>03_0000016.png</td><td>và chú thích)</td><td>vàchúthích)</td><td>15.38</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/03_0000017.png' alt='03_0000017.png' loading='lazy'></td><td>03_0000017.png</td><td>git commit -m 'fix: null check'</td><td>gitcommit-m'ix:nullcheck'</td><td>19.35</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/03_0000018.png' alt='03_0000018.png' loading='lazy'></td><td>03_0000018.png</td><td>Oxford University Press,</td><td>OxordUniversityPress,</td><td>12.5</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/03_0000019.png' alt='03_0000019.png' loading='lazy'></td><td>03_0000019.png</td><td>C:\Users\Admin\Documents\report.pdf</td><td>C:\Users\Admin\Documents\report.pd</td><td>2.86</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/03_0000023.png' alt='03_0000023.png' loading='lazy'></td><td>03_0000023.png</td><td>bán kính</td><td>bánkính</td><td>12.5</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/03_0000024.png' alt='03_0000024.png' loading='lazy'></td><td>03_0000024.png</td><td>Chỉ rồi</td><td>Chỉrồi</td><td>14.29</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/03_0000025.png' alt='03_0000025.png' loading='lazy'></td><td>03_0000025.png</td><td>được đánh giá (tiếng</td><td>đượcđánhgiá(tiếng</td><td>15.0</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/03_0000026.png' alt='03_0000026.png' loading='lazy'></td><td>03_0000026.png</td><td>1bN5vMgVn9MdHhuQf</td><td>1DN5vMgVn9MdHhuQ</td><td>11.76</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/03_0000027.png' alt='03_0000027.png' loading='lazy'></td><td>03_0000027.png</td><td>Great Day</td><td>GreatDay</td><td>11.11</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/03_0000028.png' alt='03_0000028.png' loading='lazy'></td><td>03_0000028.png</td><td>Khoản trợ</td><td>Khoảntrợ</td><td>11.11</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/03_0000029.png' alt='03_0000029.png' loading='lazy'></td><td>03_0000029.png</td><td>Page 1 of 24</td><td>Page1o24</td><td>33.33</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/03_0000033.png' alt='03_0000033.png' loading='lazy'></td><td>03_0000033.png</td><td>VVW</td><td>VV</td><td>33.33</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/03_0000037.png' alt='03_0000037.png' loading='lazy'></td><td>03_0000037.png</td><td>Project</td><td>Proect</td><td>14.29</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/03_0000038.png' alt='03_0000038.png' loading='lazy'></td><td>03_0000038.png</td><td>Step 2 of 4</td><td>Step2o4</td><td>36.36</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/03_0000039.png' alt='03_0000039.png' loading='lazy'></td><td>03_0000039.png</td><td>VVW</td><td>VV</td><td>33.33</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/03_0000040.png' alt='03_0000040.png' loading='lazy'></td><td>03_0000040.png</td><td>Thanh Thanh</td><td>ThanhThanh</td><td>9.09</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/03_0000042.png' alt='03_0000042.png' loading='lazy'></td><td>03_0000042.png</td><td>khoảng 5</td><td>khoảng5</td><td>12.5</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/03_0000046.png' alt='03_0000046.png' loading='lazy'></td><td>03_0000046.png</td><td>Quốc trong</td><td>Quốctrong</td><td>10.0</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/03_0000050.png' alt='03_0000050.png' loading='lazy'></td><td>03_0000050.png</td><td>SĐT: 0912.345.678</td><td>SĐT:0912.345.678</td><td>5.88</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/03_0000051.png' alt='03_0000051.png' loading='lazy'></td><td>03_0000051.png</td><td>Confirm xoá item này?</td><td>Conirmxoáitemnày?</td><td>19.05</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/03_0000053.png' alt='03_0000053.png' loading='lazy'></td><td>03_0000053.png</td><td>of American jazz</td><td>oAmericana</td><td>37.5</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/03_0000055.png' alt='03_0000055.png' loading='lazy'></td><td>03_0000055.png</td><td>VVW</td><td>VV</td><td>33.33</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/03_0000056.png' alt='03_0000056.png' loading='lazy'></td><td>03_0000056.png</td><td>08:30 – 17:00</td><td>08:3017:00</td><td>23.08</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/03_0000057.png' alt='03_0000057.png' loading='lazy'></td><td>03_0000057.png</td><td>Văn nghiệp</td><td>Vănnghiệp</td><td>10.0</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/03_0000058.png' alt='03_0000058.png' loading='lazy'></td><td>03_0000058.png</td><td>File đã lưu thành công</td><td>ileđãlưuthànhcông</td><td>22.73</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/03_0000059.png' alt='03_0000059.png' loading='lazy'></td><td>03_0000059.png</td><td>Upload ảnh (tối đa 5MB)</td><td>Uploadảnh(tốiđa5MB)</td><td>17.39</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/03_0000060.png' alt='03_0000060.png' loading='lazy'></td><td>03_0000060.png</td><td>lệnh tối</td><td>lệnhtối</td><td>12.5</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/03_0000062.png' alt='03_0000062.png' loading='lazy'></td><td>03_0000062.png</td><td>ưu thế</td><td>ưuthế</td><td>16.67</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/03_0000063.png' alt='03_0000063.png' loading='lazy'></td><td>03_0000063.png</td><td>Page 1 of 24</td><td>Page1o24</td><td>33.33</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/03_0000067.png' alt='03_0000067.png' loading='lazy'></td><td>03_0000067.png</td><td>Chí Minh</td><td>ChíMinh</td><td>12.5</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/03_0000068.png' alt='03_0000068.png' loading='lazy'></td><td>03_0000068.png</td><td>Upload ảnh (tối đa 5MB)</td><td>Uploadảnh(tốiđa5MB)</td><td>17.39</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/03_0000069.png' alt='03_0000069.png' loading='lazy'></td><td>03_0000069.png</td><td>Loài di truyền</td><td>Loàiditruyền</td><td>14.29</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/03_0000070.png' alt='03_0000070.png' loading='lazy'></td><td>03_0000070.png</td><td>= Distribution and</td><td>=Distributionand</td><td>11.11</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/03_0000071.png' alt='03_0000071.png' loading='lazy'></td><td>03_0000071.png</td><td>14 giờ</td><td>14giờ</td><td>16.67</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/03_0000072.png' alt='03_0000072.png' loading='lazy'></td><td>03_0000072.png</td><td>Confirm xoá item này?</td><td>Conirmxoáitemnày?</td><td>19.05</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/03_0000073.png' alt='03_0000073.png' loading='lazy'></td><td>03_0000073.png</td><td>to 2 @</td><td>to2@</td><td>33.33</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/03_0000074.png' alt='03_0000074.png' loading='lazy'></td><td>03_0000074.png</td><td>Ví dụ, hệ</td><td>Vĩdụ,hộ</td><td>44.44</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/03_0000075.png' alt='03_0000075.png' loading='lazy'></td><td>03_0000075.png</td><td>€1,234.00</td><td>1,234.00</td><td>11.11</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/03_0000076.png' alt='03_0000076.png' loading='lazy'></td><td>03_0000076.png</td><td>\\SERVER\Share\folder</td><td>\\SERVER\Share\older</td><td>4.76</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/03_0000078.png' alt='03_0000078.png' loading='lazy'></td><td>03_0000078.png</td><td>ADLb8UpFR5NidtDs</td><td>ADLb8UpR5NidtDs</td><td>6.25</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/03_0000079.png' alt='03_0000079.png' loading='lazy'></td><td>03_0000079.png</td><td>thay vì tôn trọng</td><td>thayvitôntrọng</td><td>23.53</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/03_0000080.png' alt='03_0000080.png' loading='lazy'></td><td>03_0000080.png</td><td>|<center> Cao</td><td>|<center>Cao</td><td>7.69</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/03_0000081.png' alt='03_0000081.png' loading='lazy'></td><td>03_0000081.png</td><td>and kitteny</td><td>andkitteny</td><td>9.09</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/03_0000082.png' alt='03_0000082.png' loading='lazy'></td><td>03_0000082.png</td><td>Password phải có ít nhất 8 ký tự</td><td>Passordphảicóítnhất8kýtự</td><td>25.0</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/03_0000084.png' alt='03_0000084.png' loading='lazy'></td><td>03_0000084.png</td><td>Inâ Nagar (Khánh Hòa)</td><td>InãNagar(KhánhHòa)</td><td>19.05</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/03_0000085.png' alt='03_0000085.png' loading='lazy'></td><td>03_0000085.png</td><td>Tỉnh/TP: Hà Nội</td><td>Tỉnh/TP:HàNội</td><td>13.33</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/03_0000086.png' alt='03_0000086.png' loading='lazy'></td><td>03_0000086.png</td><td>Phía Tây: Núi Hương sơn,</td><td>PhiaTây:NúiHươngsơn,</td><td>20.83</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/03_0000087.png' alt='03_0000087.png' loading='lazy'></td><td>03_0000087.png</td><td>Bixente Lizarazu</td><td>BixenteLiarau</td><td>18.75</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/03_0000089.png' alt='03_0000089.png' loading='lazy'></td><td>03_0000089.png</td><td>glam rock</td><td>glamrock</td><td>11.11</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/03_0000090.png' alt='03_0000090.png' loading='lazy'></td><td>03_0000090.png</td><td>Step 2 of 4</td><td>Step2o4</td><td>36.36</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/03_0000092.png' alt='03_0000092.png' loading='lazy'></td><td>03_0000092.png</td><td>tại Anh</td><td>tạiAnh</td><td>14.29</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/03_0000093.png' alt='03_0000093.png' loading='lazy'></td><td>03_0000093.png</td><td>nguồn khác thì nói ông đ</td><td>nguồnkhácthìnóiôngđ</td><td>20.83</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/03_0000094.png' alt='03_0000094.png' loading='lazy'></td><td>03_0000094.png</td><td>VVW</td><td>VV</td><td>33.33</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/03_0000095.png' alt='03_0000095.png' loading='lazy'></td><td>03_0000095.png</td><td>Antoine Bourdelle</td><td>AntoineBourdelle</td><td>5.88</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/03_0000096.png' alt='03_0000096.png' loading='lazy'></td><td>03_0000096.png</td><td>thì</td><td>thi</td><td>33.33</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/03_0000097.png' alt='03_0000097.png' loading='lazy'></td><td>03_0000097.png</td><td>C:\Users\Admin\Documents\report.pdf</td><td>C:\Users\Admin\Documents\report.pd</td><td>2.86</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/03_0000100.png' alt='03_0000100.png' loading='lazy'></td><td>03_0000100.png</td><td>17% so với hình phỏng cầ</td><td>17%sovớihìnhphỏngcầ</td><td>20.83</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/03_0000104.png' alt='03_0000104.png' loading='lazy'></td><td>03_0000104.png</td><td>Huyện Mèo</td><td>HuyệnMèo</td><td>11.11</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/03_0000105.png' alt='03_0000105.png' loading='lazy'></td><td>03_0000105.png</td><td>08:30 – 17:00</td><td>08:3017:00</td><td>23.08</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/03_0000108.png' alt='03_0000108.png' loading='lazy'></td><td>03_0000108.png</td><td>2Zz</td><td>2</td><td>66.67</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/03_0000109.png' alt='03_0000109.png' loading='lazy'></td><td>03_0000109.png</td><td>Texas Championship Wrest</td><td>TevasChamplonehpiest</td><td>33.33</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/03_0000110.png' alt='03_0000110.png' loading='lazy'></td><td>03_0000110.png</td><td>was reported in Time say</td><td>asreportedinTimesay</td><td>20.83</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/03_0000115.png' alt='03_0000115.png' loading='lazy'></td><td>03_0000115.png</td><td>Step 2 of 4</td><td>Step2o4</td><td>36.36</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/03_0000116.png' alt='03_0000116.png' loading='lazy'></td><td>03_0000116.png</td><td>pip install torch --index-url ...</td><td>pipinstalltorch--index-url...</td><td>12.12</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/03_0000118.png' alt='03_0000118.png' loading='lazy'></td><td>03_0000118.png</td><td>Quốc phòng Việt</td><td>QuốcphòngViệt</td><td>13.33</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/03_0000119.png' alt='03_0000119.png' loading='lazy'></td><td>03_0000119.png</td><td>limb @-@ flowery</td><td>limbQ-@loery</td><td>31.25</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/03_0000122.png' alt='03_0000122.png' loading='lazy'></td><td>03_0000122.png</td><td>Step 2 of 4</td><td>9tep2o4</td><td>45.45</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/03_0000123.png' alt='03_0000123.png' loading='lazy'></td><td>03_0000123.png</td><td>€1,234.00</td><td>1,234.00</td><td>11.11</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/03_0000124.png' alt='03_0000124.png' loading='lazy'></td><td>03_0000124.png</td><td>Campuchia vào</td><td>Campuchiavào</td><td>7.69</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/03_0000125.png' alt='03_0000125.png' loading='lazy'></td><td>03_0000125.png</td><td>5 triệu</td><td>5triệu</td><td>14.29</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/03_0000126.png' alt='03_0000126.png' loading='lazy'></td><td>03_0000126.png</td><td>continuously running</td><td>continuouslyrunning</td><td>5.0</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/03_0000129.png' alt='03_0000129.png' loading='lazy'></td><td>03_0000129.png</td><td>đệ nhất</td><td>đệnhất</td><td>14.29</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/03_0000130.png' alt='03_0000130.png' loading='lazy'></td><td>03_0000130.png</td><td>mô về</td><td>môvề</td><td>20.0</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/03_0000131.png' alt='03_0000131.png' loading='lazy'></td><td>03_0000131.png</td><td>jeAWrlHzIvEkY5oY</td><td>eArlHlvEkY5oY</td><td>25.0</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/03_0000132.png' alt='03_0000132.png' loading='lazy'></td><td>03_0000132.png</td><td>tái lập</td><td>táilập</td><td>14.29</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/03_0000133.png' alt='03_0000133.png' loading='lazy'></td><td>03_0000133.png</td><td>một thời</td><td>mộtthời</td><td>12.5</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/03_0000134.png' alt='03_0000134.png' loading='lazy'></td><td>03_0000134.png</td><td>1958 - Victor Salva, đạo</td><td>1958-VictorSalva,đạo</td><td>16.67</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/03_0000135.png' alt='03_0000135.png' loading='lazy'></td><td>03_0000135.png</td><td>2Zz</td><td>2</td><td>66.67</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/03_0000137.png' alt='03_0000137.png' loading='lazy'></td><td>03_0000137.png</td><td>năm 2020</td><td>năm2020</td><td>12.5</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/03_0000138.png' alt='03_0000138.png' loading='lazy'></td><td>03_0000138.png</td><td>tương</td><td>tuong</td><td>40.0</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/03_0000139.png' alt='03_0000139.png' loading='lazy'></td><td>03_0000139.png</td><td>Có nhiều hồ lớn nằm ở ng</td><td>Cónhiềuhồlớnnằmởng</td><td>25.0</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/03_0000140.png' alt='03_0000140.png' loading='lazy'></td><td>03_0000140.png</td><td>a rectilinear enclosure</td><td>arectilinearenclosure</td><td>8.7</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/03_0000141.png' alt='03_0000141.png' loading='lazy'></td><td>03_0000141.png</td><td>Page 1 of 24</td><td>Page1o24</td><td>33.33</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/03_0000143.png' alt='03_0000143.png' loading='lazy'></td><td>03_0000143.png</td><td>đáng ghét</td><td>đángghét</td><td>11.11</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/03_0000144.png' alt='03_0000144.png' loading='lazy'></td><td>03_0000144.png</td><td>VVW</td><td>VV</td><td>33.33</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/03_0000145.png' alt='03_0000145.png' loading='lazy'></td><td>03_0000145.png</td><td>Ngô Tử</td><td>NgôTử</td><td>16.67</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/03_0000146.png' alt='03_0000146.png' loading='lazy'></td><td>03_0000146.png</td><td>Chiến dịch</td><td>Chiếndịch</td><td>10.0</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/03_0000147.png' alt='03_0000147.png' loading='lazy'></td><td>03_0000147.png</td><td>Page 1 of 24</td><td>Page1024</td><td>41.67</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/03_0000148.png' alt='03_0000148.png' loading='lazy'></td><td>03_0000148.png</td><td>Californi 252</td><td>Caliorni252</td><td>15.38</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/03_0000149.png' alt='03_0000149.png' loading='lazy'></td><td>03_0000149.png</td><td>Hoa Kỳ</td><td>HoaKỳ</td><td>16.67</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/03_0000150.png' alt='03_0000150.png' loading='lazy'></td><td>03_0000150.png</td><td>bia ký</td><td>biaký</td><td>16.67</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/03_0000151.png' alt='03_0000151.png' loading='lazy'></td><td>03_0000151.png</td><td>van</td><td>Van</td><td>33.33</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/03_0000154.png' alt='03_0000154.png' loading='lazy'></td><td>03_0000154.png</td><td>SELECT * FROM users WHERE id = 42</td><td>SELECT*ROMusersHEREid=42</td><td>27.27</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/03_0000155.png' alt='03_0000155.png' loading='lazy'></td><td>03_0000155.png</td><td>Loading… (87%)</td><td>Loading(87%)</td><td>14.29</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/03_0000156.png' alt='03_0000156.png' loading='lazy'></td><td>03_0000156.png</td><td>000 người,</td><td>0O0người,</td><td>20.0</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/03_0000157.png' alt='03_0000157.png' loading='lazy'></td><td>03_0000157.png</td><td>chữa lại</td><td>chữalại</td><td>12.5</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/03_0000158.png' alt='03_0000158.png' loading='lazy'></td><td>03_0000158.png</td><td>giáp binh</td><td>giápbinh</td><td>11.11</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/03_0000159.png' alt='03_0000159.png' loading='lazy'></td><td>03_0000159.png</td><td>Hồi giáo là tôn giáo lớn</td><td>Hồigiáolàtôngiáolớn</td><td>20.83</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/03_0000160.png' alt='03_0000160.png' loading='lazy'></td><td>03_0000160.png</td><td>cư dân sống chủ yếu bằng</td><td>cưdânsốngchủyếubằng</td><td>20.83</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/03_0000161.png' alt='03_0000161.png' loading='lazy'></td><td>03_0000161.png</td><td>Whedon</td><td>hedon</td><td>16.67</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/03_0000164.png' alt='03_0000164.png' loading='lazy'></td><td>03_0000164.png</td><td>Từ ngày</td><td>Từngày</td><td>14.29</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/03_0000167.png' alt='03_0000167.png' loading='lazy'></td><td>03_0000167.png</td><td>là rất quan trọng trong</td><td>làrấtquantrọngtrong</td><td>17.39</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/03_0000168.png' alt='03_0000168.png' loading='lazy'></td><td>03_0000168.png</td><td>phủ Iraq tuyên bố</td><td>phủIraqtuyênbố</td><td>17.65</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/03_0000170.png' alt='03_0000170.png' loading='lazy'></td><td>03_0000170.png</td><td>pip install torch --index-url ...</td><td>pipinstalltorch--index-url...</td><td>12.12</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/03_0000171.png' alt='03_0000171.png' loading='lazy'></td><td>03_0000171.png</td><td>ra hình</td><td>rahình</td><td>14.29</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/03_0000173.png' alt='03_0000173.png' loading='lazy'></td><td>03_0000173.png</td><td>4DMx4BQEVlQ10NZ0JKpa QfP</td><td>4DMx4BQEVlQ10N0KpaQP</td><td>16.67</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/03_0000174.png' alt='03_0000174.png' loading='lazy'></td><td>03_0000174.png</td><td>produced by Mark A</td><td>producedbyMarkA</td><td>16.67</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/03_0000176.png' alt='03_0000176.png' loading='lazy'></td><td>03_0000176.png</td><td>Kim Hoa</td><td>KimHoa</td><td>14.29</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/03_0000178.png' alt='03_0000178.png' loading='lazy'></td><td>03_0000178.png</td><td>File đã lưu thành công</td><td>ileđãlưuthànhcông</td><td>22.73</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/03_0000179.png' alt='03_0000179.png' loading='lazy'></td><td>03_0000179.png</td><td>VVW</td><td>VV</td><td>33.33</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/03_0000180.png' alt='03_0000180.png' loading='lazy'></td><td>03_0000180.png</td><td>giản hơn để thiết</td><td>giảnhơnđểthiết</td><td>17.65</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/03_0000183.png' alt='03_0000183.png' loading='lazy'></td><td>03_0000183.png</td><td>Elongation Factors</td><td>Elongationactors</td><td>11.11</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/03_0000185.png' alt='03_0000185.png' loading='lazy'></td><td>03_0000185.png</td><td>2Zz</td><td>2</td><td>66.67</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/03_0000187.png' alt='03_0000187.png' loading='lazy'></td><td>03_0000187.png</td><td>Upload ảnh (tối đa 5MB)</td><td>Uploadảnh(tốiđa5MB)</td><td>17.39</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/03_0000188.png' alt='03_0000188.png' loading='lazy'></td><td>03_0000188.png</td><td>tìm cách vận động dân ch</td><td>tìmcáchvậnđộngdânch</td><td>20.83</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/03_0000190.png' alt='03_0000190.png' loading='lazy'></td><td>03_0000190.png</td><td>Step 2 of 4</td><td>Step2o4</td><td>36.36</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/03_0000191.png' alt='03_0000191.png' loading='lazy'></td><td>03_0000191.png</td><td>Password phải có ít nhất 8 ký tự</td><td>Passordphảicóítnhất8kýtự</td><td>25.0</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/03_0000194.png' alt='03_0000194.png' loading='lazy'></td><td>03_0000194.png</td><td>Page 1 of 24</td><td>Page1o24</td><td>33.33</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/03_0000196.png' alt='03_0000196.png' loading='lazy'></td><td>03_0000196.png</td><td>2Zz</td><td>2</td><td>66.67</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/03_0000197.png' alt='03_0000197.png' loading='lazy'></td><td>03_0000197.png</td><td>ngũ: Đông</td><td>ngũ:Đông</td><td>11.11</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/03_0000199.png' alt='03_0000199.png' loading='lazy'></td><td>03_0000199.png</td><td>Tây Nguyên (tương ứng</td><td>TâyNguyên(tươngứng</td><td>14.29</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/03_0000201.png' alt='03_0000201.png' loading='lazy'></td><td>03_0000201.png</td><td>Syncing…</td><td>Syncing</td><td>12.5</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/03_0000205.png' alt='03_0000205.png' loading='lazy'></td><td>03_0000205.png</td><td>Quebec được quản lý dựa </td><td>Quebecđượcquảnlýdựa</td><td>17.39</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/03_0000210.png' alt='03_0000210.png' loading='lazy'></td><td>03_0000210.png</td><td>Nam (Đại</td><td>Nam(Đại</td><td>12.5</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/03_0000211.png' alt='03_0000211.png' loading='lazy'></td><td>03_0000211.png</td><td>giao thoa</td><td>giaothoa</td><td>11.11</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/03_0000212.png' alt='03_0000212.png' loading='lazy'></td><td>03_0000212.png</td><td>tLGsRvG ajaBy6L8iz9e</td><td>tLGsRvGaaBy6L8i9e</td><td>15.0</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/03_0000214.png' alt='03_0000214.png' loading='lazy'></td><td>03_0000214.png</td><td>tiếng Proto-Nam</td><td>tiếngProlo-Nam</td><td>13.33</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/03_0000217.png' alt='03_0000217.png' loading='lazy'></td><td>03_0000217.png</td><td>VVW</td><td>VV</td><td>33.33</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/03_0000218.png' alt='03_0000218.png' loading='lazy'></td><td>03_0000218.png</td><td>SELECT * FROM users WHERE id = 42</td><td>SELECT*ROMusersHEREid=42</td><td>27.27</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/03_0000219.png' alt='03_0000219.png' loading='lazy'></td><td>03_0000219.png</td><td>chất được</td><td>chấtđược</td><td>11.11</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/03_0000220.png' alt='03_0000220.png' loading='lazy'></td><td>03_0000220.png</td><td>of seven circular column</td><td>osevencircularcolumn</td><td>16.67</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/03_0000221.png' alt='03_0000221.png' loading='lazy'></td><td>03_0000221.png</td><td>Điển nhận thấy mối đe</td><td>Điểnnhậnthấymốiđe</td><td>19.05</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/03_0000222.png' alt='03_0000222.png' loading='lazy'></td><td>03_0000222.png</td><td>, Jamiliah</td><td>,amiliah</td><td>20.0</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/03_0000223.png' alt='03_0000223.png' loading='lazy'></td><td>03_0000223.png</td><td>Tỉnh/TP: Hà Nội</td><td>Tỉnh/TP:HàNội</td><td>13.33</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/03_0000224.png' alt='03_0000224.png' loading='lazy'></td><td>03_0000224.png</td><td>Post described the</td><td>Postdescribedthe</td><td>11.11</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/03_0000225.png' alt='03_0000225.png' loading='lazy'></td><td>03_0000225.png</td><td>600 năm</td><td>600năm</td><td>14.29</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/03_0000226.png' alt='03_0000226.png' loading='lazy'></td><td>03_0000226.png</td><td>Bắc và</td><td>Bắcvà</td><td>16.67</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/03_0000227.png' alt='03_0000227.png' loading='lazy'></td><td>03_0000227.png</td><td>Tọa độ cầu</td><td>Tọađộcầu</td><td>20.0</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/03_0000228.png' alt='03_0000228.png' loading='lazy'></td><td>03_0000228.png</td><td>pip install torch --index-url ...</td><td>pipinstalltorch--index-url...</td><td>12.12</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/03_0000230.png' alt='03_0000230.png' loading='lazy'></td><td>03_0000230.png</td><td>Bách khoa toàn thư</td><td>Báchkhoatoànthư</td><td>16.67</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/03_0000233.png' alt='03_0000233.png' loading='lazy'></td><td>03_0000233.png</td><td>Sư đoàn</td><td>Sưđoàn</td><td>14.29</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/03_0000234.png' alt='03_0000234.png' loading='lazy'></td><td>03_0000234.png</td><td>Việt Nam thống nhất cho</td><td>ViệtNamthốngnhấtcho</td><td>17.39</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/03_0000235.png' alt='03_0000235.png' loading='lazy'></td><td>03_0000235.png</td><td>trong hồi</td><td>tronghồi</td><td>11.11</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/03_0000236.png' alt='03_0000236.png' loading='lazy'></td><td>03_0000236.png</td><td>Phòng</td><td>Phảng</td><td>20.0</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/03_0000239.png' alt='03_0000239.png' loading='lazy'></td><td>03_0000239.png</td><td>Subfamily Ceratopsinae</td><td>SubamilyCeratopsinae</td><td>9.09</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/03_0000242.png' alt='03_0000242.png' loading='lazy'></td><td>03_0000242.png</td><td>₫1.234.567</td><td>1.234.567</td><td>10.0</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/03_0000244.png' alt='03_0000244.png' loading='lazy'></td><td>03_0000244.png</td><td>Password phải có ít nhất 8 ký tự</td><td>Passordphảicóítnhất8kýtu</td><td>28.12</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/03_0000245.png' alt='03_0000245.png' loading='lazy'></td><td>03_0000245.png</td><td>Tỉnh/TP: Hà Nội</td><td>Tỉnh/TP:HàNội</td><td>13.33</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/03_0000247.png' alt='03_0000247.png' loading='lazy'></td><td>03_0000247.png</td><td>2Zz</td><td>2</td><td>66.67</td></tr>
+<tr class='incorrect'><td><img src='../data/synthetic/test/03_0000249.png' alt='03_0000249.png' loading='lazy'></td><td>03_0000249.png</td><td>có trình tự DNA tương</td><td>cótrìnhtựDNAtương</td><td>19.05</td></tr>
+<tr><td><img src='../data/synthetic/test/00_0000001.png' alt='00_0000001.png' loading='lazy'></td><td>00_0000001.png</td><td>T+2</td><td>T+2</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/00_0000003.png' alt='00_0000003.png' loading='lazy'></td><td>00_0000003.png</td><td>S5s</td><td>S5s</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/00_0000005.png' alt='00_0000005.png' loading='lazy'></td><td>00_0000005.png</td><td>gq9</td><td>gq9</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/00_0000012.png' alt='00_0000012.png' loading='lazy'></td><td>00_0000012.png</td><td>$99.99</td><td>$99.99</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/00_0000013.png' alt='00_0000013.png' loading='lazy'></td><td>00_0000013.png</td><td>https://example.com/api/v2/users?page=1</td><td>https://example.com/api/v2/users?page=1</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/00_0000015.png' alt='00_0000015.png' loading='lazy'></td><td>00_0000015.png</td><td>1933</td><td>1933</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/00_0000017.png' alt='00_0000017.png' loading='lazy'></td><td>00_0000017.png</td><td>S5s</td><td>S5s</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/00_0000018.png' alt='00_0000018.png' loading='lazy'></td><td>00_0000018.png</td><td>3bUu6Y2</td><td>3bUu6Y2</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/00_0000019.png' alt='00_0000019.png' loading='lazy'></td><td>00_0000019.png</td><td>B8</td><td>B8</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/00_0000020.png' alt='00_0000020.png' loading='lazy'></td><td>00_0000020.png</td><td>Quan</td><td>Quan</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/00_0000021.png' alt='00_0000021.png' loading='lazy'></td><td>00_0000021.png</td><td>người</td><td>người</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/00_0000024.png' alt='00_0000024.png' loading='lazy'></td><td>00_0000024.png</td><td>Hai</td><td>Hai</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/00_0000027.png' alt='00_0000027.png' loading='lazy'></td><td>00_0000027.png</td><td>=</td><td>=</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/00_0000030.png' alt='00_0000030.png' loading='lazy'></td><td>00_0000030.png</td><td>That</td><td>That</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/00_0000040.png' alt='00_0000040.png' loading='lazy'></td><td>00_0000040.png</td><td>O0Oo</td><td>O0Oo</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/00_0000043.png' alt='00_0000043.png' loading='lazy'></td><td>00_0000043.png</td><td>trong</td><td>trong</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/00_0000045.png' alt='00_0000045.png' loading='lazy'></td><td>00_0000045.png</td><td>tên</td><td>tên</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/00_0000049.png' alt='00_0000049.png' loading='lazy'></td><td>00_0000049.png</td><td>HP:100</td><td>HP:100</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/00_0000050.png' alt='00_0000050.png' loading='lazy'></td><td>00_0000050.png</td><td>angry</td><td>angry</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/00_0000054.png' alt='00_0000054.png' loading='lazy'></td><td>00_0000054.png</td><td>HP:100</td><td>HP:100</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/00_0000056.png' alt='00_0000056.png' loading='lazy'></td><td>00_0000056.png</td><td>Il1I|!</td><td>Il1I|!</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/00_0000057.png' alt='00_0000057.png' loading='lazy'></td><td>00_0000057.png</td><td>lIlIlI</td><td>lIlIlI</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/00_0000060.png' alt='00_0000060.png' loading='lazy'></td><td>00_0000060.png</td><td>B8</td><td>B8</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/00_0000062.png' alt='00_0000062.png' loading='lazy'></td><td>00_0000062.png</td><td>rnmvv</td><td>rnmvv</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/00_0000063.png' alt='00_0000063.png' loading='lazy'></td><td>00_0000063.png</td><td>một</td><td>một</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/00_0000064.png' alt='00_0000064.png' loading='lazy'></td><td>00_0000064.png</td><td>OO00OO</td><td>OO00OO</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/00_0000066.png' alt='00_0000066.png' loading='lazy'></td><td>00_0000066.png</td><td>Doraemon</td><td>Doraemon</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/00_0000068.png' alt='00_0000068.png' loading='lazy'></td><td>00_0000068.png</td><td>cuộc</td><td>cuộc</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/00_0000070.png' alt='00_0000070.png' loading='lazy'></td><td>00_0000070.png</td><td>cho</td><td>cho</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/00_0000073.png' alt='00_0000073.png' loading='lazy'></td><td>00_0000073.png</td><td>các</td><td>các</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/00_0000080.png' alt='00_0000080.png' loading='lazy'></td><td>00_0000080.png</td><td>đó</td><td>đó</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/00_0000081.png' alt='00_0000081.png' loading='lazy'></td><td>00_0000081.png</td><td>có</td><td>có</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/00_0000082.png' alt='00_0000082.png' loading='lazy'></td><td>00_0000082.png</td><td>OO00OO</td><td>OO00OO</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/00_0000086.png' alt='00_0000086.png' loading='lazy'></td><td>00_0000086.png</td><td>tính</td><td>tính</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/00_0000090.png' alt='00_0000090.png' loading='lazy'></td><td>00_0000090.png</td><td>https://example.com/api/v2/users?page=1</td><td>https://example.com/api/v2/users?page=1</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/00_0000094.png' alt='00_0000094.png' loading='lazy'></td><td>00_0000094.png</td><td>100%</td><td>100%</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/00_0000099.png' alt='00_0000099.png' loading='lazy'></td><td>00_0000099.png</td><td>Barbara</td><td>Barbara</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/00_0000100.png' alt='00_0000100.png' loading='lazy'></td><td>00_0000100.png</td><td>hệ</td><td>hệ</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/00_0000101.png' alt='00_0000101.png' loading='lazy'></td><td>00_0000101.png</td><td>HP:100</td><td>HP:100</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/00_0000102.png' alt='00_0000102.png' loading='lazy'></td><td>00_0000102.png</td><td>năm</td><td>năm</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/00_0000104.png' alt='00_0000104.png' loading='lazy'></td><td>00_0000104.png</td><td>hiện</td><td>hiện</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/00_0000107.png' alt='00_0000107.png' loading='lazy'></td><td>00_0000107.png</td><td>gq9</td><td>gq9</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/00_0000110.png' alt='00_0000110.png' loading='lazy'></td><td>00_0000110.png</td><td>chịu</td><td>chịu</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/00_0000112.png' alt='00_0000112.png' loading='lazy'></td><td>00_0000112.png</td><td>B8</td><td>B8</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/00_0000113.png' alt='00_0000113.png' loading='lazy'></td><td>00_0000113.png</td><td>B8</td><td>B8</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/00_0000115.png' alt='00_0000115.png' loading='lazy'></td><td>00_0000115.png</td><td>LV.99</td><td>LV.99</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/00_0000116.png' alt='00_0000116.png' loading='lazy'></td><td>00_0000116.png</td><td>ở</td><td>ở</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/00_0000117.png' alt='00_0000117.png' loading='lazy'></td><td>00_0000117.png</td><td>HP:100</td><td>HP:100</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/00_0000119.png' alt='00_0000119.png' loading='lazy'></td><td>00_0000119.png</td><td>rnmvv</td><td>rnmvv</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/00_0000120.png' alt='00_0000120.png' loading='lazy'></td><td>00_0000120.png</td><td>OO00OO</td><td>OO00OO</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/00_0000122.png' alt='00_0000122.png' loading='lazy'></td><td>00_0000122.png</td><td>O0Oo</td><td>O0Oo</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/00_0000125.png' alt='00_0000125.png' loading='lazy'></td><td>00_0000125.png</td><td>giả</td><td>giả</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/00_0000130.png' alt='00_0000130.png' loading='lazy'></td><td>00_0000130.png</td><td>HP:100</td><td>HP:100</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/00_0000132.png' alt='00_0000132.png' loading='lazy'></td><td>00_0000132.png</td><td>năm</td><td>năm</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/00_0000136.png' alt='00_0000136.png' loading='lazy'></td><td>00_0000136.png</td><td>+99999</td><td>+99999</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/00_0000138.png' alt='00_0000138.png' loading='lazy'></td><td>00_0000138.png</td><td>phường</td><td>phường</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/00_0000139.png' alt='00_0000139.png' loading='lazy'></td><td>00_0000139.png</td><td>HP:100</td><td>HP:100</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/00_0000140.png' alt='00_0000140.png' loading='lazy'></td><td>00_0000140.png</td><td>O0Oo</td><td>O0Oo</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/00_0000143.png' alt='00_0000143.png' loading='lazy'></td><td>00_0000143.png</td><td>lIlIlI</td><td>lIlIlI</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/00_0000144.png' alt='00_0000144.png' loading='lazy'></td><td>00_0000144.png</td><td>+99999</td><td>+99999</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/00_0000154.png' alt='00_0000154.png' loading='lazy'></td><td>00_0000154.png</td><td>B8</td><td>B8</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/00_0000155.png' alt='00_0000155.png' loading='lazy'></td><td>00_0000155.png</td><td>+99999</td><td>+99999</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/00_0000156.png' alt='00_0000156.png' loading='lazy'></td><td>00_0000156.png</td><td>HP:100</td><td>HP:100</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/00_0000159.png' alt='00_0000159.png' loading='lazy'></td><td>00_0000159.png</td><td>HP:100</td><td>HP:100</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/00_0000161.png' alt='00_0000161.png' loading='lazy'></td><td>00_0000161.png</td><td>Tiên</td><td>Tiên</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/00_0000166.png' alt='00_0000166.png' loading='lazy'></td><td>00_0000166.png</td><td>B8</td><td>B8</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/00_0000171.png' alt='00_0000171.png' loading='lazy'></td><td>00_0000171.png</td><td>chữ</td><td>chữ</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/00_0000178.png' alt='00_0000178.png' loading='lazy'></td><td>00_0000178.png</td><td>rnmvv</td><td>rnmvv</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/00_0000179.png' alt='00_0000179.png' loading='lazy'></td><td>00_0000179.png</td><td>đầu</td><td>đầu</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/00_0000180.png' alt='00_0000180.png' loading='lazy'></td><td>00_0000180.png</td><td>LV.99</td><td>LV.99</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/00_0000186.png' alt='00_0000186.png' loading='lazy'></td><td>00_0000186.png</td><td>lIlIlI</td><td>lIlIlI</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/00_0000194.png' alt='00_0000194.png' loading='lazy'></td><td>00_0000194.png</td><td>kinh</td><td>kinh</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/00_0000199.png' alt='00_0000199.png' loading='lazy'></td><td>00_0000199.png</td><td>had</td><td>had</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/00_0000210.png' alt='00_0000210.png' loading='lazy'></td><td>00_0000210.png</td><td>lIlIlI</td><td>lIlIlI</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/00_0000211.png' alt='00_0000211.png' loading='lazy'></td><td>00_0000211.png</td><td>B8</td><td>B8</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/00_0000212.png' alt='00_0000212.png' loading='lazy'></td><td>00_0000212.png</td><td>$99.99</td><td>$99.99</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/00_0000216.png' alt='00_0000216.png' loading='lazy'></td><td>00_0000216.png</td><td>HP:100</td><td>HP:100</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/00_0000217.png' alt='00_0000217.png' loading='lazy'></td><td>00_0000217.png</td><td>chắc</td><td>chắc</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/00_0000218.png' alt='00_0000218.png' loading='lazy'></td><td>00_0000218.png</td><td>reasoning</td><td>reasoning</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/00_0000221.png' alt='00_0000221.png' loading='lazy'></td><td>00_0000221.png</td><td>S5s</td><td>S5s</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/00_0000223.png' alt='00_0000223.png' loading='lazy'></td><td>00_0000223.png</td><td>Xylen</td><td>Xylen</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/00_0000226.png' alt='00_0000226.png' loading='lazy'></td><td>00_0000226.png</td><td>Tới</td><td>Tới</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/00_0000227.png' alt='00_0000227.png' loading='lazy'></td><td>00_0000227.png</td><td>gq9</td><td>gq9</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/00_0000230.png' alt='00_0000230.png' loading='lazy'></td><td>00_0000230.png</td><td>chết</td><td>chết</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/00_0000232.png' alt='00_0000232.png' loading='lazy'></td><td>00_0000232.png</td><td>với</td><td>với</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/00_0000235.png' alt='00_0000235.png' loading='lazy'></td><td>00_0000235.png</td><td>Sơn)</td><td>Sơn)</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/00_0000236.png' alt='00_0000236.png' loading='lazy'></td><td>00_0000236.png</td><td>lIlIlI</td><td>lIlIlI</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/00_0000238.png' alt='00_0000238.png' loading='lazy'></td><td>00_0000238.png</td><td>thời</td><td>thời</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/00_0000240.png' alt='00_0000240.png' loading='lazy'></td><td>00_0000240.png</td><td>S5s</td><td>S5s</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/00_0000242.png' alt='00_0000242.png' loading='lazy'></td><td>00_0000242.png</td><td>Il1I|!</td><td>Il1I|!</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/00_0000247.png' alt='00_0000247.png' loading='lazy'></td><td>00_0000247.png</td><td>https://example.com/api/v2/users?page=1</td><td>https://example.com/api/v2/users?page=1</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/01_0000000.png' alt='01_0000000.png' loading='lazy'></td><td>01_0000000.png</td><td>gq9</td><td>gq9</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/01_0000001.png' alt='01_0000001.png' loading='lazy'></td><td>01_0000001.png</td><td>100%</td><td>100%</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/01_0000002.png' alt='01_0000002.png' loading='lazy'></td><td>01_0000002.png</td><td>S5s</td><td>S5s</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/01_0000004.png' alt='01_0000004.png' loading='lazy'></td><td>01_0000004.png</td><td>08]</td><td>08]</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/01_0000005.png' alt='01_0000005.png' loading='lazy'></td><td>01_0000005.png</td><td>sáu</td><td>sáu</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/01_0000006.png' alt='01_0000006.png' loading='lazy'></td><td>01_0000006.png</td><td>2024-06-09</td><td>2024-06-09</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/01_0000007.png' alt='01_0000007.png' loading='lazy'></td><td>01_0000007.png</td><td>09/06/2024</td><td>09/06/2024</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/01_0000008.png' alt='01_0000008.png' loading='lazy'></td><td>01_0000008.png</td><td>B8</td><td>B8</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/01_0000010.png' alt='01_0000010.png' loading='lazy'></td><td>01_0000010.png</td><td>LV.99</td><td>LV.99</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/01_0000012.png' alt='01_0000012.png' loading='lazy'></td><td>01_0000012.png</td><td>Last</td><td>Last</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/01_0000013.png' alt='01_0000013.png' loading='lazy'></td><td>01_0000013.png</td><td>1</td><td>1</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/01_0000014.png' alt='01_0000014.png' loading='lazy'></td><td>01_0000014.png</td><td>HP:100</td><td>HP:100</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/01_0000020.png' alt='01_0000020.png' loading='lazy'></td><td>01_0000020.png</td><td>tình</td><td>tình</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/01_0000022.png' alt='01_0000022.png' loading='lazy'></td><td>01_0000022.png</td><td>OO00OO</td><td>OO00OO</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/01_0000023.png' alt='01_0000023.png' loading='lazy'></td><td>01_0000023.png</td><td>S5s</td><td>S5s</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/01_0000027.png' alt='01_0000027.png' loading='lazy'></td><td>01_0000027.png</td><td>$99.99</td><td>$99.99</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/01_0000032.png' alt='01_0000032.png' loading='lazy'></td><td>01_0000032.png</td><td>/</td><td>/</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/01_0000035.png' alt='01_0000035.png' loading='lazy'></td><td>01_0000035.png</td><td>OO00OO</td><td>OO00OO</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/01_0000039.png' alt='01_0000039.png' loading='lazy'></td><td>01_0000039.png</td><td>Il1I|!</td><td>Il1I|!</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/01_0000040.png' alt='01_0000040.png' loading='lazy'></td><td>01_0000040.png</td><td>LV.99</td><td>LV.99</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/01_0000041.png' alt='01_0000041.png' loading='lazy'></td><td>01_0000041.png</td><td>Il1I|!</td><td>Il1I|!</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/01_0000043.png' alt='01_0000043.png' loading='lazy'></td><td>01_0000043.png</td><td>thành</td><td>thành</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/01_0000044.png' alt='01_0000044.png' loading='lazy'></td><td>01_0000044.png</td><td>sáng</td><td>sáng</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/01_0000045.png' alt='01_0000045.png' loading='lazy'></td><td>01_0000045.png</td><td>gq9</td><td>gq9</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/01_0000047.png' alt='01_0000047.png' loading='lazy'></td><td>01_0000047.png</td><td>Dân</td><td>Dân</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/01_0000054.png' alt='01_0000054.png' loading='lazy'></td><td>01_0000054.png</td><td>HP:100</td><td>HP:100</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/01_0000056.png' alt='01_0000056.png' loading='lazy'></td><td>01_0000056.png</td><td>1950</td><td>1950</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/01_0000060.png' alt='01_0000060.png' loading='lazy'></td><td>01_0000060.png</td><td>B8</td><td>B8</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/01_0000064.png' alt='01_0000064.png' loading='lazy'></td><td>01_0000064.png</td><td>gq9</td><td>gq9</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/01_0000068.png' alt='01_0000068.png' loading='lazy'></td><td>01_0000068.png</td><td>2024-06-09</td><td>2024-06-09</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/01_0000073.png' alt='01_0000073.png' loading='lazy'></td><td>01_0000073.png</td><td>rnmvv</td><td>rnmvv</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/01_0000075.png' alt='01_0000075.png' loading='lazy'></td><td>01_0000075.png</td><td>gq9</td><td>gq9</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/01_0000083.png' alt='01_0000083.png' loading='lazy'></td><td>01_0000083.png</td><td>B8</td><td>B8</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/01_0000089.png' alt='01_0000089.png' loading='lazy'></td><td>01_0000089.png</td><td>LV.99</td><td>LV.99</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/01_0000090.png' alt='01_0000090.png' loading='lazy'></td><td>01_0000090.png</td><td>OO00OO</td><td>OO00OO</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/01_0000092.png' alt='01_0000092.png' loading='lazy'></td><td>01_0000092.png</td><td>trứng</td><td>trứng</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/01_0000094.png' alt='01_0000094.png' loading='lazy'></td><td>01_0000094.png</td><td>tự</td><td>tự</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/01_0000099.png' alt='01_0000099.png' loading='lazy'></td><td>01_0000099.png</td><td>rnmvv</td><td>rnmvv</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/01_0000100.png' alt='01_0000100.png' loading='lazy'></td><td>01_0000100.png</td><td>S5s</td><td>S5s</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/01_0000103.png' alt='01_0000103.png' loading='lazy'></td><td>01_0000103.png</td><td>B8</td><td>B8</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/01_0000104.png' alt='01_0000104.png' loading='lazy'></td><td>01_0000104.png</td><td>người</td><td>người</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/01_0000105.png' alt='01_0000105.png' loading='lazy'></td><td>01_0000105.png</td><td>vết</td><td>vết</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/01_0000109.png' alt='01_0000109.png' loading='lazy'></td><td>01_0000109.png</td><td>phạm</td><td>phạm</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/01_0000113.png' alt='01_0000113.png' loading='lazy'></td><td>01_0000113.png</td><td>Nguyễn</td><td>Nguyễn</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/01_0000114.png' alt='01_0000114.png' loading='lazy'></td><td>01_0000114.png</td><td>vị</td><td>vị</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/01_0000115.png' alt='01_0000115.png' loading='lazy'></td><td>01_0000115.png</td><td>HP:100</td><td>HP:100</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/01_0000119.png' alt='01_0000119.png' loading='lazy'></td><td>01_0000119.png</td><td>lIlIlI</td><td>lIlIlI</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/01_0000121.png' alt='01_0000121.png' loading='lazy'></td><td>01_0000121.png</td><td>Ả</td><td>Ả</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/01_0000122.png' alt='01_0000122.png' loading='lazy'></td><td>01_0000122.png</td><td>rnmvv</td><td>rnmvv</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/01_0000125.png' alt='01_0000125.png' loading='lazy'></td><td>01_0000125.png</td><td>mất</td><td>mất</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/01_0000134.png' alt='01_0000134.png' loading='lazy'></td><td>01_0000134.png</td><td>sự</td><td>sự</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/01_0000136.png' alt='01_0000136.png' loading='lazy'></td><td>01_0000136.png</td><td>rnmvv</td><td>rnmvv</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/01_0000139.png' alt='01_0000139.png' loading='lazy'></td><td>01_0000139.png</td><td>LV.99</td><td>LV.99</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/01_0000140.png' alt='01_0000140.png' loading='lazy'></td><td>01_0000140.png</td><td>S5s</td><td>S5s</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/01_0000144.png' alt='01_0000144.png' loading='lazy'></td><td>01_0000144.png</td><td>S5s</td><td>S5s</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/01_0000145.png' alt='01_0000145.png' loading='lazy'></td><td>01_0000145.png</td><td>Trung</td><td>Trung</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/01_0000146.png' alt='01_0000146.png' loading='lazy'></td><td>01_0000146.png</td><td>người</td><td>người</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/01_0000149.png' alt='01_0000149.png' loading='lazy'></td><td>01_0000149.png</td><td>Ân</td><td>Ân</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/01_0000151.png' alt='01_0000151.png' loading='lazy'></td><td>01_0000151.png</td><td>On</td><td>On</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/01_0000152.png' alt='01_0000152.png' loading='lazy'></td><td>01_0000152.png</td><td>S5s</td><td>S5s</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/01_0000153.png' alt='01_0000153.png' loading='lazy'></td><td>01_0000153.png</td><td>one</td><td>one</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/01_0000155.png' alt='01_0000155.png' loading='lazy'></td><td>01_0000155.png</td><td>về</td><td>về</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/01_0000159.png' alt='01_0000159.png' loading='lazy'></td><td>01_0000159.png</td><td>HP:100</td><td>HP:100</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/01_0000163.png' alt='01_0000163.png' loading='lazy'></td><td>01_0000163.png</td><td>hàng</td><td>hàng</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/01_0000165.png' alt='01_0000165.png' loading='lazy'></td><td>01_0000165.png</td><td>09/06/2024</td><td>09/06/2024</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/01_0000169.png' alt='01_0000169.png' loading='lazy'></td><td>01_0000169.png</td><td>gq9</td><td>gq9</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/01_0000174.png' alt='01_0000174.png' loading='lazy'></td><td>01_0000174.png</td><td>thành</td><td>thành</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/01_0000179.png' alt='01_0000179.png' loading='lazy'></td><td>01_0000179.png</td><td>O0Oo</td><td>O0Oo</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/01_0000180.png' alt='01_0000180.png' loading='lazy'></td><td>01_0000180.png</td><td>S5s</td><td>S5s</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/01_0000183.png' alt='01_0000183.png' loading='lazy'></td><td>01_0000183.png</td><td>rnmvv</td><td>rnmvv</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/01_0000186.png' alt='01_0000186.png' loading='lazy'></td><td>01_0000186.png</td><td>gq9</td><td>gq9</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/01_0000187.png' alt='01_0000187.png' loading='lazy'></td><td>01_0000187.png</td><td>+99999</td><td>+99999</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/01_0000189.png' alt='01_0000189.png' loading='lazy'></td><td>01_0000189.png</td><td>$99.99</td><td>$99.99</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/01_0000190.png' alt='01_0000190.png' loading='lazy'></td><td>01_0000190.png</td><td>trong</td><td>trong</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/01_0000192.png' alt='01_0000192.png' loading='lazy'></td><td>01_0000192.png</td><td>S5s</td><td>S5s</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/01_0000193.png' alt='01_0000193.png' loading='lazy'></td><td>01_0000193.png</td><td>lIlIlI</td><td>lIlIlI</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/01_0000194.png' alt='01_0000194.png' loading='lazy'></td><td>01_0000194.png</td><td>O0Oo</td><td>O0Oo</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/01_0000199.png' alt='01_0000199.png' loading='lazy'></td><td>01_0000199.png</td><td>you</td><td>you</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/01_0000201.png' alt='01_0000201.png' loading='lazy'></td><td>01_0000201.png</td><td>lIlIlI</td><td>lIlIlI</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/01_0000204.png' alt='01_0000204.png' loading='lazy'></td><td>01_0000204.png</td><td>mDB</td><td>mDB</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/01_0000205.png' alt='01_0000205.png' loading='lazy'></td><td>01_0000205.png</td><td>O0Oo</td><td>O0Oo</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/01_0000208.png' alt='01_0000208.png' loading='lazy'></td><td>01_0000208.png</td><td>S5s</td><td>S5s</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/01_0000209.png' alt='01_0000209.png' loading='lazy'></td><td>01_0000209.png</td><td>T+2</td><td>T+2</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/01_0000213.png' alt='01_0000213.png' loading='lazy'></td><td>01_0000213.png</td><td>Điển</td><td>Điển</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/01_0000219.png' alt='01_0000219.png' loading='lazy'></td><td>01_0000219.png</td><td>lIlIlI</td><td>lIlIlI</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/01_0000220.png' alt='01_0000220.png' loading='lazy'></td><td>01_0000220.png</td><td>gq9</td><td>gq9</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/01_0000225.png' alt='01_0000225.png' loading='lazy'></td><td>01_0000225.png</td><td>HP:100</td><td>HP:100</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/01_0000226.png' alt='01_0000226.png' loading='lazy'></td><td>01_0000226.png</td><td>soạn</td><td>soạn</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/01_0000227.png' alt='01_0000227.png' loading='lazy'></td><td>01_0000227.png</td><td>Managua</td><td>Managua</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/01_0000229.png' alt='01_0000229.png' loading='lazy'></td><td>01_0000229.png</td><td>09/06/2024</td><td>09/06/2024</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/01_0000231.png' alt='01_0000231.png' loading='lazy'></td><td>01_0000231.png</td><td>Il1I|!</td><td>Il1I|!</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/01_0000235.png' alt='01_0000235.png' loading='lazy'></td><td>01_0000235.png</td><td>S/2005</td><td>S/2005</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/01_0000236.png' alt='01_0000236.png' loading='lazy'></td><td>01_0000236.png</td><td>sống</td><td>sống</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/01_0000237.png' alt='01_0000237.png' loading='lazy'></td><td>01_0000237.png</td><td>gq9</td><td>gq9</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/01_0000244.png' alt='01_0000244.png' loading='lazy'></td><td>01_0000244.png</td><td>mà</td><td>mà</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/01_0000247.png' alt='01_0000247.png' loading='lazy'></td><td>01_0000247.png</td><td>ime</td><td>ime</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/01_0000248.png' alt='01_0000248.png' loading='lazy'></td><td>01_0000248.png</td><td>8</td><td>8</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/01_0000249.png' alt='01_0000249.png' loading='lazy'></td><td>01_0000249.png</td><td>Vùng</td><td>Vùng</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/02_0000003.png' alt='02_0000003.png' loading='lazy'></td><td>02_0000003.png</td><td>Il1I|!</td><td>Il1I|!</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/02_0000004.png' alt='02_0000004.png' loading='lazy'></td><td>02_0000004.png</td><td>100%</td><td>100%</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/02_0000009.png' alt='02_0000009.png' loading='lazy'></td><td>02_0000009.png</td><td>một</td><td>một</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/02_0000011.png' alt='02_0000011.png' loading='lazy'></td><td>02_0000011.png</td><td>HP:100</td><td>HP:100</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/02_0000016.png' alt='02_0000016.png' loading='lazy'></td><td>02_0000016.png</td><td>2024-06-09</td><td>2024-06-09</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/02_0000019.png' alt='02_0000019.png' loading='lazy'></td><td>02_0000019.png</td><td>Ông</td><td>Ông</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/02_0000021.png' alt='02_0000021.png' loading='lazy'></td><td>02_0000021.png</td><td>quản</td><td>quản</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/02_0000023.png' alt='02_0000023.png' loading='lazy'></td><td>02_0000023.png</td><td>rnmvv</td><td>rnmvv</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/02_0000024.png' alt='02_0000024.png' loading='lazy'></td><td>02_0000024.png</td><td>gq9</td><td>gq9</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/02_0000028.png' alt='02_0000028.png' loading='lazy'></td><td>02_0000028.png</td><td>biển</td><td>biển</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/02_0000034.png' alt='02_0000034.png' loading='lazy'></td><td>02_0000034.png</td><td>HP:100</td><td>HP:100</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/02_0000035.png' alt='02_0000035.png' loading='lazy'></td><td>02_0000035.png</td><td>HP:100</td><td>HP:100</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/02_0000036.png' alt='02_0000036.png' loading='lazy'></td><td>02_0000036.png</td><td>B8</td><td>B8</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/02_0000039.png' alt='02_0000039.png' loading='lazy'></td><td>02_0000039.png</td><td>HP:100</td><td>HP:100</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/02_0000040.png' alt='02_0000040.png' loading='lazy'></td><td>02_0000040.png</td><td>khác</td><td>khác</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/02_0000043.png' alt='02_0000043.png' loading='lazy'></td><td>02_0000043.png</td><td>S5s</td><td>S5s</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/02_0000046.png' alt='02_0000046.png' loading='lazy'></td><td>02_0000046.png</td><td>gq9</td><td>gq9</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/02_0000047.png' alt='02_0000047.png' loading='lazy'></td><td>02_0000047.png</td><td>11/1/2014</td><td>11/1/2014</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/02_0000048.png' alt='02_0000048.png' loading='lazy'></td><td>02_0000048.png</td><td>LV.99</td><td>LV.99</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/02_0000049.png' alt='02_0000049.png' loading='lazy'></td><td>02_0000049.png</td><td>rnmvv</td><td>rnmvv</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/02_0000056.png' alt='02_0000056.png' loading='lazy'></td><td>02_0000056.png</td><td>+99999</td><td>+99999</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/02_0000059.png' alt='02_0000059.png' loading='lazy'></td><td>02_0000059.png</td><td>+99999</td><td>+99999</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/02_0000062.png' alt='02_0000062.png' loading='lazy'></td><td>02_0000062.png</td><td>2024-06-09</td><td>2024-06-09</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/02_0000064.png' alt='02_0000064.png' loading='lazy'></td><td>02_0000064.png</td><td>2024-06-09</td><td>2024-06-09</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/02_0000065.png' alt='02_0000065.png' loading='lazy'></td><td>02_0000065.png</td><td>OO00OO</td><td>OO00OO</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/02_0000066.png' alt='02_0000066.png' loading='lazy'></td><td>02_0000066.png</td><td>lIlIlI</td><td>lIlIlI</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/02_0000072.png' alt='02_0000072.png' loading='lazy'></td><td>02_0000072.png</td><td>Temple</td><td>Temple</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/02_0000074.png' alt='02_0000074.png' loading='lazy'></td><td>02_0000074.png</td><td>cấp</td><td>cấp</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/02_0000075.png' alt='02_0000075.png' loading='lazy'></td><td>02_0000075.png</td><td>the</td><td>the</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/02_0000076.png' alt='02_0000076.png' loading='lazy'></td><td>02_0000076.png</td><td>Thánh</td><td>Thánh</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/02_0000082.png' alt='02_0000082.png' loading='lazy'></td><td>02_0000082.png</td><td>S5s</td><td>S5s</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/02_0000084.png' alt='02_0000084.png' loading='lazy'></td><td>02_0000084.png</td><td>gq9</td><td>gq9</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/02_0000091.png' alt='02_0000091.png' loading='lazy'></td><td>02_0000091.png</td><td>S5s</td><td>S5s</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/02_0000100.png' alt='02_0000100.png' loading='lazy'></td><td>02_0000100.png</td><td>2004</td><td>2004</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/02_0000104.png' alt='02_0000104.png' loading='lazy'></td><td>02_0000104.png</td><td>LV.99</td><td>LV.99</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/02_0000109.png' alt='02_0000109.png' loading='lazy'></td><td>02_0000109.png</td><td>LV.99</td><td>LV.99</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/02_0000113.png' alt='02_0000113.png' loading='lazy'></td><td>02_0000113.png</td><td>ta</td><td>ta</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/02_0000118.png' alt='02_0000118.png' loading='lazy'></td><td>02_0000118.png</td><td>09/06/2024</td><td>09/06/2024</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/02_0000120.png' alt='02_0000120.png' loading='lazy'></td><td>02_0000120.png</td><td>Rượu</td><td>Rượu</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/02_0000121.png' alt='02_0000121.png' loading='lazy'></td><td>02_0000121.png</td><td>HP:100</td><td>HP:100</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/02_0000124.png' alt='02_0000124.png' loading='lazy'></td><td>02_0000124.png</td><td>dân</td><td>dân</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/02_0000127.png' alt='02_0000127.png' loading='lazy'></td><td>02_0000127.png</td><td>cánh</td><td>cánh</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/02_0000128.png' alt='02_0000128.png' loading='lazy'></td><td>02_0000128.png</td><td>rnmvv</td><td>rnmvv</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/02_0000135.png' alt='02_0000135.png' loading='lazy'></td><td>02_0000135.png</td><td>lIlIlI</td><td>lIlIlI</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/02_0000137.png' alt='02_0000137.png' loading='lazy'></td><td>02_0000137.png</td><td>+99999</td><td>+99999</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/02_0000138.png' alt='02_0000138.png' loading='lazy'></td><td>02_0000138.png</td><td>nhận</td><td>nhận</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/02_0000140.png' alt='02_0000140.png' loading='lazy'></td><td>02_0000140.png</td><td>Đông</td><td>Đông</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/02_0000141.png' alt='02_0000141.png' loading='lazy'></td><td>02_0000141.png</td><td>+99999</td><td>+99999</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/02_0000144.png' alt='02_0000144.png' loading='lazy'></td><td>02_0000144.png</td><td>MySQL</td><td>MySQL</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/02_0000147.png' alt='02_0000147.png' loading='lazy'></td><td>02_0000147.png</td><td>S5s</td><td>S5s</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/02_0000150.png' alt='02_0000150.png' loading='lazy'></td><td>02_0000150.png</td><td>O0Oo</td><td>O0Oo</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/02_0000154.png' alt='02_0000154.png' loading='lazy'></td><td>02_0000154.png</td><td>sự</td><td>sự</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/02_0000155.png' alt='02_0000155.png' loading='lazy'></td><td>02_0000155.png</td><td>LV.99</td><td>LV.99</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/02_0000157.png' alt='02_0000157.png' loading='lazy'></td><td>02_0000157.png</td><td>tuổi</td><td>tuổi</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/02_0000159.png' alt='02_0000159.png' loading='lazy'></td><td>02_0000159.png</td><td>Tín</td><td>Tín</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/02_0000162.png' alt='02_0000162.png' loading='lazy'></td><td>02_0000162.png</td><td>lIlIlI</td><td>lIlIlI</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/02_0000163.png' alt='02_0000163.png' loading='lazy'></td><td>02_0000163.png</td><td>B8</td><td>B8</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/02_0000166.png' alt='02_0000166.png' loading='lazy'></td><td>02_0000166.png</td><td>rnmvv</td><td>rnmvv</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/02_0000167.png' alt='02_0000167.png' loading='lazy'></td><td>02_0000167.png</td><td>lIlIlI</td><td>lIlIlI</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/02_0000168.png' alt='02_0000168.png' loading='lazy'></td><td>02_0000168.png</td><td>OO00OO</td><td>OO00OO</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/02_0000170.png' alt='02_0000170.png' loading='lazy'></td><td>02_0000170.png</td><td>+99999</td><td>+99999</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/02_0000172.png' alt='02_0000172.png' loading='lazy'></td><td>02_0000172.png</td><td>mùa</td><td>mùa</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/02_0000173.png' alt='02_0000173.png' loading='lazy'></td><td>02_0000173.png</td><td>rộp</td><td>rộp</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/02_0000178.png' alt='02_0000178.png' loading='lazy'></td><td>02_0000178.png</td><td>OO00OO</td><td>OO00OO</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/02_0000179.png' alt='02_0000179.png' loading='lazy'></td><td>02_0000179.png</td><td>Republic</td><td>Republic</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/02_0000183.png' alt='02_0000183.png' loading='lazy'></td><td>02_0000183.png</td><td>LV.99</td><td>LV.99</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/02_0000188.png' alt='02_0000188.png' loading='lazy'></td><td>02_0000188.png</td><td>Il1I|!</td><td>Il1I|!</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/02_0000189.png' alt='02_0000189.png' loading='lazy'></td><td>02_0000189.png</td><td>hưng</td><td>hưng</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/02_0000195.png' alt='02_0000195.png' loading='lazy'></td><td>02_0000195.png</td><td>+99999</td><td>+99999</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/02_0000198.png' alt='02_0000198.png' loading='lazy'></td><td>02_0000198.png</td><td>+99999</td><td>+99999</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/02_0000199.png' alt='02_0000199.png' loading='lazy'></td><td>02_0000199.png</td><td>tôm</td><td>tôm</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/02_0000201.png' alt='02_0000201.png' loading='lazy'></td><td>02_0000201.png</td><td>100%</td><td>100%</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/02_0000202.png' alt='02_0000202.png' loading='lazy'></td><td>02_0000202.png</td><td>LV.99</td><td>LV.99</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/02_0000209.png' alt='02_0000209.png' loading='lazy'></td><td>02_0000209.png</td><td>văn</td><td>văn</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/02_0000212.png' alt='02_0000212.png' loading='lazy'></td><td>02_0000212.png</td><td>Il1I|!</td><td>Il1I|!</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/02_0000213.png' alt='02_0000213.png' loading='lazy'></td><td>02_0000213.png</td><td>B8</td><td>B8</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/02_0000215.png' alt='02_0000215.png' loading='lazy'></td><td>02_0000215.png</td><td>Il1I|!</td><td>Il1I|!</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/02_0000216.png' alt='02_0000216.png' loading='lazy'></td><td>02_0000216.png</td><td>rnmvv</td><td>rnmvv</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/02_0000217.png' alt='02_0000217.png' loading='lazy'></td><td>02_0000217.png</td><td>B8</td><td>B8</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/02_0000220.png' alt='02_0000220.png' loading='lazy'></td><td>02_0000220.png</td><td>=</td><td>=</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/02_0000221.png' alt='02_0000221.png' loading='lazy'></td><td>02_0000221.png</td><td>https://example.com/api/v2/users?page=1</td><td>https://example.com/api/v2/users?page=1</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/02_0000230.png' alt='02_0000230.png' loading='lazy'></td><td>02_0000230.png</td><td>Columbia</td><td>Columbia</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/02_0000231.png' alt='02_0000231.png' loading='lazy'></td><td>02_0000231.png</td><td>Giống</td><td>Giống</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/02_0000232.png' alt='02_0000232.png' loading='lazy'></td><td>02_0000232.png</td><td>O0Oo</td><td>O0Oo</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/02_0000235.png' alt='02_0000235.png' loading='lazy'></td><td>02_0000235.png</td><td>thể</td><td>thể</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/02_0000237.png' alt='02_0000237.png' loading='lazy'></td><td>02_0000237.png</td><td>Il1I|!</td><td>Il1I|!</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/02_0000238.png' alt='02_0000238.png' loading='lazy'></td><td>02_0000238.png</td><td>B8</td><td>B8</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/02_0000244.png' alt='02_0000244.png' loading='lazy'></td><td>02_0000244.png</td><td>+99999</td><td>+99999</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/02_0000246.png' alt='02_0000246.png' loading='lazy'></td><td>02_0000246.png</td><td>O0Oo</td><td>O0Oo</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/02_0000249.png' alt='02_0000249.png' loading='lazy'></td><td>02_0000249.png</td><td>và</td><td>và</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/03_0000000.png' alt='03_0000000.png' loading='lazy'></td><td>03_0000000.png</td><td>$99.99</td><td>$99.99</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/03_0000002.png' alt='03_0000002.png' loading='lazy'></td><td>03_0000002.png</td><td>lIlIlI</td><td>lIlIlI</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/03_0000004.png' alt='03_0000004.png' loading='lazy'></td><td>03_0000004.png</td><td>rnmvv</td><td>rnmvv</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/03_0000009.png' alt='03_0000009.png' loading='lazy'></td><td>03_0000009.png</td><td>100%</td><td>100%</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/03_0000010.png' alt='03_0000010.png' loading='lazy'></td><td>03_0000010.png</td><td>lIlIlI</td><td>lIlIlI</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/03_0000011.png' alt='03_0000011.png' loading='lazy'></td><td>03_0000011.png</td><td>O0Oo</td><td>O0Oo</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/03_0000013.png' alt='03_0000013.png' loading='lazy'></td><td>03_0000013.png</td><td>giúp</td><td>giúp</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/03_0000014.png' alt='03_0000014.png' loading='lazy'></td><td>03_0000014.png</td><td>Il1I|!</td><td>Il1I|!</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/03_0000020.png' alt='03_0000020.png' loading='lazy'></td><td>03_0000020.png</td><td>gq9</td><td>gq9</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/03_0000021.png' alt='03_0000021.png' loading='lazy'></td><td>03_0000021.png</td><td>100%</td><td>100%</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/03_0000022.png' alt='03_0000022.png' loading='lazy'></td><td>03_0000022.png</td><td>HP:100</td><td>HP:100</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/03_0000030.png' alt='03_0000030.png' loading='lazy'></td><td>03_0000030.png</td><td>Con</td><td>Con</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/03_0000031.png' alt='03_0000031.png' loading='lazy'></td><td>03_0000031.png</td><td>Kinh</td><td>Kinh</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/03_0000032.png' alt='03_0000032.png' loading='lazy'></td><td>03_0000032.png</td><td>O0Oo</td><td>O0Oo</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/03_0000034.png' alt='03_0000034.png' loading='lazy'></td><td>03_0000034.png</td><td>the</td><td>the</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/03_0000035.png' alt='03_0000035.png' loading='lazy'></td><td>03_0000035.png</td><td>perchloric</td><td>perchloric</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/03_0000036.png' alt='03_0000036.png' loading='lazy'></td><td>03_0000036.png</td><td>09/06/2024</td><td>09/06/2024</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/03_0000041.png' alt='03_0000041.png' loading='lazy'></td><td>03_0000041.png</td><td>100%</td><td>100%</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/03_0000043.png' alt='03_0000043.png' loading='lazy'></td><td>03_0000043.png</td><td>S5s</td><td>S5s</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/03_0000044.png' alt='03_0000044.png' loading='lazy'></td><td>03_0000044.png</td><td>HP:100</td><td>HP:100</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/03_0000045.png' alt='03_0000045.png' loading='lazy'></td><td>03_0000045.png</td><td>Il1I|!</td><td>Il1I|!</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/03_0000047.png' alt='03_0000047.png' loading='lazy'></td><td>03_0000047.png</td><td>trình</td><td>trình</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/03_0000048.png' alt='03_0000048.png' loading='lazy'></td><td>03_0000048.png</td><td>O0Oo</td><td>O0Oo</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/03_0000049.png' alt='03_0000049.png' loading='lazy'></td><td>03_0000049.png</td><td>Mỹ</td><td>Mỹ</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/03_0000052.png' alt='03_0000052.png' loading='lazy'></td><td>03_0000052.png</td><td>OO00OO</td><td>OO00OO</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/03_0000054.png' alt='03_0000054.png' loading='lazy'></td><td>03_0000054.png</td><td>mềm</td><td>mềm</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/03_0000061.png' alt='03_0000061.png' loading='lazy'></td><td>03_0000061.png</td><td>Arabs</td><td>Arabs</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/03_0000064.png' alt='03_0000064.png' loading='lazy'></td><td>03_0000064.png</td><td>B8</td><td>B8</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/03_0000065.png' alt='03_0000065.png' loading='lazy'></td><td>03_0000065.png</td><td>The</td><td>The</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/03_0000066.png' alt='03_0000066.png' loading='lazy'></td><td>03_0000066.png</td><td>2024-06-09</td><td>2024-06-09</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/03_0000077.png' alt='03_0000077.png' loading='lazy'></td><td>03_0000077.png</td><td>GOC1Cq</td><td>GOC1Cq</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/03_0000083.png' alt='03_0000083.png' loading='lazy'></td><td>03_0000083.png</td><td>Il1I|!</td><td>Il1I|!</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/03_0000088.png' alt='03_0000088.png' loading='lazy'></td><td>03_0000088.png</td><td>+99999</td><td>+99999</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/03_0000091.png' alt='03_0000091.png' loading='lazy'></td><td>03_0000091.png</td><td>LV.99</td><td>LV.99</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/03_0000098.png' alt='03_0000098.png' loading='lazy'></td><td>03_0000098.png</td><td>lIlIlI</td><td>lIlIlI</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/03_0000099.png' alt='03_0000099.png' loading='lazy'></td><td>03_0000099.png</td><td>O0Oo</td><td>O0Oo</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/03_0000101.png' alt='03_0000101.png' loading='lazy'></td><td>03_0000101.png</td><td>gq9</td><td>gq9</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/03_0000102.png' alt='03_0000102.png' loading='lazy'></td><td>03_0000102.png</td><td>đảng</td><td>đảng</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/03_0000103.png' alt='03_0000103.png' loading='lazy'></td><td>03_0000103.png</td><td>RMuss</td><td>RMuss</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/03_0000106.png' alt='03_0000106.png' loading='lazy'></td><td>03_0000106.png</td><td>sản</td><td>sản</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/03_0000107.png' alt='03_0000107.png' loading='lazy'></td><td>03_0000107.png</td><td>B8</td><td>B8</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/03_0000111.png' alt='03_0000111.png' loading='lazy'></td><td>03_0000111.png</td><td>LV.99</td><td>LV.99</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/03_0000112.png' alt='03_0000112.png' loading='lazy'></td><td>03_0000112.png</td><td>chợi</td><td>chợi</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/03_0000113.png' alt='03_0000113.png' loading='lazy'></td><td>03_0000113.png</td><td>HP:100</td><td>HP:100</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/03_0000114.png' alt='03_0000114.png' loading='lazy'></td><td>03_0000114.png</td><td>lớn</td><td>lớn</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/03_0000117.png' alt='03_0000117.png' loading='lazy'></td><td>03_0000117.png</td><td>là</td><td>là</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/03_0000120.png' alt='03_0000120.png' loading='lazy'></td><td>03_0000120.png</td><td>LV.99</td><td>LV.99</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/03_0000121.png' alt='03_0000121.png' loading='lazy'></td><td>03_0000121.png</td><td>O0Oo</td><td>O0Oo</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/03_0000127.png' alt='03_0000127.png' loading='lazy'></td><td>03_0000127.png</td><td>rnmvv</td><td>rnmvv</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/03_0000128.png' alt='03_0000128.png' loading='lazy'></td><td>03_0000128.png</td><td>added</td><td>added</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/03_0000136.png' alt='03_0000136.png' loading='lazy'></td><td>03_0000136.png</td><td>loài</td><td>loài</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/03_0000142.png' alt='03_0000142.png' loading='lazy'></td><td>03_0000142.png</td><td>32</td><td>32</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/03_0000152.png' alt='03_0000152.png' loading='lazy'></td><td>03_0000152.png</td><td>(đường</td><td>(đường</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/03_0000153.png' alt='03_0000153.png' loading='lazy'></td><td>03_0000153.png</td><td>Il1I|!</td><td>Il1I|!</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/03_0000162.png' alt='03_0000162.png' loading='lazy'></td><td>03_0000162.png</td><td>rnmvv</td><td>rnmvv</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/03_0000163.png' alt='03_0000163.png' loading='lazy'></td><td>03_0000163.png</td><td>B8</td><td>B8</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/03_0000165.png' alt='03_0000165.png' loading='lazy'></td><td>03_0000165.png</td><td>bad</td><td>bad</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/03_0000166.png' alt='03_0000166.png' loading='lazy'></td><td>03_0000166.png</td><td>+99999</td><td>+99999</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/03_0000169.png' alt='03_0000169.png' loading='lazy'></td><td>03_0000169.png</td><td>trong</td><td>trong</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/03_0000172.png' alt='03_0000172.png' loading='lazy'></td><td>03_0000172.png</td><td>hiện</td><td>hiện</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/03_0000175.png' alt='03_0000175.png' loading='lazy'></td><td>03_0000175.png</td><td>Il1I|!</td><td>Il1I|!</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/03_0000177.png' alt='03_0000177.png' loading='lazy'></td><td>03_0000177.png</td><td>T+2</td><td>T+2</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/03_0000181.png' alt='03_0000181.png' loading='lazy'></td><td>03_0000181.png</td><td>OO00OO</td><td>OO00OO</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/03_0000182.png' alt='03_0000182.png' loading='lazy'></td><td>03_0000182.png</td><td>gấu</td><td>gấu</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/03_0000184.png' alt='03_0000184.png' loading='lazy'></td><td>03_0000184.png</td><td>OO00OO</td><td>OO00OO</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/03_0000186.png' alt='03_0000186.png' loading='lazy'></td><td>03_0000186.png</td><td>Maria</td><td>Maria</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/03_0000189.png' alt='03_0000189.png' loading='lazy'></td><td>03_0000189.png</td><td>S5s</td><td>S5s</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/03_0000192.png' alt='03_0000192.png' loading='lazy'></td><td>03_0000192.png</td><td>sách</td><td>sách</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/03_0000193.png' alt='03_0000193.png' loading='lazy'></td><td>03_0000193.png</td><td>OO00OO</td><td>OO00OO</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/03_0000195.png' alt='03_0000195.png' loading='lazy'></td><td>03_0000195.png</td><td>rnmvv</td><td>rnmvv</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/03_0000198.png' alt='03_0000198.png' loading='lazy'></td><td>03_0000198.png</td><td>Behavior</td><td>Behavior</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/03_0000200.png' alt='03_0000200.png' loading='lazy'></td><td>03_0000200.png</td><td>phố</td><td>phố</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/03_0000202.png' alt='03_0000202.png' loading='lazy'></td><td>03_0000202.png</td><td>OO00OO</td><td>OO00OO</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/03_0000203.png' alt='03_0000203.png' loading='lazy'></td><td>03_0000203.png</td><td>núi</td><td>núi</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/03_0000204.png' alt='03_0000204.png' loading='lazy'></td><td>03_0000204.png</td><td>tế</td><td>tế</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/03_0000206.png' alt='03_0000206.png' loading='lazy'></td><td>03_0000206.png</td><td>võ</td><td>võ</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/03_0000207.png' alt='03_0000207.png' loading='lazy'></td><td>03_0000207.png</td><td>gq9</td><td>gq9</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/03_0000208.png' alt='03_0000208.png' loading='lazy'></td><td>03_0000208.png</td><td>rnmvv</td><td>rnmvv</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/03_0000209.png' alt='03_0000209.png' loading='lazy'></td><td>03_0000209.png</td><td>Auctorita</td><td>Auctorita</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/03_0000213.png' alt='03_0000213.png' loading='lazy'></td><td>03_0000213.png</td><td>thức</td><td>thức</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/03_0000215.png' alt='03_0000215.png' loading='lazy'></td><td>03_0000215.png</td><td>https://example.com/api/v2/users?page=1</td><td>https://example.com/api/v2/users?page=1</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/03_0000216.png' alt='03_0000216.png' loading='lazy'></td><td>03_0000216.png</td><td>rnmvv</td><td>rnmvv</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/03_0000229.png' alt='03_0000229.png' loading='lazy'></td><td>03_0000229.png</td><td>có</td><td>có</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/03_0000231.png' alt='03_0000231.png' loading='lazy'></td><td>03_0000231.png</td><td>Sa</td><td>Sa</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/03_0000232.png' alt='03_0000232.png' loading='lazy'></td><td>03_0000232.png</td><td>+99999</td><td>+99999</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/03_0000237.png' alt='03_0000237.png' loading='lazy'></td><td>03_0000237.png</td><td>+99999</td><td>+99999</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/03_0000238.png' alt='03_0000238.png' loading='lazy'></td><td>03_0000238.png</td><td>OO00OO</td><td>OO00OO</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/03_0000240.png' alt='03_0000240.png' loading='lazy'></td><td>03_0000240.png</td><td>)</td><td>)</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/03_0000241.png' alt='03_0000241.png' loading='lazy'></td><td>03_0000241.png</td><td>O0Oo</td><td>O0Oo</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/03_0000243.png' alt='03_0000243.png' loading='lazy'></td><td>03_0000243.png</td><td>chí</td><td>chí</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/03_0000246.png' alt='03_0000246.png' loading='lazy'></td><td>03_0000246.png</td><td>HP:100</td><td>HP:100</td><td>0.0</td></tr>
+<tr><td><img src='../data/synthetic/test/03_0000248.png' alt='03_0000248.png' loading='lazy'></td><td>03_0000248.png</td><td>1985</td><td>1985</td><td>0.0</td></tr>
+</table></body></html>

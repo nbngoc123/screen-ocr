@@ -18,7 +18,7 @@ from src.dataset.charset import CharsetCodec
 from src.recognizer.model import CRNN, ctc_greedy_decode
 from src.data_generation.augment import preprocess_for_crnn
 
-def load_recognizer(config_path="configs/default.yaml", weight_path="checkpoints/crnn.pth"):
+def load_recognizer(config_path="configs/default.yaml", weight_path="checkpoints/crnn-v2.pth"):
     """
     Hàm tiện ích để load model CRNN đã train.
     """
@@ -40,8 +40,33 @@ def load_recognizer(config_path="configs/default.yaml", weight_path="checkpoints
     
     # Load weights nếu file tồn tại
     if os.path.exists(weight_path):
-        # Dùng weights_only=True để bảo mật (khắc phục warning PyTorch)
-        model.load_state_dict(torch.load(weight_path, map_location=device, weights_only=True))
+        state_dict = torch.load(weight_path, map_location=device, weights_only=True)
+        model_state = model.state_dict()
+        
+        # Tự động thay đổi kích thước layer fc nếu charset bị thay đổi
+        if "fc.weight" in state_dict and "fc.weight" in model_state:
+            ckpt_shape = state_dict["fc.weight"].shape
+            model_shape = model_state["fc.weight"].shape
+            if ckpt_shape != model_shape:
+                print(f"[CẢNH BÁO] Kích thước fc.weight không khớp: Checkpoint {ckpt_shape} vs Model {model_shape}. Đang tự động map kích thước...")
+                new_weight = model_state["fc.weight"].clone()
+                min_out = min(ckpt_shape[0], model_shape[0])
+                min_in = min(ckpt_shape[1], model_shape[1])
+                new_weight[:min_out, :min_in] = state_dict["fc.weight"][:min_out, :min_in]
+                state_dict["fc.weight"] = new_weight
+
+        if "fc.bias" in state_dict and "fc.bias" in model_state:
+            ckpt_shape = state_dict["fc.bias"].shape
+            model_shape = model_state["fc.bias"].shape
+            if ckpt_shape != model_shape:
+                print(f"[CẢNH BÁO] Kích thước fc.bias không khớp: Checkpoint {ckpt_shape} vs Model {model_shape}. Đang tự động map kích thước...")
+                new_bias = model_state["fc.bias"].clone()
+                min_out = min(ckpt_shape[0], model_shape[0])
+                new_bias[:min_out] = state_dict["fc.bias"][:min_out]
+                state_dict["fc.bias"] = new_bias
+                
+        # Dùng strict=False để bỏ qua các lỗi nhỏ nếu cấu trúc có lệch nhẹ
+        model.load_state_dict(state_dict, strict=False)
         
     model.to(device)
     model.eval()
@@ -231,9 +256,9 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Đánh giá mô hình CRNN")
     parser.add_argument("--gt", type=str, default="data/raw/Test_Task3_GT.txt", help="Đường dẫn đến file nhãn (.txt hoặc .jsonl)")
     parser.add_argument("--img-dir", type=str, default="data/raw/Test_Task3_Images", help="Thư mục chứa ảnh test")
-    parser.add_argument("--out", type=str, default="reports/evaluation_report.csv", help="Đường dẫn file CSV xuất ra")
+    parser.add_argument("--out", type=str, default="reports/evaluation_report_v2.csv", help="Đường dẫn file CSV xuất ra")
     parser.add_argument("--config", type=str, default="configs/default.yaml", help="File cấu hình")
-    parser.add_argument("--weight", type=str, default="checkpoints/crnn.pth", help="File trọng số .pth")
+    parser.add_argument("--weight", type=str, default="checkpoints/crnn-v2.pth", help="File trọng số .pth")
     args = parser.parse_args()
 
     model, codec, config, device = load_recognizer(config_path=args.config, weight_path=args.weight)

@@ -95,7 +95,6 @@ Thumbs.db
 checkpoints/
 test_labels.txt
 @AutomationLog.txt
-d a t a / r a w /  
- d a t a / m o d e l s /  
- # * . p n g  
- 
+data/raw/
+data/models/
+data/synthetic/test/

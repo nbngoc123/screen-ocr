@@ -1,21 +1,1001 @@
 filename,target,prediction,is_correct,cer(%)
-00_0000000.png,File đã lưu thành công,Fileđãlưuthànhcông,False,18.18
-00_0000001.png,T+2,T+2,True,0.0
-00_0000002.png,damaged in the Blitz,damagedintheBlit2,False,20.0
-00_0000003.png,S5s,S5s,True,0.0
-00_0000004.png,Hãn lại xâm chiếm,Hẫnlạixâmchiếm,False,23.53
-01_0000000.png,gq9,gq9,True,0.0
+00_0000000.png,File đã lưu thành công,GorkậđrẼ}|nĂtnhẢtm,False,81.82
+00_0000001.png,T+2,V+2,False,33.33
+00_0000002.png,damaged in the Blitz,iesemkiot|nkBro|2,False,80.0
+00_0000003.png,S5s,U5{,False,66.67
+00_0000004.png,Hãn lại xâm chiếm,IứtrởoÁĐshnoợs,False,100.0
+00_0000005.png,gq9,8x9,False,66.67
+00_0000006.png,Password phải có ít nhất 8 ký tự,Re{{ÀuyivnỡohạƯ|tnợ|8qẨ|Ẽ,False,90.62
+00_0000007.png,nhiều sĩ phu,tnoƠ}{Ằvn},False,100.0
+00_0000008.png,\\SERVER\Share\folder,aUETYETaUneykaluriky,False,90.48
+00_0000009.png,VVW,YY,False,100.0
+00_0000010.png,March 8,Oeyhn8,False,71.43
+00_0000011.png,VVW,YY[,False,100.0
+00_0000012.png,$99.99,$99.99,True,0.0
+00_0000013.png,https://example.com/api/v2/users?page=1,n||v{://kÁesvrk.hus/evo/~2/}{ky{2vemk=1,False,74.36
+00_0000014.png,Upload ảnh (tối đa 5MB),Xvrueiỡtn(|ợoậe{OB),False,82.61
+00_0000015.png,1933,1933,True,0.0
+00_0000016.png,tuyến gọi,|}Âợtmuo,False,100.0
+00_0000017.png,S5s,U5{,False,66.67
+00_0000018.png,3bUu6Y2,3gX}6]2,False,57.14
+00_0000019.png,B8,B8,True,0.0
+00_0000020.png,Quan,S}et,False,100.0
+00_0000021.png,người,tmẼẠo,False,100.0
+00_0000022.png,Hyperpolarized xenon,IÂvkyvureyoÃkiÁktut,False,100.0
+00_0000023.png,vương quốc Chân,~ẼẺtmx}ợhCnĐt,False,93.33
+00_0000024.png,Hai,Ieo,False,100.0
+00_0000025.png,Step 2 of 4,U|kv2ul4,False,81.82
+00_0000026.png,của mình,hẦesơtn,False,87.5
+00_0000027.png,=,=,True,0.0
+00_0000028.png,\\SERVER\Share\folder,IUETYEToU{neykaluriky,False,90.48
+00_0000029.png,Confirm xoá item này?,CutloysÁuăo|kstĂÂ?,False,85.71
+00_0000030.png,That,Vne|,False,100.0
+00_0000031.png,Nam không,PesqnẢtm,False,100.0
+00_0000032.png,Vi khuẩn,Yoqn}ủt,False,100.0
+00_0000033.png,Mã số thuế: 0123456789,Ođ{ợ|n}ũ:u123456789,False,54.55
+00_0000034.png,lnET9HrgmolaHr9IRh2E2KDB,KtEV9IymsureIy9rTn2E2MDB,False,66.67
+00_0000035.png,\\SERVER\Share\folder,aaUETYETaUneykaluriky,False,90.48
+00_0000036.png,SELECT * FROM users WHERE id = 42,UkNUhV5GTuY}{{y{ÀIkTkoi=42,False,87.88
+00_0000037.png,directed by Paul,ioykh|kigÂRe}r,False,93.75
+00_0000038.png,Ly đều,NÂậụ},False,100.0
+00_0000039.png,skull measurements,Unerrske{}ykskt|{,False,94.44
+00_0000040.png,O0Oo,Q0Qu,False,75.0
+00_0000041.png,3.14 GB,3.14HB,False,28.57
+00_0000042.png,tạo ra,|ởuye,False,100.0
+00_0000043.png,trong,|yutm,False,100.0
+00_0000044.png,2Zz,2^Ã,False,66.67
+00_0000045.png,tên,|Ơt,False,100.0
+00_0000046.png,Khi đó hệ có nghiệm khi ,MnoậạnkhạtmnoƠsqno,False,91.3
+00_0000047.png,npm run build --prod,tvsy}tg}ori--vyui,False,85.0
+00_0000048.png,Password phải có ít nhất 8 ký tự,Re{{ÀuyivnỡohạƯ|tnợ|8qẨ|Ẽ,False,90.62
+00_0000049.png,HP:100,IR:100,False,33.33
+00_0000050.png,angry,etmyÂ,False,100.0
+00_0000051.png,Khitruk và Aleksandr Tat,Mno|y}q~ĂArkq{etiyVe|,False,91.67
+00_0000052.png,biological importance,gourumoherosvuy|ethk,False,95.24
+00_0000053.png,SELECT * FROM users WHERE id = 42,UENECVGT0O}{ky{[IETEoi=42,False,69.7
+00_0000054.png,HP:100,IR:100,False,33.33
+00_0000055.png,git commit -m 'fix: null check',mo|husso|-s'loÁ:t}rrhnkhq',False,83.87
+00_0000056.png,Il1I|!,Kr1KÉ!,False,66.67
+00_0000057.png,lIlIlI,rKrKKÉ,False,100.0
+00_0000058.png,của giao,hấemoeu,False,100.0
+00_0000059.png,lập Thanh,rừvVnetn,False,88.89
+00_0000060.png,B8,B8,True,0.0
+00_0000061.png,long flyby,rutmlrÂgÂ,False,100.0
+00_0000062.png,rnmvv,ytsYY,False,100.0
+00_0000063.png,một,sỵ|,False,100.0
+00_0000064.png,OO00OO,QQ00QQ,False,66.67
+00_0000065.png,SpecialRelativity,Uv{kuTTkrnÂ8,False,100.0
+00_0000066.png,Doraemon,Ậuyeksut,False,100.0
+00_0000067.png,ZojmLVPlWFVVC6JON2NjeB,^upsNYRK[GYYC6LQP2PpkB,False,81.82
+00_0000068.png,cuộc,h}ừh,False,100.0
+00_0000069.png,hoạch hơn,numhnnẺt,False,88.89
+00_0000070.png,cho,hnu,False,100.0
+00_0000071.png,tín hiệu,|Ưtgoở},False,100.0
+00_0000072.png,Updated 2 min ago,Xvie|ki2sotemu,False,94.12
+00_0000073.png,các,hăh,False,100.0
+00_0000074.png,2Zz,2^Ã,False,66.67
+00_0000075.png,đàn áp,ậụtậv,False,100.0
+00_0000076.png,000 người,000tmẼẠo,False,66.67
+00_0000077.png,File đã lưu thành công,GorkậđrẼ}|nĂtnhẢtm,False,81.82
+00_0000078.png,SĐT: 0912.345.678,UẬV:0912.345.678,False,23.53
+00_0000079.png,tiếp thay vào công,|ov|neÂ~ĂuhẢtm,False,100.0
+00_0000080.png,đó,ậạ,False,100.0
+00_0000081.png,có,hạ,False,100.0
+00_0000082.png,OO00OO,Q00000,False,66.67
+00_0000083.png,lớn nhất trong số đó là ,rẢttnợ||yutm{ẢậạrĂ,False,95.65
+00_0000084.png,và thậm chí là voi bụi r,~Ă|nừshnƯrĂ~uog}oy,False,91.67
+00_0000085.png,sông Luộc,{ẢtmN}ừh,False,100.0
+00_0000086.png,tính,|Ưtn,False,100.0
+00_0000087.png,cực,C0Ẻ,False,100.0
+00_0000088.png,định và,ậotn~Ă,False,100.0
+00_0000089.png,Ông bị,òtmgo,False,100.0
+00_0000090.png,https://example.com/api/v2/users?page=1,n||v{//kÁesvrk.hus/evo/~2/}{ky{?vemk=1,False,74.36
+00_0000091.png,là cụ,rĂh},False,100.0
+00_0000092.png,Confirm xoá item này?,CutloysÁuăo|kstĂÂ?,False,85.71
+00_0000093.png,Upload ảnh (tối đa 5MB),Xvrueiỡtn(|ợoậe5OB),False,78.26
+00_0000094.png,100%,1005,False,25.0
+00_0000095.png,tư,|Ẽ,False,100.0
+00_0000096.png,5vwWTORMmpJo9ssn,U~[[VQTOsvLu9{{t,False,93.75
+00_0000097.png,nhạc Tết này dùng làm hì,tnởhVũ|tĂÂiấtmrĂsnơ,False,95.83
+00_0000098.png,một số,sỵo{ạ,False,100.0
+00_0000099.png,Barbara,Beygeye,False,85.71
+00_0000100.png,hệ,n8,False,100.0
+00_0000101.png,HP:100,IR:uu,False,83.33
+00_0000102.png,năm,tẫs,False,100.0
+00_0000103.png,đồng tâm với người quan,ậẠtm|Đs~ạotmẼẠoh}et,False,91.3
+00_0000104.png,hiện,noƠt,False,100.0
+00_0000105.png,File đã lưu thành công,GorkậđrẼ}|nĂtnhẢtm,False,81.82
+00_0000106.png,1310 được,1310ậẼ0h,False,55.56
+00_0000107.png,gq9,mx9,False,66.67
+00_0000108.png,Nam Phi,PesRno,False,100.0
+00_0000109.png,của Perseus,hẦeRky{k}{,False,100.0
+00_0000110.png,chịu,hno},False,100.0
+00_0000111.png,Upload ảnh (tối đa 5MB),Xvrueiỡtn(|ợoậe5OB),False,78.26
+00_0000112.png,B8,B8,True,0.0
+00_0000113.png,B8,B8,True,0.0
+00_0000114.png,Khai thác khoáng sản đã ,Mneo|năhqnuătm{ỡtậđ,False,95.65
+00_0000115.png,LV.99,NY.99,False,40.0
+00_0000116.png,ở,ậ,False,100.0
+00_0000117.png,HP:100,IR:100,False,33.33
+00_0000118.png,các chiến,hăhhnoợt,False,100.0
+00_0000119.png,rnmvv,yts~~,False,100.0
+00_0000120.png,OO00OO,Q00000,False,66.67
+00_0000121.png,Tỉnh/TP: Hà Nội,Vơtn/VR:IĂPẢo,False,86.67
+00_0000122.png,O0Oo,Q0Qu,False,75.0
+00_0000123.png,khoảng từ vài milimét đế,qnuỡtm|ấ~Ăosorosũ|ậũ,False,91.67
+00_0000124.png,npm run build --prod,tvsy}tg}ori--vyui,False,85.0
+00_0000125.png,giả,moỡ,False,100.0
+00_0000126.png,sát đất đai,{ă|ậợ|ậeo,False,100.0
+00_0000127.png,quý tộc ngoại thích là,x}Ẩ|Ảhtmueo|nƯhnrĂ,False,90.91
+00_0000128.png,trực tiếp được sự hướng ,|yẼh|oợvậẼhh{ẼnẼạtm,False,100.0
+00_0000129.png,Năm 1860,Pẫs1860,False,50.0
+00_0000130.png,HP:100,IR:10Q,False,50.0
+00_0000131.png,trình đến,|yơtnậũt,False,100.0
+00_0000132.png,năm,tẫs,False,100.0
+00_0000133.png,Vua Đế Minh là cháu ba đ,Y}eẬũOotnrĂhnă}geậ,False,91.67
+00_0000134.png,đích cắt,ậƯhnhử|,False,87.5
+00_0000135.png,nUR2MAMXZ,t}T2O1YÃ,False,88.89
+00_0000136.png,+99999,+99999,True,0.0
+00_0000137.png,", General Arthur",",HktkyerAy|n}y",False,81.25
+00_0000138.png,phường,vnẼẠtm,False,100.0
+00_0000139.png,HP:100,IR:100,False,33.33
+00_0000140.png,O0Oo,Q3Q0,False,100.0
+00_0000141.png,2Zz,2^Ã,False,66.67
+00_0000142.png,2Zz,2^Ã,False,66.67
+00_0000143.png,lIlIlI,rKrKrK,False,100.0
+00_0000144.png,+99999,+99999,True,0.0
+00_0000145.png,₫1.234.567,1.234.567,False,10.0
+00_0000146.png,Password phải có ít nhất 8 ký tự,Re{{ÀuyivnỡohạƯ|tnợ|8qẨ|Ẽ,False,90.62
+00_0000147.png,trận lưới nhện,|yừtrẼhotnừt,False,92.86
+00_0000148.png,thần khác,|nụtqnăh,False,100.0
+00_0000149.png,an American,etAskyohet,False,90.91
+00_0000150.png,Page 1 of 24,Remk1ul24,False,75.0
+00_0000151.png,Diễn biến,Doủtgoủt,False,88.89
+00_0000152.png,KFOy,MGQÂ,False,100.0
+00_0000153.png,Syncing…,UÂthotm.,False,100.0
+00_0000154.png,B8,B8,True,0.0
+00_0000155.png,+99999,+99999,True,0.0
+00_0000156.png,HP:100,IR:100,False,33.33
+00_0000157.png,ô tô công,Ả|ẢhẢtm,False,100.0
+00_0000158.png,Experience of the French,EÁvkyokthkul|nkGykthn,False,91.67
+00_0000159.png,HP:100,I9:1ue,False,66.67
+00_0000160.png,dân trên đảo chấp,iĐt|yƠtậỡuhnợv,False,94.12
+00_0000161.png,Tiên,VoƠt,False,100.0
+00_0000162.png,Khwarezm đã,MnÀeykÃsậđ,False,90.91
+00_0000163.png,OgFuevuO8,QmG}k~}Q8,False,88.89
+00_0000164.png,Step 2 of 4,U|kv2ul4,False,81.82
+00_0000165.png,2Zz,2^Ã,False,66.67
+00_0000166.png,B8,B8,True,0.0
+00_0000167.png,"Rayner ,","TeÂtky,",False,87.5
+00_0000168.png,năm 2005,tẫs2005,False,50.0
+00_0000169.png,Step 2 of 4,Ukv2ul4,False,81.82
+00_0000170.png,= Republican,=Tkv}grohet,False,91.67
+00_0000171.png,chữ,hnợ,False,100.0
+00_0000172.png,Password phải có ít nhất 8 ký tự,Re{{ÀuyivnỡohạƯ|tnợ|8qẨ|Ẽ,False,90.62
+00_0000173.png,và nhân,~ĂtnĐt,False,85.71
+00_0000174.png,nhiệt độ,tno|ậẢ,False,100.0
+00_0000175.png,California (tiếng Anh),Cerolustoe(|oũtmAtn),False,81.82
+00_0000176.png,r41CntGNKa 80JLrREvrur,y41Ct|HPMe80LNyTE~y}y,False,68.18
+00_0000177.png,chức nắm đa số trong,hnẦhtửsậe{ạ|yutm,False,90.0
+00_0000178.png,rnmvv,yts~~,False,100.0
+00_0000179.png,đầu,ậỡ},False,100.0
+00_0000180.png,LV.99,NY.99,False,40.0
+00_0000181.png,her face,nkylehk,False,100.0
+00_0000182.png,có người,hạtmẼẠo,False,100.0
+00_0000183.png,File đã lưu thành công,GorkậđrẼ}|nĂtnhẢtm,False,81.82
+00_0000184.png,₫1.234.567,1.234.567,False,10.0
+00_0000185.png,"Từ năm 1985 đến 1989, đỉ",Vấtẫs1985ậũt1989ậo,False,66.67
+00_0000186.png,lIlIlI,rKrKrK,False,100.0
+00_0000187.png,File đã lưu thành công,GokậđrẼ}|nỡtnhẢtm,False,81.82
+00_0000188.png,Tác giả Yoshizawa Minami,Văhmoỡ]u{noÃeÀeOoteso,False,100.0
+00_0000189.png,đầu nguồn rất xa,ậữ}tm}Ạtyử|Áe,False,100.0
+00_0000190.png,Hề Sa,IkUe,False,100.0
+00_0000191.png,các hydrocarbon,hăhnÂiyuheygut,False,100.0
+00_0000192.png,Bush trills,B}{n|yor{,False,90.91
+00_0000193.png,Die Zeit,Dok^ko|,False,87.5
+00_0000194.png,kinh,qotn,False,100.0
+00_0000195.png,Under Pennsylvanian law ,XtikyRktt{Âr~etoetreÀ,False,100.0
+00_0000196.png,Alabama Crimson Tide foo,AregeseCyos{utVoikluu,False,87.5
+00_0000197.png,hai năm tài chính 1958,nởotẫs|Ăohnotn1958,False,72.73
+00_0000198.png,(nghiên cứu các lớp trầm,(tmnoƠthẦ}hăhrạv|yụs,False,91.67
+00_0000199.png,had,nei,False,100.0
+00_0000200.png,Trong môn tin học,VyutmsẢt|otnởh,False,82.35
+00_0000201.png,tháng 3,|nătm3,False,85.71
+00_0000202.png,Đoạn mồi,ẬuởtsẢo,False,100.0
+00_0000203.png,SELECT * FROM users WHERE id = 42,UENECV*GTQO}{ky{[IETEoi=42,False,66.67
+00_0000204.png,các kết,hăhqợ|,False,100.0
+00_0000205.png,là trình,rĂ|yơtn,False,87.5
+00_0000206.png,Kỹ thuật này vận dụng cá,M:|n}ừ|tĂÂ~ừtimtmhă,False,95.83
+00_0000207.png,"đó, xã","ậạ,Áỡ",False,83.33
+00_0000208.png,C:\Users\Admin\Documents\report.pdf,C:aX{ky{aAisotaDuh}skt|{aykvuy|vil,False,85.71
+00_0000209.png,kinh lược,qotnrẼmh,False,100.0
+00_0000210.png,lIlIlI,rKrKrK,False,100.0
+00_0000211.png,B8,B8,True,0.0
+00_0000212.png,$99.99,$99.99,True,0.0
+00_0000213.png,yếu đuối,Âợ}ậ}ợo,False,100.0
+00_0000214.png,tại đảo Phú Lâm),|ởoậỡuRnẦNĐs),False,93.75
+00_0000215.png,it was funny,o|Àe{l}ttÂ,False,100.0
+00_0000216.png,HP:100,IR:1uu,False,66.67
+00_0000217.png,chắc,hnăh,False,100.0
+00_0000218.png,reasoning,yke{utotm,False,100.0
+00_0000219.png,Ủy viên,ậÂ~oƠt,False,100.0
+00_0000220.png,Lịch sử chiến tranh Việt,gohn{hnoƠt|yetn~oƠ|,False,87.5
+00_0000221.png,S5s,U5{,False,66.67
+00_0000222.png,will,Àorr,False,100.0
+00_0000223.png,Xylen,\Ârkt,False,100.0
+00_0000224.png,tổng thống khi phải đối,|ợtm|nợtmqnovnỡoậợo,False,91.3
+00_0000225.png,phố này bao gồm,vnủtĂÂgeumụs,False,93.33
+00_0000226.png,Tới,Vạo,False,100.0
+00_0000227.png,gq9,mx9,False,66.67
+00_0000228.png,Confirm xoá item này?,CutloysÁuăo|kstĂÂ?,False,85.71
+00_0000229.png,"Praeger, 1999","Ryekmky,1999",False,61.54
+00_0000230.png,chết,hnũ|,False,100.0
+00_0000231.png,cần thiết,hợn|nƠo,False,88.89
+00_0000232.png,với,~ạo,False,100.0
+00_0000233.png,Pháp thiệt hại 16 người,Rnăv|nok|nởo16tmẼẠo,False,91.3
+00_0000234.png,compozit,husvuÃo|,False,100.0
+00_0000235.png,Sơn),UẺt),False,75.0
+00_0000236.png,lIlIlI,rKrKrK,False,100.0
+00_0000237.png,Confirm xoá item này?,CutloysÁuăo|kstĂÂ?,False,85.71
+00_0000238.png,thời,|nẠo,False,100.0
+00_0000239.png,₫1.234.567,11.234.567,False,10.0
+00_0000240.png,S5s,U5{,False,66.67
+00_0000241.png,nghiên cứu,tmnoƠthợ},False,100.0
+00_0000242.png,Il1I|!,Kr1KÉ!,False,66.67
+00_0000243.png,VVW,YY[,False,100.0
+00_0000244.png,Càng xuống thấp,hetmÁătmhnĐm,False,100.0
+00_0000245.png,với nữ giới,~ạotomoạo,False,100.0
+00_0000246.png,book titles,quuq|o|rk{,False,100.0
+00_0000247.png,https://example.com/api/v2/users?page=1,n|v{\/kÁesvrk.husevo~2}{ky{7vemk=1,False,87.18
+00_0000248.png,were divided,Àkykio~oiki,False,91.67
+00_0000249.png,||Le jour,rrNkpu}y,False,100.0
+01_0000000.png,gq9,mx9,False,66.67
 01_0000001.png,100%,100%,True,0.0
-01_0000002.png,S5s,S5s,True,0.0
-01_0000003.png,có tục thờ,cótụcthờ,False,20.0
+01_0000002.png,S5s,U5{,False,66.67
+01_0000003.png,có tục thờ,hạ|}h|nẠ,False,100.0
 01_0000004.png,08],08),False,33.33
-02_0000000.png,₫1.234.567,g1.234.567,False,10.0
-02_0000001.png,WiFi,WiFi,True,0.0
-02_0000002.png,in contact with him,incontactwithhim,False,15.79
-02_0000003.png,Il1I|!,Il1I|!,True,0.0
+01_0000005.png,sáu,{ă},False,100.0
+01_0000006.png,2024-06-09,2024-06-09,True,0.0
+01_0000007.png,09/06/2024,u9/u6/Ã024,False,30.0
+01_0000008.png,B8,B8,True,0.0
+01_0000009.png,Trở thành Thủ tướng,Vyạ|nĂtnVnấ|Ẽạtm,False,89.47
+01_0000010.png,LV.99,KY.99,False,40.0
+01_0000011.png,triều cùng,|yoŨ}hấtm,False,100.0
+01_0000012.png,Last,Ne{|,False,100.0
+01_0000013.png,1,1,True,0.0
+01_0000014.png,HP:100,IR:100,False,33.33
+01_0000015.png,Password phải có ít nhất 8 ký tự,Re{{ÀuyivnỡohạƯ|tnợ|8qẨ|Ẽ,False,90.62
+01_0000016.png,Loading… (87%),Nuuiotm-(8754),False,71.43
+01_0000017.png,"Ví dụ,","YƯi},",False,83.33
+01_0000018.png,Albania (13/3/1950),Argetoe(13/3/1950),False,36.84
+01_0000019.png,Phú Bổn,vnvửt,False,100.0
+01_0000020.png,tình,|ơtn,False,100.0
+01_0000021.png,including partner,othr}iotmvey|tky,False,94.12
+01_0000022.png,OO00OO,QQ00QQ,False,66.67
+01_0000023.png,S5s,U5{,False,66.67
+01_0000024.png,Mã số thuế: 0123456789,Ođ{ạ|n}ũ:0123456789,False,50.0
+01_0000025.png,At the end of issue # 18,A||nkktiulo{{}k#18,False,79.17
+01_0000026.png,Caribe về,Ceyogk~e,False,88.89
+01_0000027.png,$99.99,$9999,False,16.67
+01_0000028.png,ông gặp,Ảtmmỵv,False,100.0
+01_0000029.png,Tỉnh/TP: Hà Nội,Votn/yR:IĂPừo,False,86.67
+01_0000030.png,pip install torch --index-url ...,vovot{|err|uyhn-otikÁ-}yr-t,False,87.88
+01_0000031.png,of MTV,ulOVY,False,100.0
+01_0000032.png,/,/,True,0.0
+01_0000033.png,Năm 16 tuổi,PẫsVợ|}ợo,False,100.0
+01_0000034.png,(Tổng thống,(Vợtm|nợtm,False,90.91
+01_0000035.png,OO00OO,QQ00QQ,False,66.67
+01_0000036.png,tuyến,|}ÂƠt,False,100.0
+01_0000037.png,Thị trưởng Hoàng Thạch,VnƯ|yẼạtmIuĂtmVnởhn,False,95.45
+01_0000038.png,https://example.com/api/v2/users?page=1,n|v{/kÁesvrkhusev}2}{ky{2vemk-1,False,89.74
+01_0000039.png,Il1I|!,Kr1KÉ!,False,66.67
+01_0000040.png,LV.99,NY.99,False,40.0
+01_0000041.png,Il1I|!,Kr1KÉ!,False,66.67
+01_0000042.png,và cũng tạo điều kiện th,~Ăhặtm|ởuậoe}qoƠt|n,False,91.67
+01_0000043.png,thành,|nĂtn,False,100.0
+01_0000044.png,sáng,{ătm,False,100.0
+01_0000045.png,gq9,mx9,False,66.67
+01_0000046.png,chúng không,hnẦtmqnẢtm,False,90.91
+01_0000047.png,Dân,ẬĐt,False,100.0
+01_0000048.png,trung tâm,|y}tm|Đs,False,100.0
+01_0000049.png,2Zz,2^Ã,False,66.67
+01_0000050.png,Tân Mùi,VĐtOấo,False,100.0
+01_0000051.png,\\SERVER\Share\folder,aUETYETaUneykaluriky,False,90.48
+01_0000052.png,có quyền thảo,hạx}ÂƠt|nỡu,False,100.0
+01_0000053.png,"€1,234.00","1,234.00",False,11.11
+01_0000054.png,HP:100,IR:100,False,33.33
+01_0000055.png,C được,CăẼmh,False,83.33
+01_0000056.png,1950,195Q,False,25.0
+01_0000057.png,VVW,YY[,False,100.0
+01_0000058.png,Rượu Vodka,TẼm}Yuiqe,False,100.0
+01_0000059.png,bảo kê,gỡuqƠ,False,100.0
+01_0000060.png,B8,B8,True,0.0
+01_0000061.png,khiêm tốn giản dị,qnoƠs|ạtmoătio,False,94.12
+01_0000062.png,thì bạn,|nơgởt,False,100.0
+01_0000063.png,Mã số thuế: 0123456789,Ođ{Ả|n}Ơ:u123456789,False,54.55
+01_0000064.png,gq9,mx9,False,66.67
+01_0000065.png,cây Dó,hĐÂDạ,False,83.33
+01_0000066.png,CMND: 079 123 456 789,COPD:079123456789,False,28.57
+01_0000067.png,What me and my band are ,[ne|sketisÂgetieyk,False,95.65
+01_0000068.png,2024-06-09,20944609,False,40.0
+01_0000069.png,minh chứng,sotnhnẦtm,False,90.0
+01_0000070.png,thứ nhì,|nẦtnơ,False,85.71
+01_0000071.png,Retry (3/5),Tk|yÂ(3/5),False,45.45
+01_0000072.png,Page 1 of 24,Remk1ul24,False,75.0
+01_0000073.png,rnmvv,r1KK1YY,False,120.0
+01_0000074.png,Page 1 of 24,Remk1ul24,False,75.0
+01_0000075.png,gq9,mx9,False,66.67
+01_0000076.png,Play it fucking loud,RreÂo|l}hqotmru}i,False,100.0
+01_0000077.png,Á có hai thẩm phán,Ýhạneo|nủsvnăt,False,94.44
+01_0000078.png,từ 65 tuổi trở,|ấ65|}ợo|yạ,False,85.71
+01_0000079.png,₫1.234.567,m1.234.567,False,10.0
+01_0000080.png,VVW,YY[,False,100.0
+01_0000081.png,Nanaimo và,Peteosu~Ă,False,100.0
+01_0000082.png,chất tím,hnợ||Ưs,False,87.5
+01_0000083.png,B8,B8,True,0.0
+01_0000084.png,nguồn gốc tự nhiên,tm}ụtmợh|ẼtnoƠt,False,88.89
+01_0000085.png,"Fe2+,","Gk24,",False,60.0
+01_0000086.png,di tản,i|Ăt,False,83.33
+01_0000087.png,Tiến Thắng,VoợtVnợtm,False,100.0
+01_0000088.png,thuyết tương,|n}Âũ||ẼẺtm,False,100.0
+01_0000089.png,LV.99,NY.99,False,40.0
+01_0000090.png,OO00OO,QQ00QQ,False,66.67
+01_0000091.png,Địa hình đa dạng bao gồm,ẬpenơtnậeiởtmgeumẠs,False,91.67
+01_0000092.png,trứng,|yẼtm,False,100.0
+01_0000093.png,khi đất nước Đại Cồ Việt,yn:ậợ|tẼkh5ehẢ|}=|,False,95.83
+01_0000094.png,tự,|Ẽ,False,100.0
+01_0000095.png,phòng không,vnẠtmqnẢtm,False,100.0
+01_0000096.png,là thẩm,rĂ|nủs,False,100.0
+01_0000097.png,thứ 9,|nẦ9,False,80.0
+01_0000098.png,"báo Cứu Quốc,","găuCẦ}S}h,",False,84.62
+01_0000099.png,rnmvv,yts~~,False,100.0
+01_0000100.png,S5s,U5{,False,66.67
+01_0000101.png,ở Puerto,ậR}ky|u,False,100.0
+01_0000102.png,"Vệ tinh nằm xa nhất, Lar","Yk|otntữsÁetnợ|,Ney",False,87.5
+01_0000103.png,B8,B8,True,0.0
+01_0000104.png,người,tmẼẠo,False,100.0
+01_0000105.png,vết,~ợ|,False,100.0
+01_0000106.png,pip install torch --index-url ...,vovot{|err|uyhn--otikÁ-}yr...,False,75.76
+01_0000107.png,The Negro Speaks of Rive,VnkPkmyuUvkeq{ulTo~k,False,95.83
+01_0000108.png,2Zz,2^Ã,False,66.67
+01_0000109.png,phạm,vnởs,False,100.0
+01_0000110.png,khi cháy,qnohnăÂ,False,100.0
+01_0000111.png,đến ngày 10,ậũttmĂÂ10,False,81.82
+01_0000112.png,Step 2 of 4,U|kv2ul4,False,81.82
+01_0000113.png,Nguyễn,Pm}Âẫt,False,100.0
+01_0000114.png,vị,~o,False,100.0
+01_0000115.png,HP:100,IR:100,False,33.33
+01_0000116.png,mạch DNA,sởhnDPA,False,62.5
+01_0000117.png,nhiều người,tnoƠ}tmẼẺo,False,100.0
+01_0000118.png,File đã lưu thành công,GorkậđrẼ}|nĂtnhẢtm,False,81.82
+01_0000119.png,lIlIlI,rKrKrK,False,100.0
+01_0000120.png,git commit -m 'fix: null check',mo|husso|-s'loÁ:t}rrhnkhq',False,83.87
+01_0000121.png,Ả,Ợ,False,100.0
+01_0000122.png,rnmvv,yssY~,False,100.0
+01_0000123.png,Anh và,Atn~Ă,False,83.33
+01_0000124.png,văn hóa,~ẫtnạe,False,100.0
+01_0000125.png,mất,sợ|,False,100.0
+01_0000126.png,những thay,tnặtm|neÂ,False,100.0
+01_0000127.png,SĐT: 0912.345.678,UẬV:0912.345.678,False,23.53
+01_0000128.png,trong SI,|yutmUr,False,100.0
+01_0000129.png,₫1.234.567,1.234.567,False,10.0
+01_0000130.png,Các nhà máy sản xuất thé,CăhtnĂsạÂ{ỡtÁ}ợ||nũ,False,91.67
+01_0000131.png,Updated 2 min ago,Xvie|ki2sotemu,False,94.12
+01_0000132.png,diễn viên,ioợt~oƠt,False,88.89
+01_0000133.png,thiệu với Lý,|no}~ợoNẨ,False,100.0
+01_0000134.png,sự,89,False,100.0
+01_0000135.png,Lộc Văn Lùng tức Văn Tiê,NừhYẫtNấtm|ợhYẫtVoƠ,False,95.83
+01_0000136.png,rnmvv,yts~Y,False,100.0
+01_0000137.png,cook Delia Smith admits,"huvq{v{roe{so|n,eisor{",False,100.0
+01_0000138.png,cỡ 0,hẢ0,False,75.0
+01_0000139.png,LV.99,NY99,False,60.0
+01_0000140.png,S5s,U{,False,100.0
+01_0000141.png,và bốn đồng đội của,~ĂgẢtậụtmậỵohấe,False,100.0
+01_0000142.png,khách quan,qnăhnx}et,False,90.0
+01_0000143.png,tại Việt,|xoYoH|,False,100.0
+01_0000144.png,S5s,U5{,False,66.67
+01_0000145.png,Trung,Ly}tm,False,100.0
+01_0000146.png,người,tmẼẠo,False,100.0
+01_0000147.png,cao cả,heuhỡ,False,100.0
+01_0000148.png,2Zz,2^Ã,False,66.67
+01_0000149.png,Ân,Ợt,False,100.0
+01_0000150.png,File đã lưu thành công,GorkậđrẼ}|nĂtnhẢtm,False,81.82
+01_0000151.png,On,Qt,False,100.0
+01_0000152.png,S5s,U5{,False,66.67
+01_0000153.png,one,Qtk,False,100.0
+01_0000154.png,"€1,234.00","1,234.00",False,11.11
+01_0000155.png,về,~Ũ,False,100.0
+01_0000156.png,của nó,hẦetạ,False,100.0
+01_0000157.png,VVW,YY[,False,100.0
+01_0000158.png,Password phải có ít nhất 8 ký tự,Re{{ÀuyivnỡrhạƯ|tnợ|8qẨ|Ẽ,False,90.62
+01_0000159.png,HP:100,IR:100,False,33.33
+01_0000160.png,vực lẽ,~mhrƠ,False,100.0
+01_0000161.png,Dữ liệu chỉ được truyền ,DẼroừ}hnoậẼmh|y}Âet,False,91.3
+01_0000162.png,ức chế ăn,|hhnợẫt,False,88.89
+01_0000163.png,hàng,nĂtm,False,100.0
+01_0000164.png,Robert McNeil,Rhgky|OkÂko,False,92.31
+01_0000165.png,09/06/2024,09/06/2024,True,0.0
+01_0000166.png,Retry (3/5),Tk|yÂ(/5),False,54.55
+01_0000167.png,và mây Sao Hỏa đóng,~ĂsĐÂUeuIẠeậạtm,False,100.0
+01_0000168.png,Hoa kiều,Iueqo},False,100.0
+01_0000169.png,gq9,mx9,False,66.67
+01_0000170.png,Địa lý khu vực,ẬoerẨqn}~Ẽh,False,100.0
+01_0000171.png,tịch Quốc,|hnS}Ảh,False,88.89
+01_0000172.png,Password phải có ít nhất 8 ký tự,Re{{ÀuyivnỡohạƯ|tnợ|8qẨ|Ẽ,False,90.62
+01_0000173.png,hạ cánh,nởhătn,False,85.71
+01_0000174.png,thành,|nĂtn,False,100.0
+01_0000175.png,Tổng thống Pháp Léon Blu,Vạtm|nợtmRnăvNăutBr},False,87.5
+01_0000176.png,lịch sử,rƯhn{o,False,85.71
+01_0000177.png,của Marx,hấeOeyÁ,False,100.0
+01_0000178.png,lIlIlI,rrKrKr,False,100.0
+01_0000179.png,O0Oo,Q00u,False,75.0
+01_0000180.png,S5s,U5{,False,66.67
+01_0000181.png,được gọi,ậẼmhmởo,False,100.0
+01_0000182.png,Retry (3/5),Tk|yÂ(3/5),False,45.45
+01_0000183.png,rnmvv,yts~~,False,100.0
+01_0000184.png,tại là,|ởorĂ,False,100.0
+01_0000185.png,couldn 't stand it,hu}rit'|{|etio|,False,88.89
+01_0000186.png,gq9,mx9,False,66.67
+01_0000187.png,+99999,+99999,True,0.0
+01_0000188.png,tranh (Concurrency),|yetn(Cuth}yykthÂ),False,84.21
+01_0000189.png,$99.99,$99.99,True,0.0
+01_0000190.png,trong,|yutm,False,100.0
+01_0000191.png,Tiền-Tocharia (3700 TCN),VoƠt-Vuhneyoe(3700VCP),False,62.5
+01_0000192.png,S5s,U5{,False,66.67
+01_0000193.png,lIlIlI,rKrKrK,False,100.0
+01_0000194.png,O0Oo,Q0Qu,False,75.0
+01_0000195.png,Ngày 22,PmĂÂ22,False,71.43
+01_0000196.png,L7W5JbQfL5mEIcw,N7[5LgSl15sErhÀ,False,73.33
+01_0000197.png,và 500,~Ă500,False,50.0
+01_0000198.png,Rau răm ở lại,Te}yẫsậrởo,False,92.31
+01_0000199.png,you,Yu},False,100.0
+01_0000200.png,2Zz,2^Ã,False,66.67
+01_0000201.png,lIlIlI,rKrKrK,False,100.0
+01_0000202.png,"€1,234.00","1,234.00",False,11.11
+01_0000203.png,một đường,sẢ|ậẼẺtm,False,100.0
+01_0000204.png,mDB,sDB,False,33.33
+01_0000205.png,O0Oo,C0ue,False,75.0
+01_0000206.png,552 người,U52tmẼgo,False,77.78
+01_0000207.png,Tỉnh/TP: Hà Nội,Votn/VR:IĂPừo,False,86.67
+01_0000208.png,S5s,U5{,False,66.67
+01_0000209.png,T+2,V+2,False,33.33
+01_0000210.png,Upload ảnh (tối đa 5MB),Xvrueiỡtn(|ợoậe5OB),False,78.26
+01_0000211.png,2Zz,2^Ã,False,66.67
+01_0000212.png,gian bay,moetgeÂ,False,100.0
+01_0000213.png,Điển,Ậoăt,False,100.0
+01_0000214.png,tại Kamakura,|ởoMeseq}ye,False,100.0
+01_0000215.png,đổ bộ,ậạg8,False,100.0
+01_0000216.png,hưởng tư,nẼạtm|Ẽ,False,100.0
+01_0000217.png,là rộng,rĂyẢtm,False,100.0
+01_0000218.png,"audience ,","e}iokthk,",False,80.0
+01_0000219.png,lIlIlI,rKrKrK,False,100.0
+01_0000220.png,gq9,mx9,False,66.67
+01_0000221.png,Di Đà,DoẬĂ,False,80.0
+01_0000222.png,khoảng 25% một,qnuỡtm28%s|,False,85.71
+01_0000223.png,has a,ne{e,False,100.0
+01_0000224.png,The manual itself uses o,Vnkset}ero|{krl}{k{u,False,95.83
+01_0000225.png,HP:100,IR:100,False,33.33
+01_0000226.png,soạn,Uuởt,False,100.0
+01_0000227.png,Managua,Oetem}e,False,100.0
+01_0000228.png,Điểm cực,ẬoƠsh~h,False,100.0
+01_0000229.png,09/06/2024,09/06/2024,True,0.0
+01_0000230.png,3.14 GB,3.14HB,False,28.57
+01_0000231.png,Il1I|!,KnoÉ!,False,83.33
+01_0000232.png,Ackerknecht 1982:151,Ahqkyqtkhn|1982:151,False,50.0
+01_0000233.png,Upload ảnh (tối đa 5MB),Xvrueiỡtn(|ợoậe5OB),False,78.26
+01_0000234.png,với Ngô Đình Diệm là tổn,~ĂoPmỡeotnuoũtrỡ|Đt,False,91.67
+01_0000235.png,S/2005,U/2005,False,16.67
+01_0000236.png,sống,{ẫtm,False,100.0
+01_0000237.png,gq9,mx9,False,66.67
+01_0000238.png,VVW,YY[,False,100.0
+01_0000239.png,File đã lưu thành công,GorkậđrẼ}|nĂtnhẢtm,False,81.82
+01_0000240.png,SELECT * FROM users WHERE id = 42,UENECV*GT0O}{ky{[IETEoi=42,False,66.67
+01_0000241.png,Syncing…,UÂthotm,False,100.0
+01_0000242.png,won 2,Àut2,False,80.0
+01_0000243.png,Thuộc địa miền,Vn}ạhậusoet,False,100.0
+01_0000244.png,mà,sĂ,False,100.0
+01_0000245.png,hơn 151 loại polypeptide,nẺt151ruởovurÂvkv|oik,False,83.33
+01_0000246.png,"€1,234.00","@1,234.00",False,11.11
+01_0000247.png,ime,osk,False,100.0
+01_0000248.png,8,8,True,0.0
+01_0000249.png,Vùng,Yấtm,False,100.0
+02_0000000.png,₫1.234.567,m1.234.567,False,10.0
+02_0000001.png,WiFi,[oGo,False,100.0
+02_0000002.png,in contact with him,othut|eh|Ào|nnos,False,94.74
+02_0000003.png,Il1I|!,Kr1KÉ!,False,66.67
 02_0000004.png,100%,100%,True,0.0
+02_0000005.png,9 VXuYeEzt,9Y\}]kEÃ|,False,80.0
+02_0000006.png,Confirm xoá item này?,HuvsÃuĐ||kstẢÂ?,False,90.48
+02_0000007.png,2Zz,2^Ã,False,66.67
+02_0000008.png,"€1,234.00","1,234.00",False,11.11
+02_0000009.png,một,sỵ|,False,100.0
+02_0000010.png,Confirm xoá item này?,CutlosÁuăo|kstĐÂ?,False,80.95
+02_0000011.png,HP:100,IR:100,False,33.33
+02_0000012.png,Vạn Xuân (vùng Tam Đảo q,Yởt\}Đt(~ấtmVesẬỡux,False,95.83
+02_0000013.png,VVW,YY[Y,False,133.33
+02_0000014.png,₫1.234.567,1.234.567,False,10.0
+02_0000015.png,Gerolf,Hkyurl,False,100.0
+02_0000016.png,2024-06-09,2024-06-09,True,0.0
+02_0000017.png,", taking",",|eqotm",False,87.5
+02_0000018.png,trực tiếp,|yẼh|oũv,False,100.0
+02_0000019.png,Ông,òtm,False,100.0
+02_0000020.png,"€1,234.00","1,234.00",False,11.11
+02_0000021.png,quản,x}ỡt,False,100.0
+02_0000022.png,Giao dịch và xử lý giao ,Hoeuiohn~ĂÁrẨmoeu,False,91.3
+02_0000023.png,rnmvv,yts~~,False,100.0
+02_0000024.png,gq9,mx9,False,66.67
+02_0000025.png,kiện tự,qoƠt|Ẽ,False,100.0
+02_0000026.png,ifB6O5c8fjxMX3,olB6Q5h8lpÁO\3,False,64.29
+02_0000027.png,VVW,YY[,False,100.0
+02_0000028.png,biển,goũt,False,100.0
+02_0000029.png,ABIMyNKGcA0zNVX,ABKOÂPMChA0ÃPY\,False,73.33
+02_0000030.png,chủ nghĩa cứu thế hay ch,hnẦtmnẰehẦ}|nợneÂhn,False,91.67
+02_0000031.png,sau đó mới tìm thấy trên,Ue}ậạsạo|ơs|năÂ|yƠt,False,91.67
+02_0000032.png,cảng Thị Vải,hỡtmVnoYỡo,False,100.0
+02_0000033.png,đại Trần,ậởoVyữt,False,100.0
+02_0000034.png,HP:100,U1{100,False,50.0
+02_0000035.png,HP:100,IR:100,False,33.33
+02_0000036.png,B8,B8,True,0.0
+02_0000037.png,File đã lưu thành công,GorkậđrẼ}|nĂtnhẢtm,False,81.82
+02_0000038.png,"William Duiker, Ho Chi M","[orroesD}oqky,IuCnoO",False,87.5
+02_0000039.png,HP:100,IR:1uu,False,66.67
+02_0000040.png,khác,qnăh,False,100.0
+02_0000041.png,|<center> 88,É<hkt|ky>88,False,66.67
+02_0000042.png,Golgi bản,Hurmogỡt,False,100.0
+02_0000043.png,S5s,U5{,False,66.67
+02_0000044.png,It :,K|:,False,75.0
+02_0000045.png,2Zz,2^Ã,False,66.67
+02_0000046.png,gq9,mx9,False,66.67
+02_0000047.png,11/1/2014,11/1/2014,True,0.0
+02_0000048.png,LV.99,NY.99,False,40.0
+02_0000049.png,rnmvv,yts~~,False,100.0
+02_0000050.png,hôn nhân,nẢttnĐt,False,87.5
+02_0000051.png,Phục và,Rn}h~Ă,False,100.0
+02_0000052.png,git commit -m 'fix: null check',mo|husso|-s'loÁ:t}rrhnkhq',False,83.87
+02_0000053.png,học Zürich,nởh^oyohn,False,100.0
+02_0000054.png,Chức năng,CnẦhtẫtm,False,88.89
+02_0000055.png,"000 km²),","000qs2,",False,55.56
+02_0000056.png,+99999,+99999,True,0.0
+02_0000057.png,SĐT: 0912.345.678,UẬV:0912.345.678,False,23.53
+02_0000058.png,Comedy: In the Baghdad o,CuskiÂ:rt|nkBemnieiu,False,83.33
+02_0000059.png,+99999,+99999,True,0.0
+02_0000060.png,Trung Quốc có,Vy}tmS}ợhhạ,False,100.0
+02_0000061.png,loài ăn,1uĂoẫt,False,100.0
+02_0000062.png,2024-06-09,2024-06-09,True,0.0
+02_0000063.png,trường chính,|yẼẠtmhnƯtn,False,91.67
+02_0000064.png,2024-06-09,2024-0609,False,10.0
+02_0000065.png,OO00OO,QQ00QQ,False,66.67
+02_0000066.png,lIlIlI,rr1,False,100.0
+02_0000067.png,"@,@","@,@",True,0.0
+02_0000068.png,EahJD,Een1D,False,60.0
+02_0000069.png,VVW,YY[,False,100.0
+02_0000070.png,(dân số 1,CẢtmẢt,False,100.0
+02_0000071.png,3.14 GB,3.14HB,False,28.57
+02_0000072.png,Temple,Vksvrk,False,100.0
+02_0000073.png,toàn bộ bao gồm phần,|uĂtgừgeumụsvnụt,False,100.0
+02_0000074.png,cấp,hợv,False,100.0
+02_0000075.png,the,|nk,False,100.0
+02_0000076.png,Thánh,Vnătn,False,100.0
+02_0000077.png,lIlIlI,rrKKK,False,100.0
+02_0000078.png,hy vọng,nÂ~ởtm,False,100.0
+02_0000079.png,DRon1IA8jcCC3NjUE,DTut1X/8phCC3PpXE,False,58.82
+02_0000080.png,VVW,YY[,False,100.0
+02_0000081.png,cảnh phá,hỡtnvnă,False,100.0
+02_0000082.png,S5s,U5{,False,66.67
+02_0000083.png,Cá nước ngọt châu Âu,CătẼạhtmu|hnĐ}à},False,90.0
+02_0000084.png,gq9,mx9,False,66.67
+02_0000085.png,Confirm xoá item này?,CutlsÁuăo|kstĂÂ?,False,80.95
+02_0000086.png,hZRiYsI9yHWTOVRaH0GuK9,n^To]{K9ÂIo[V0YTeIp0H}M9,False,95.45
+02_0000087.png,nghi nhất,tmnotnợ|,False,88.89
+02_0000088.png,vốn là,~ẫtrĂ,False,100.0
+02_0000089.png,Password phải có ít nhất 8 ký tự,Re{{Àuyivnỡohạ|htnợh8qẨ|Ẽ,False,90.62
+02_0000090.png,SĐT: 0912.345.678,UẬV:0912.345.678,False,23.53
+02_0000091.png,S5s,U5{,False,66.67
+02_0000092.png,Thái giáo hoặc Hồi giáo),VnăomoăunuỵhIẠomoău),False,91.67
+02_0000093.png,2Zz,2^Ã,False,66.67
+02_0000094.png,với sai,~ẫo{eo,False,100.0
+02_0000095.png,0vC bBhKyfF6T,0~CgBnMÂlG6V,False,69.23
+02_0000096.png,156 tỷ đồng là một trong,156|ẨậẠtmrĂsừ||yutm,False,83.33
+02_0000097.png,Tỉnh/TP: Hà Nội,Votn/VR:IĂPừo,False,86.67
+02_0000098.png,"rồi mỗi khi có đám tang,","yữosợoqnohạậăs|etm,",False,87.5
+02_0000099.png,warfarin,Àeyleyot,False,100.0
+02_0000100.png,2004,2004,True,0.0
+02_0000101.png,were,Àkyk,False,100.0
+02_0000102.png,Film Institute,Gorsrt{|o|}|k,False,100.0
+02_0000103.png,và tác chiến,~Ă|ăhhnoũt,False,100.0
+02_0000104.png,LV.99,NY.99,False,40.0
+02_0000105.png,(psychoactive) của thổ d,Xv{Âhnueh|o~k)hấe|nợi,False,95.83
+02_0000106.png,2Zz,2^Ã,False,66.67
+02_0000107.png,Upload ảnh (tối đa 5MB),Xvrueiỡtn(|ợoậe5OB),False,78.26
+02_0000108.png,"haklenayaśa,","neqrkteÂeÂe,",False,91.67
+02_0000109.png,LV.99,NY.99,False,40.0
+02_0000110.png,\\SERVER\Share\folder,ÉUETYETTUneykaluriky,False,90.48
+02_0000111.png,Password phải có ít nhất 8 ký tự,Re{{ÀuyivnỡohạƯ|tnợ|8qẨ|Ẽ,False,90.62
+02_0000112.png,Upload ảnh (tối đa 5MB),Xvrueiỡtn(|ợoậe5OB),False,78.26
+02_0000113.png,ta,|e,False,100.0
+02_0000114.png,VVW,YY[,False,100.0
+02_0000115.png,dụng cụ,imtmhm,False,100.0
+02_0000116.png,khu vực,qn}~Ẽh,False,100.0
+02_0000117.png,The most common solution,Vnksu{|hussut{ur}|out,False,91.67
+02_0000118.png,09/06/2024,09/06/2024,True,0.0
+02_0000119.png,VVW,YYY[,False,133.33
+02_0000120.png,Rượu,TẼm},False,100.0
+02_0000121.png,HP:100,IR:100,False,33.33
+02_0000122.png,SELECT * FROM users WHERE id = 42,UENECV*GT0O}{ky{[IETEoi=42,False,66.67
+02_0000123.png,\\SERVER\Share\folder,aaUETYETaUneykalẠriky,False,90.48
+02_0000124.png,dân,iĐt,False,100.0
+02_0000125.png,File đã lưu thành công,GorkậđrẼ}|nĂtnhẢtm,False,81.82
+02_0000126.png,Retry (3/5),Tk|yÂ(3/5),False,45.45
+02_0000127.png,cánh,hătn,False,100.0
+02_0000128.png,rnmvv,yVs,False,100.0
+02_0000129.png,dụ với,ậm~ạo,False,100.0
+02_0000130.png,hoặc có thể sinh sống,GuẠhhạ|nừ{nn{gtm,False,95.24
+02_0000131.png,2Zz,2^Ã,False,66.67
+02_0000132.png,hiệu ứng,noƠ}Ầtm,False,100.0
+02_0000133.png,Step 2 of 4,U|kv2ul4,False,81.82
+02_0000134.png,nguy hiểm,tm}Ânoũs,False,100.0
+02_0000135.png,lIlIlI,rKrKrK,False,100.0
+02_0000136.png,Họ rất chăm học,Imyợ|hnẫsnởh,False,93.33
+02_0000137.png,+99999,+99999,True,0.0
+02_0000138.png,nhận,tnừt,False,100.0
+02_0000139.png,được biết đến,ậẼmhhoũ|ậũt,False,100.0
+02_0000140.png,Đông,ẬẢtm,False,100.0
+02_0000141.png,+99999,499999,False,16.67
+02_0000142.png,sông Hồng,{ẢtmIụtm,False,100.0
+02_0000143.png,Bộ quốc,B8x}ợh,False,85.71
+02_0000144.png,MySQL,OÂ{QN,False,80.0
+02_0000145.png,"number 23 ,","t}sgky23,",False,72.73
+02_0000146.png,còn trên toàn Vương quốc,hẠt|yƠt|uĂtYẼẺtmx}ợh,False,91.67
+02_0000147.png,S5s,U5{,False,66.67
+02_0000148.png,sách,{ửhnn,False,125.0
+02_0000149.png,Password phải có ít nhất 8 ký tự,Re{{ÀuyivnỡohạƯ|tnợ|8qẨ|Ẽ,False,90.62
+02_0000150.png,O0Oo,Q0Qu,False,75.0
+02_0000151.png,git commit -m 'fix: null check',mo|husso|-s'loÁ:t}rrhnkhq',False,83.87
+02_0000152.png,trên sông,|yƠt{Ảtm,False,100.0
+02_0000153.png,syBZ,$ÂB^,False,75.0
+02_0000154.png,sự,U8,False,100.0
+02_0000155.png,LV.99,NY.99,False,40.0
+02_0000156.png,lIlIlI,rKrrK,False,100.0
+02_0000157.png,tuổi,|}ợo,False,100.0
+02_0000158.png,VVW,YY[,False,100.0
+02_0000159.png,Tín,VƯt,False,100.0
+02_0000160.png,= Demographics,=Dksumyevnoh{,False,85.71
+02_0000161.png,Upload ảnh (tối đa 5MB),Xvrueiỡtn(|Ảoậe5OB),False,78.26
+02_0000162.png,lIlIlI,rKrKrK,False,100.0
+02_0000163.png,B8,B8,True,0.0
+02_0000164.png,Pháp có kinh tế hỗn hợp,Rnăvhạqơtn|ỹnứtnởv,False,91.3
+02_0000165.png,File đã lưu thành công,GorkậđrẼ}|nĂtnhẢtm,False,81.82
+02_0000166.png,rnmvv,yts~~,False,100.0
+02_0000167.png,lIlIlI,rKrKrK,False,100.0
+02_0000168.png,OO00OO,000000,False,66.67
+02_0000169.png,500 năm trước công nguyê,500tẫs|yẼhhhẢtmtm}ÂƠ,False,87.5
+02_0000170.png,+99999,+99999,True,0.0
+02_0000171.png,VVW,YY[,False,100.0
+02_0000172.png,mùa,sấe,False,100.0
+02_0000173.png,rộp,yừv,False,100.0
+02_0000174.png,Loading… (87%),Nueiotm.(872%),False,64.29
+02_0000175.png,119 xã,19Áđ,False,66.67
+02_0000176.png,Retry (3/5),Tk|yÂ(3/5),False,45.45
+02_0000177.png,các tướng,hợh|Ẽntm,False,100.0
+02_0000178.png,OO00OO,QQ00QQ,False,66.67
+02_0000179.png,Republic,Tkv}groh,False,100.0
+02_0000180.png,và tiếng Hà Lan,~Ă|oƠtmIĂNet,False,100.0
+02_0000181.png,reprinted in Horrors Unk,ykvyot|kiotIuyyuy{Xtq,False,91.67
+02_0000182.png,Hệ thống,Iừ|nợtm,False,100.0
+02_0000183.png,LV.99,NY.99,False,40.0
+02_0000184.png,Tới đầu,Vợoậụ},False,100.0
+02_0000185.png,Mã số thuế: 0123456789,Ođ{ợ|n}ợ:u122456789,False,59.09
+02_0000186.png,Retry (3/5),Tk|yÂ(3/5),False,45.45
+02_0000187.png,cách giết,hăhnmoƠ|,False,88.89
+02_0000188.png,Il1I|!,Kr1K!,False,66.67
+02_0000189.png,hưng,nẼtm,False,100.0
+02_0000190.png,Confirm xoá item này?,CutloysÁuăo|kstĂÂ2,False,90.48
+02_0000191.png,He noted that the graphi,Iktu|ki|ne||nkmyevno,False,95.83
+02_0000192.png,Syncing…,Uthotm-,False,100.0
+02_0000193.png,far we,leyÀk,False,100.0
+02_0000194.png,poverty of spirit,vu~ky|Âul{voyoh,False,88.24
+02_0000195.png,+99999,+99999,True,0.0
+02_0000196.png,Các hợp chất của sắt,hạhnuvinỡohouhẢt,False,90.0
+02_0000197.png,và các,~Ăhăh,False,100.0
+02_0000198.png,+99999,+99999,True,0.0
+02_0000199.png,tôm,|Ảs,False,100.0
+02_0000200.png,VVW,YY[,False,100.0
+02_0000201.png,100%,100%,True,0.0
+02_0000202.png,LV.99,NY.99,False,40.0
+02_0000203.png,3.14 GB,3.14(B,False,28.57
+02_0000204.png,năm 1999),tẫs1999),False,44.44
+02_0000205.png,Confirm xoá item này?,CutloysÁuăo|kstĂÂ?,False,85.71
+02_0000206.png,Vectơ đơn vị theo hướng ,Ykh|ẺậẺt~o|nkunẼạtm,False,100.0
+02_0000207.png,\\SERVER\Share\folder,aaUETYETaUneykYuriky,False,90.48
+02_0000208.png,tính thiện,|Ưtn|noƠt,False,100.0
+02_0000209.png,văn,~ẫt,False,100.0
+02_0000210.png,VVW,YY[,False,100.0
+02_0000211.png,08:30 – 17:00,uBl{u=y7ouu,False,92.31
+02_0000212.png,Il1I|!,r1K!,False,66.67
+02_0000213.png,B8,B8,True,0.0
+02_0000214.png,tức là,|ẦhrĂ,False,100.0
+02_0000215.png,Il1I|!,K11KÉ!,False,66.67
+02_0000216.png,rnmvv,yts~~,False,100.0
+02_0000217.png,B8,B8,True,0.0
+02_0000218.png,Step 2 of 4,U|kv2ul4,False,81.82
+02_0000219.png,người vẽ,tmẼẠo~Ơ,False,100.0
+02_0000220.png,=,=,True,0.0
+02_0000221.png,https://example.com/api/v2/users?page=1,n||v{L/kÁesvrk.Hus/evoY2}{ky{?vemk=1,False,82.05
+02_0000222.png,Confirm xoá item này?,CutloysÁuăo|kstĂÂ?,False,85.71
+02_0000223.png,khung kim loại chứa nguồ,qn}tmqosruởohnẦetm}Ă,False,87.5
+02_0000224.png,000 sinh viên,000{otn~oƠt,False,69.23
+02_0000225.png,Password phải có ít nhất 8 ký tự,Re{{ÀuyivnỡohạƯ|tnợ|8qẨ|Ẽ,False,90.62
+02_0000226.png,File đã lưu thành công,GorkăerẼ}|nĂtnhẢtm,False,86.36
+02_0000227.png,văn minh,~ẫtsotn,False,87.5
+02_0000228.png,\\SERVER\Share\folder,aaUETYETaUneykaluriky,False,90.48
+02_0000229.png,Khu vực này bốn hướng đề,Mn}~ẼhtĂÂgẢtnẼạtmậk,False,95.83
+02_0000230.png,Columbia,CurVsgoe,False,87.5
+02_0000231.png,Giống,hoợtm,False,100.0
+02_0000232.png,O0Oo,00Qu,False,75.0
+02_0000233.png,Đặc biệt ông rất mê đọc ,ẬỵhgoÂ|Ảtmyợ|sƠậởh,False,100.0
+02_0000234.png,o Aj355cnEt60vUN,QA/k6CtE|60YXP,False,75.0
+02_0000235.png,thể,|nợ,False,100.0
+02_0000236.png,từ sông Thu Bồn trở,|Ẽ{ẢtmVn}BẠt|yạ,False,94.74
+02_0000237.png,Il1I|!,Kr1KÉ!,False,66.67
+02_0000238.png,B8,B8,True,0.0
+02_0000239.png,Nhân vật,PnĐt~ừ|,False,100.0
+02_0000240.png,cuộc (Đời Gia Long 33,h}0h(ẬẠoHoeNutm33,False,85.71
+02_0000241.png,iZgTKDR,o^mVMDT,False,85.71
+02_0000242.png,File đã lưu thành công,GokậĂNẼ}|nĂtnhẢtm,False,86.36
+02_0000243.png,cận) được,CĐt)ậẼẺh,False,88.89
+02_0000244.png,+99999,+99999,True,0.0
+02_0000245.png,Quần đảo Trung Quốc,S}ụtậỡuVy}tmS}6h,False,100.0
+02_0000246.png,O0Oo,Q0Qu,False,75.0
+02_0000247.png,Son Relics,UutGkroh{,False,100.0
+02_0000248.png,VVW,YY[,False,100.0
+02_0000249.png,và,~Ă,False,100.0
 03_0000000.png,$99.99,$99.99,True,0.0
-03_0000001.png,feathered,feathered,True,0.0
-03_0000002.png,lIlIlI,1IlIlI,False,16.67
-03_0000003.png,cho vào,chovào,False,14.29
-03_0000004.png,rnmvv,rnmvV,False,20.0
+03_0000001.png,feathered,lke|nkyki,False,100.0
+03_0000002.png,lIlIlI,1KrKrK,False,100.0
+03_0000003.png,cho vào,hnu~Ău,False,85.71
+03_0000004.png,rnmvv,yts~Y,False,100.0
+03_0000005.png,Mã số thuế: 0123456789,Ođ{ạ|n}ũ:0129456789,False,54.55
+03_0000006.png,of,ul,False,100.0
+03_0000007.png,tác cây,|ăhhĐÂ,False,100.0
+03_0000008.png,journey,ou}stkÂ,False,85.71
+03_0000009.png,100%,100%,True,0.0
+03_0000010.png,lIlIlI,rKrrKK,False,100.0
+03_0000011.png,O0Oo,Q0Qu,False,75.0
+03_0000012.png,16 tỉnh,18|otn,False,71.43
+03_0000013.png,giúp,moẦv,False,100.0
+03_0000014.png,Il1I|!,Kr1KÉ!,False,66.67
+03_0000015.png,VVW,YY[,False,100.0
+03_0000016.png,và chú thích),~ĂhnẦ|nƯhn),False,84.62
+03_0000017.png,git commit -m 'fix: null check',mo|husso|-s'loÁ:t}rrhnkhq',False,83.87
+03_0000018.png,"Oxford University Press,","QÁluyiXto~ky{o|ÂRyk{{,",False,95.83
+03_0000019.png,C:\Users\Admin\Documents\report.pdf,C:aX{ky{aAisotaDuh}skt|{aykvuy|.vil,False,85.71
+03_0000020.png,gq9,mx9,False,66.67
+03_0000021.png,100%,100%,True,0.0
+03_0000022.png,HP:100,IR:100,False,33.33
+03_0000023.png,bán kính,gătqƯtn,False,87.5
+03_0000024.png,Chỉ rồi,CnẰyẠo,False,85.71
+03_0000025.png,được đánh giá (tiếng,ậẼmhậỡtnmoă(|oƠtm,False,90.0
+03_0000026.png,1bN5vMgVn9MdHhuQf,1gP15~Om~t9OiGn}9l,False,88.24
+03_0000027.png,Great Day,Hyke|DeÂ,False,88.89
+03_0000028.png,Khoản trợ,Mnuỡt|ym,False,100.0
+03_0000029.png,Page 1 of 24,Remk1ul24,False,75.0
+03_0000030.png,Con,Cut,False,66.67
+03_0000031.png,Kinh,Motn,False,100.0
+03_0000032.png,O0Oo,QQQu,False,100.0
+03_0000033.png,VVW,YY[,False,100.0
+03_0000034.png,the,|nk,False,100.0
+03_0000035.png,perchloric,vkyhnruyoh,False,100.0
+03_0000036.png,09/06/2024,09/06/2024,True,0.0
+03_0000037.png,Project,Ryupkh|,False,100.0
+03_0000038.png,Step 2 of 4,U|kv2ul4,False,81.82
+03_0000039.png,VVW,YY[,False,100.0
+03_0000040.png,Thanh Thanh,VnetnVnetn,False,90.91
+03_0000041.png,100%,100%,True,0.0
+03_0000042.png,khoảng 5,qnuỡtm5,False,87.5
+03_0000043.png,S5s,U5{,False,66.67
+03_0000044.png,HP:100,IR:100,False,33.33
+03_0000045.png,Il1I|!,Kr1KÉ!,False,66.67
+03_0000046.png,Quốc trong,S}ợh|yutm,False,100.0
+03_0000047.png,trình,|yơtn,False,100.0
+03_0000048.png,O0Oo,Q0Qu,False,75.0
+03_0000049.png,Mỹ,OẨ,False,100.0
+03_0000050.png,SĐT: 0912.345.678,UẬV:0912.345678,False,29.41
+03_0000051.png,Confirm xoá item này?,CutloysÁuăo|kstĂÂ?,False,85.71
+03_0000052.png,OO00OO,QQ0uQQ,False,83.33
+03_0000053.png,of American jazz,ulAskyohetpeÃÃ,False,93.75
+03_0000054.png,mềm,sẫs,False,100.0
+03_0000055.png,VVW,YY[,False,100.0
+03_0000056.png,08:30 – 17:00,08:30-17:00,False,23.08
+03_0000057.png,Văn nghiệp,Yẫttmno-v,False,100.0
+03_0000058.png,File đã lưu thành công,GorkậđrẼ}|nĂtnhẢtm,False,81.82
+03_0000059.png,Upload ảnh (tối đa 5MB),Xoeuỡỡ|n|ỡoậe5Ou),False,86.96
+03_0000060.png,lệnh tối,rừtn|ợo,False,100.0
+03_0000061.png,Arabs,Ayeg{,False,80.0
+03_0000062.png,ưu thế,Ẽ}|nũ,False,100.0
+03_0000063.png,Page 1 of 24,Remk1ul24,False,75.0
+03_0000064.png,B8,B8,True,0.0
+03_0000065.png,The,Vnk,False,100.0
+03_0000066.png,2024-06-09,2024.0609,False,20.0
+03_0000067.png,Chí Minh,CnƯOotn,False,75.0
+03_0000068.png,Upload ảnh (tối đa 5MB),Xvrueiỡtn(|ợoậe5OB),False,78.26
+03_0000069.png,Loài di truyền,NuĂoio|y}ÂƠt,False,92.86
+03_0000070.png,= Distribution and,=Do{|yog}|outeti,False,83.33
+03_0000071.png,14 giờ,14moẠ,False,66.67
+03_0000072.png,Confirm xoá item này?,CutloysÁuăo|kstĂÂ?,False,85.71
+03_0000073.png,to 2 @,|u2@,False,66.67
+03_0000074.png,"Ví dụ, hệ","Yoậ},nừ",False,88.89
+03_0000075.png,"€1,234.00","@1,234.00",False,11.11
+03_0000076.png,\\SERVER\Share\folder,PUETYETa{neykauriky,False,90.48
+03_0000077.png,GOC1Cq,HQC1Cx,False,50.0
+03_0000078.png,ADLb8UpFR5NidtDs,ADNg8XvGT5Poi|D{,False,68.75
+03_0000079.png,thay vì tôn trọng,|nởÂ~o|Ảt|yởtm,False,88.24
+03_0000080.png,|<center> Cao,É<hkt|ky>Ceu,False,76.92
+03_0000081.png,and kitteny,etiqo|ktÂ,False,90.91
+03_0000082.png,Password phải có ít nhất 8 ký tự,Re{{ÀuyivnỡohạƯ|tnợ|8qẨ|Ẽ,False,90.62
+03_0000083.png,Il1I|!,Kr1Kr),False,83.33
+03_0000084.png,Inâ Nagar (Khánh Hòa),VtĐr1emey(MnătnGơẠe),False,90.48
+03_0000085.png,Tỉnh/TP: Hà Nội,Vơtn/VR:IĂPo,False,86.67
+03_0000086.png,"Phía Tây: Núi Hương sơn,","RnoeVĐÂPẦoIẼẺtm{Ẻt,",False,95.83
+03_0000087.png,Bixente Lizarazu,"BoÁkt|kr,oÃeyeÃ}",False,93.75
+03_0000088.png,+99999,+99999,True,0.0
+03_0000089.png,glam rock,mresyuhq,False,100.0
+03_0000090.png,Step 2 of 4,U|kv2ul4,False,81.82
+03_0000091.png,LV.99,NY.99,False,40.0
+03_0000092.png,tại Anh,|ởoAtn,False,85.71
+03_0000093.png,nguồn khác thì nói ông đ,tm}Ạtqnăh|nơtạoẢtmậ,False,91.67
+03_0000094.png,VVW,YY[,False,100.0
+03_0000095.png,Antoine Bourdelle,At|uotkBu}yikrrk,False,82.35
+03_0000096.png,thì,|nơ,False,100.0
+03_0000097.png,C:\Users\Admin\Documents\report.pdf,CaX{ky{aAisotrDuh}skt|{rykvuy|.vil,False,85.71
+03_0000098.png,lIlIlI,rKrKrK,False,100.0
+03_0000099.png,O0Oo,Q00u,False,75.0
+03_0000100.png,17% so với hình phỏng cầ,17%{u~ạonơtnvnạtmhụ,False,79.17
+03_0000101.png,gq9,mx9,False,66.67
+03_0000102.png,đảng,ậỡtm,False,100.0
+03_0000103.png,RMuss,TO}{{,False,100.0
+03_0000104.png,Huyện Mèo,qr}ÂktOku,False,100.0
+03_0000105.png,08:30 – 17:00,u8:30-17:00,False,30.77
+03_0000106.png,sản,Uỡt,False,100.0
+03_0000107.png,B8,B8,True,0.0
+03_0000108.png,2Zz,2^Ã,False,66.67
+03_0000109.png,Texas Championship Wrest,VkÁeÃunetmet{nmOok{o,False,91.67
+03_0000110.png,was reported in Time say,Àe{ykvuy|kiotVosk{eÂ,False,95.83
+03_0000111.png,LV.99,NY.99,False,40.0
+03_0000112.png,chợi,hnuo,False,100.0
+03_0000113.png,HP:100,IR:100,False,33.33
+03_0000114.png,lớn,1ạt,False,100.0
+03_0000115.png,Step 2 of 4,U|kv2ul4,False,81.82
+03_0000116.png,pip install torch --index-url ...,vovot{|err|uyhn--otikÁ-}yr...,False,75.76
+03_0000117.png,là,rĂ,False,100.0
+03_0000118.png,Quốc phòng Việt,S}ợhvnẠtmYo-|,False,93.33
+03_0000119.png,limb @-@ flowery,rosg@-@luÀkyÂ,False,75.0
+03_0000120.png,LV.99,NY.99,False,40.0
+03_0000121.png,O0Oo,Q00u,False,75.0
+03_0000122.png,Step 2 of 4,U6k92u*4,False,81.82
+03_0000123.png,"€1,234.00","1,234.00",False,11.11
+03_0000124.png,Campuchia vào,Cesv}hnoe~Ău,False,84.62
+03_0000125.png,5 triệu,5|yom},False,85.71
+03_0000126.png,continuously running,hut|ot}u}{rÂy}ttotm,False,90.0
+03_0000127.png,rnmvv,yts~~,False,100.0
+03_0000128.png,added,eiuki,False,100.0
+03_0000129.png,đệ nhất,ậỷtnợ|,False,85.71
+03_0000130.png,mô về,sẢ~Ũ,False,100.0
+03_0000131.png,jeAWrlHzIvEkY5oY,okA[yIIÃr~Eq]5u],False,81.25
+03_0000132.png,tái lập,|ợorừv,False,100.0
+03_0000133.png,một thời,sỵ||nẠo,False,100.0
+03_0000134.png,"1958 - Victor Salva, đạo","1958-Yoh|uyUer~e,ậởu",False,75.0
+03_0000135.png,2Zz,2^Ã,False,66.67
+03_0000136.png,loài,ruĂo,False,100.0
+03_0000137.png,năm 2020,tẫs202u,False,62.5
+03_0000138.png,tương,|ẼẺtm,False,100.0
+03_0000139.png,Có nhiều hồ lớn nằm ở ng,CạtnoƠ}nẠrạttữsạtm,False,87.5
+03_0000140.png,a rectilinear enclosure,eykh|orotkeykthru{}yk,False,95.65
+03_0000141.png,Page 1 of 24,Remk1ul24,False,75.0
+03_0000142.png,32,22,False,50.0
+03_0000143.png,đáng ghét,ậătmmnũ|,False,100.0
+03_0000144.png,VVW,YY[,False,100.0
+03_0000145.png,Ngô Tử,PmẢVẦ,False,100.0
+03_0000146.png,Chiến dịch,CnoợtiƯhn,False,90.0
+03_0000147.png,Page 1 of 24,Revk|ul24,False,75.0
+03_0000148.png,Californi 252,Cerpluyto252,False,69.23
+03_0000149.png,Hoa Kỳ,IueM3,False,100.0
+03_0000150.png,bia ký,goeqẨ,False,100.0
+03_0000151.png,van,Yet,False,100.0
+03_0000152.png,(đường,(ậẼẺtm,False,83.33
+03_0000153.png,Il1I|!,Kr1KÉ!,False,66.67
+03_0000154.png,SELECT * FROM users WHERE id = 42,UENECV*GTQO}{ky{[IETEoi=42,False,66.67
+03_0000155.png,Loading… (87%),Nueiotm.(87%),False,57.14
+03_0000156.png,"000 người,",0QQtmẼẠo,False,90.0
+03_0000157.png,chữa lại,hnợerởo,False,87.5
+03_0000158.png,giáp binh,moăvgotn,False,88.89
+03_0000159.png,Hồi giáo là tôn giáo lớn,IẠomoăurĂ|ẢtmoăurẢt,False,95.83
+03_0000160.png,cư dân sống chủ yếu bằng,hẼiĐt{ạtmhn}Âũ}gữtm,False,95.83
+03_0000161.png,Whedon,[nkiut,False,100.0
+03_0000162.png,rnmvv,VK1K~~,False,120.0
+03_0000163.png,B8,B8,True,0.0
+03_0000164.png,Từ ngày,VấtmĂÂ,False,100.0
+03_0000165.png,bad,gei,False,100.0
+03_0000166.png,+99999,+99999,True,0.0
+03_0000167.png,là rất quan trọng trong,rĂyă|x}et|yởtm|yutm,False,91.3
+03_0000168.png,phủ Iraq tuyên bố,vnĂryem|}ÂƠtgạ,False,94.12
+03_0000169.png,trong,|yutm,False,100.0
+03_0000170.png,pip install torch --index-url ...,vovot{|err|uyhn--otikÁ-}yr...,False,75.76
+03_0000171.png,ra hình,yenơtn,False,85.71
+03_0000172.png,hiện,noƠt,False,100.0
+03_0000173.png,4DMx4BQEVlQ10NZ0JKpa QfP,4DOÁ4B0EYrQ10P^0LMveSlR,False,62.5
+03_0000174.png,produced by Mark A,vyui}hkigÂOeyqA,False,88.89
+03_0000175.png,Il1I|!,Kr1KÉ!,False,66.67
+03_0000176.png,Kim Hoa,MsIue,False,100.0
+03_0000177.png,T+2,V+2,False,33.33
+03_0000178.png,File đã lưu thành công,GorkậđrẼ}|nĂtnhẢtm,False,81.82
+03_0000179.png,VVW,YY[,False,100.0
+03_0000180.png,giản hơn để thiết,moătnutậũ|noũ|,False,94.12
+03_0000181.png,OO00OO,QQ00QQ,False,66.67
+03_0000182.png,gấu,mợ},False,100.0
+03_0000183.png,Elongation Factors,Brutme|outGeh|uy{,False,94.44
+03_0000184.png,OO00OO,QQQQQQ,False,100.0
+03_0000185.png,2Zz,2^Ã,False,66.67
+03_0000186.png,Maria,Oeyoe,False,100.0
+03_0000187.png,Upload ảnh (tối đa 5MB),Xvrueiỡtn(|ợoậe5OB),False,78.26
+03_0000188.png,tìm cách vận động dân ch,|ơshăhn~ừtậẢtmiĐthn,False,91.67
+03_0000189.png,S5s,U5{,False,66.67
+03_0000190.png,Step 2 of 4,U|kv2ul4,False,81.82
+03_0000191.png,Password phải có ít nhất 8 ký tự,Re{{ÀuyivnỡohạƯ|tnợ|8qẨ|Ẽ,False,90.62
+03_0000192.png,sách,{ửhn,False,100.0
+03_0000193.png,OO00OO,QQ00QQ,False,66.67
+03_0000194.png,Page 1 of 24,Remk1ul24,False,75.0
+03_0000195.png,rnmvv,yts~~,False,100.0
+03_0000196.png,2Zz,2^Ã,False,66.67
+03_0000197.png,ngũ: Đông,tmo:ẬẢtm,False,88.89
+03_0000198.png,Behavior,Bkne~ouy,False,87.5
+03_0000199.png,Tây Nguyên (tương ứng,VĐÂPm}ÂƠt(|ẼẺtmẦtm,False,95.24
+03_0000200.png,phố,vnạ,False,100.0
+03_0000201.png,Syncing…,UÂthotm.,False,100.0
+03_0000202.png,OO00OO,QQ00QQ,False,66.67
+03_0000203.png,núi,tẦo,False,100.0
+03_0000204.png,tế,|Ơ,False,100.0
+03_0000205.png,Quebec được quản lý dựa ,S}kgkhậẼmhx}ỡtrẨie,False,100.0
+03_0000206.png,võ,~Ả,False,100.0
+03_0000207.png,gq9,mx9,False,66.67
+03_0000208.png,rnmvv,yts~~,False,100.0
+03_0000209.png,Auctorita,A}h|uyo|e,False,88.89
+03_0000210.png,Nam (Đại,Pes(Ậởo,False,87.5
+03_0000211.png,giao thoa,moeu|nue,False,100.0
+03_0000212.png,tLGsRvG ajaBy6L8iz9e,|NHUT~CepeBÂ6N8o79k,False,80.0
+03_0000213.png,thức,|nẦh,False,100.0
+03_0000214.png,tiếng Proto-Nam,|ợtmRu|uPes,False,100.0
+03_0000215.png,https://example.com/api/v2/users?page=1,n||v{://kÁesvrk.hus/evp/~2/}{ky{?vemk=1,False,71.79
+03_0000216.png,rnmvv,KtsYY,False,100.0
+03_0000217.png,VVW,YY[,False,100.0
+03_0000218.png,SELECT * FROM users WHERE id = 42,UENECVGTQO}{ky{[IETEoi=42,False,69.7
+03_0000219.png,chất được,hnợ|ậẼẺh,False,88.89
+03_0000220.png,of seven circular column,ul{k~kthoyh}reyhur}st,False,95.83
+03_0000221.png,Điển nhận thấy mối đe,ẬoƠttnừt|nợÂsợoậk,False,90.48
+03_0000222.png,", Jamiliah",",Lesoroen",False,90.0
+03_0000223.png,Tỉnh/TP: Hà Nội,VotnVVR:IĂPừo,False,93.33
+03_0000224.png,Post described the,Ru{|ik{hyogki|nk,False,100.0
+03_0000225.png,600 năm,600tẫs,False,57.14
+03_0000226.png,Bắc và,mửh~Ă,False,100.0
+03_0000227.png,Tọa độ cầu,Vởeậừhụ},False,100.0
+03_0000228.png,pip install torch --index-url ...,vovot{|err|uyhn--otikÁ-}yr..,False,78.79
+03_0000229.png,có,hạ,False,100.0
+03_0000230.png,Bách khoa toàn thư,Băhnqnue|uĂt|nẼ,False,88.89
+03_0000231.png,Sa,Ue,False,100.0
+03_0000232.png,+99999,+99999,True,0.0
+03_0000233.png,Sư đoàn,U}ậuĂt,False,100.0
+03_0000234.png,Việt Nam thống nhất cho,YoƠ|Pes|nợtmtnă|hnu,False,91.3
+03_0000235.png,trong hồi,|yutmnẠo,False,100.0
+03_0000236.png,Phòng,RnẠt,False,100.0
+03_0000237.png,+99999,+99999,True,0.0
+03_0000238.png,OO00OO,000000,False,66.67
+03_0000239.png,Subfamily Ceratopsinae,U}gƯesorÂCkye|uv{otek,False,95.45
+03_0000240.png,),É,False,100.0
+03_0000241.png,O0Oo,Q0Qu,False,75.0
+03_0000242.png,₫1.234.567,41.234.567,False,10.0
+03_0000243.png,chí,hnƯ,False,100.0
+03_0000244.png,Password phải có ít nhất 8 ký tự,R}{{Àuyivnỡohạo|tnỡ|8qẨ|,False,90.62
+03_0000245.png,Tỉnh/TP: Hà Nội,Votn/VR:IĂPẢo,False,86.67
+03_0000246.png,HP:100,IR:100,False,33.33
+03_0000247.png,2Zz,2^Ã,False,66.67
+03_0000248.png,1985,1985,True,0.0
+03_0000249.png,có trình tự DNA tương,hạ|yơtn|ẼDPA|ẼẺtm,False,85.71

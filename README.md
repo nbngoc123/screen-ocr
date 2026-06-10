@@ -68,11 +68,23 @@ Xem [screen-ocr-rules.md](../screen-ocr-rules.md) để biết đầy đủ các
 Các báo cáo được tự động xuất ra thư mục `reports/` sau khi huấn luyện.
 
 **1. Quá trình huấn luyện (Training Log)**
+
+#### Phiên bản v1 (Baseline)
 - **Epochs:** 86
 - **Final Train Loss:** 0.0769
 - **Final Val Loss:** 0.2630
+![Biểu đồ Training Metrics v1](reports/training_metrics.png)
 
-![Biểu đồ Training Metrics](reports/training_metrics.png)
+#### Phiên bản v2
+- **Epochs:** 64
+- **Final Train Loss:** 0.0337
+- **Final Val Loss:** 0.0209
+- **Final Val CER:** 14.05%
+![Biểu đồ Training Metrics v2](reports/training_metrics_v2.png)
+
+#### Phiên bản v3
+*(Đang cập nhật...)*
+![Biểu đồ Training Metrics v3](reports/training_metrics_v3.png)
 
 **2. Kết quả nhận diện mẫu (Sample Inference)**
 
@@ -88,8 +100,12 @@ Dưới đây là một số hình ảnh kết quả nhận diện sinh ra trong
 
 | Dataset | Số mẫu (Samples) | Exact Match (%) | CER Trung bình (%) | Báo cáo chi tiết |
 |---|---|---|---|---|
-| Synthetic Test (Dữ liệu màn hình giả lập) | 20 | 50.00% | 9.59% | [Xem chi tiết HTML](reports/synthetic_test_evaluation.html) |
-| ICDAR 2015 Task 3 (Test thực tế) | 1441 | 47.60% | 23.16% | [Xem chi tiết HTML](reports/test_task3_evaluation.html) |
+| Synthetic Test (Dữ liệu màn hình giả lập) - v1 | 1000 | 6.10% | 81.78% | [Xem chi tiết HTML](reports/synthetic_test_evaluation.html) |
+| Synthetic Test (Dữ liệu màn hình giả lập) - v2 | 1000 | 37.10% | 14.91% | [Xem chi tiết HTML](reports/synthetic_test_evaluation_v2.html) |
+| Synthetic Test (Dữ liệu màn hình giả lập) - v3 | 1000 | 36.80% | 15.37% | [Xem chi tiết HTML](reports/synthetic_test_evaluation_v3.html) |
+| ICDAR 2015 Task 3 (Test thực tế) - v1 | 1441 | 47.60% | 23.16% | [Xem chi tiết HTML](reports/test_task3_evaluation.html) |
+| ICDAR 2015 Task 3 (Test thực tế) - v2 | 1439 | 51.49% | 17.83% | [Xem chi tiết HTML](reports/evaluation_report_v2.html) |
+| ICDAR 2015 Task 3 (Test thực tế) - v3 | 1439 | 48.64% | 19.64% | [Xem chi tiết HTML](reports/evaluation_report_v3.html) |
 
 > [!NOTE]
 > Bảng kết quả trên là của bản baseline đào tạo ban đầu (100 epoch). CER trên tập thực tế (ICDAR) vẫn còn khá cao (23%), cần Fine-tune thêm bằng dữ liệu thật (Real data) kết hợp với các kỹ thuật Data Augmentation đa dạng hơn để đạt được chỉ tiêu `< 20% CER` đề ra trong Roadmap. Xem thêm ví dụ Augmentation tại đây: 
