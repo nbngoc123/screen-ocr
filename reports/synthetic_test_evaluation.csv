@@ -1,0 +1,21 @@
+filename,target,prediction,is_correct,cer(%)
+00_0000000.png,File đã lưu thành công,Fileđãlưuthànhcông,False,18.18
+00_0000001.png,T+2,T+2,True,0.0
+00_0000002.png,damaged in the Blitz,damagedintheBlit2,False,20.0
+00_0000003.png,S5s,S5s,True,0.0
+00_0000004.png,Hãn lại xâm chiếm,Hẫnlạixâmchiếm,False,23.53
+01_0000000.png,gq9,gq9,True,0.0
+01_0000001.png,100%,100%,True,0.0
+01_0000002.png,S5s,S5s,True,0.0
+01_0000003.png,có tục thờ,cótụcthờ,False,20.0
+01_0000004.png,08],08),False,33.33
+02_0000000.png,₫1.234.567,g1.234.567,False,10.0
+02_0000001.png,WiFi,WiFi,True,0.0
+02_0000002.png,in contact with him,incontactwithhim,False,15.79
+02_0000003.png,Il1I|!,Il1I|!,True,0.0
+02_0000004.png,100%,100%,True,0.0
+03_0000000.png,$99.99,$99.99,True,0.0
+03_0000001.png,feathered,feathered,True,0.0
+03_0000002.png,lIlIlI,1IlIlI,False,16.67
+03_0000003.png,cho vào,chovào,False,14.29
+03_0000004.png,rnmvv,rnmvV,False,20.0
