@@ -98,6 +98,36 @@ Dưới đây là một số hình ảnh kết quả nhận diện sinh ra trong
 
 ![Kết quả phát hiện văn bản toàn màn hình](reports/dbnet_test_output.png)
 
+#### Nhận diện End-to-End trên Web UI
+Kết quả chạy pipeline thực tế qua Gradio:
+![Kết quả nhận diện thực tế](reports/test_inferent.png)
+
+| STT | Văn bản nhận diện | Độ tin cậy |
+|---|---|---|
+| 1 | STATICROUTE | 98.11% |
+| 2 | 2 | 99.61% |
+| 3 | INTERNET | 96.05% |
+| 4 | ROUTER | 94.07% |
+| 5 | LoCALLAN | 94.78% |
+
+![Kết quả nhận diện thực tế 2](reports/inferent_2.png)
+
+| STT | Văn bản nhận diện | Độ tin cậy |
+|---|---|---|
+| 1 | Hệ | 99.94% |
+| 2 | THONG | 89.74% |
+| 3 | T0] | 97.01% |
+| 4 | UU | 97.27% |
+| 5 | H6A | 95.05% |
+| 6 | PHAN | 91.77% |
+| 7 | Bố | 99.92% |
+| 8 | HANG | 98.27% |
+| 9 | H6A | 96.65% |
+| 10 | (INVENTORY | 97.70% |
+| 11 | TRANSER | 99.63% |
+| 12 | OPTIMIATION | 97.73% |
+| 13 | SYSTEM) | 99.82% |
+
 **3. Đánh giá độ chính xác (Evaluation)**
 
 | Dataset | Số mẫu (Samples) | Exact Match (%) | CER Trung bình (%) | Báo cáo chi tiết |

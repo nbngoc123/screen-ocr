@@ -17,7 +17,7 @@ paths:
   det_model:      data/models/dbnet.onnx   # Mô hình Text Detection ONNX
   rec_model:      data/models/crnn.onnx    # Mô hình Text Recognition ONNX
   checkpoint_dir: checkpoints              # Thư mục lưu checkpoint khi train
-  best_weight:    checkpoints/crnn.pth # File weights tốt nhất để chạy predict
+  best_weight:    checkpoints/crnn-v3.pth # File weights tốt nhất để chạy predict
 
 # ─── Data Generation ──────────────────────────────────────────────────────────
 data_gen:
