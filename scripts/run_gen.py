@@ -135,6 +135,7 @@ if __name__ == "__main__":
     common_wt = cfg_dg.get("common_font_weight", 10.0)
     rare_wt = cfg_dg.get("rare_font_weight", 1.0)
     val_ratio = cfg_dg.get("val_ratio", 0.1)
+    test_ratio = cfg_dg.get("test_ratio", 0.1)
     
     corpus_prob = cfg_dg.get("corpus_prob", 0.8)
     word_split_prob = cfg_dg.get("word_split_prob", 0.3)
@@ -162,9 +163,12 @@ if __name__ == "__main__":
     random.seed(42) # Giữ cho việc split luôn cố định qua các lần sinh
     random.shuffle(families)
     
-    split_idx = int(len(families) * (1.0 - val_ratio))
-    train_families = families[:split_idx]
-    val_families = families[split_idx:]
+    split_val_idx = int(len(families) * (1.0 - val_ratio - test_ratio))
+    split_test_idx = int(len(families) * (1.0 - test_ratio))
+    
+    train_families = families[:split_val_idx]
+    val_families = families[split_val_idx:split_test_idx]
+    test_families = families[split_test_idx:]
     
     train_fonts = []
     for fam in train_families:
@@ -173,30 +177,38 @@ if __name__ == "__main__":
     val_fonts = []
     for fam in val_families:
         val_fonts.extend(font_families[fam])
+        
+    test_fonts = []
+    for fam in test_families:
+        test_fonts.extend(font_families[fam])
     
     # Số lượng ảnh lấy thẳng từ file cấu hình default.yaml
     n_train = cfg_dg["n_train"]
     n_val = cfg_dg["n_val"]
+    n_test = cfg_dg.get("n_test", 0)
     
     n_workers = cfg_dg.get("n_workers", 4)
     
-    print(f"Sử dụng {len(train_fonts)} fonts cho tập Train, {len(val_fonts)} fonts cho tập Val.")
+    print(f"Sử dụng {len(train_fonts)} fonts Train, {len(val_fonts)} fonts Val, {len(test_fonts)} fonts Test.")
     
     train_dir = config["paths"]["synthetic_train"]
     val_dir = config["paths"]["synthetic_val"]
+    test_dir = config["paths"].get("synthetic_test", "data/synthetic/test")
     
     do_train = check_output_dir(train_dir)
     do_val = check_output_dir(val_dir)
+    do_test = check_output_dir(test_dir) if n_test > 0 else False
     
-    if not do_train and not do_val:
-        print("Đã bỏ qua cả Train và Val. Thoát.")
+    if not do_train and not do_val and not do_test:
+        print("Đã bỏ qua tất cả. Thoát.")
         exit(0)
     
-    print(f"Bắt đầu sinh dữ liệu ({n_train} Train, {n_val} Val) với {n_workers} processes...")
+    print(f"Bắt đầu sinh dữ liệu ({n_train} Train, {n_val} Val, {n_test} Test) với {n_workers} processes...")
     
     # Tính toán trọng số xác suất cho các font
     train_weights = get_font_weights(train_fonts, common_fonts, common_wt, rare_wt)
     val_weights = get_font_weights(val_fonts, common_fonts, common_wt, rare_wt)
+    test_weights = get_font_weights(test_fonts, common_fonts, common_wt, rare_wt)
     
     # Train
     if do_train:
@@ -228,6 +240,28 @@ if __name__ == "__main__":
             output_dir=val_dir,
             total_samples=n_val,
             font_weights=val_weights,
+            n_workers=n_workers,
+            corpus_prob=corpus_prob,
+            word_split_prob=word_split_prob,
+            phrase_split_prob=phrase_split_prob,
+            hard_prob=hard_prob,
+            shadow_prob=shadow_prob,
+            stroke_prob=stroke_prob,
+            bg_light_prob=bg_light_prob,
+            bg_dark_prob=bg_dark_prob,
+            real_bg_prob=real_bg_prob,
+            neg_prob=neg_prob,
+            multi_dpi_prob=multi_dpi_prob
+        )
+        
+    # Test
+    if do_test:
+        print("\n--- Tập Test ---")
+        run_multiprocess(
+            font_list=test_fonts,
+            output_dir=test_dir,
+            total_samples=n_test,
+            font_weights=test_weights,
             n_workers=n_workers,
             corpus_prob=corpus_prob,
             word_split_prob=word_split_prob,

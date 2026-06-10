@@ -8,6 +8,7 @@ paths:
   font_list:      data/font_list.txt
   synthetic_train: data/synthetic/train
   synthetic_val:   data/synthetic/val
+  synthetic_test:  data/synthetic/test
   real_data:       data/real
   error_samples:   data/errors
   reports:         reports
@@ -20,9 +21,11 @@ paths:
 
 # ─── Data Generation ──────────────────────────────────────────────────────────
 data_gen:
-  n_train:        200    
-  n_val:          20     
+  n_train:        20000    
+  n_val:          2000    
+  n_test:         2000
   val_ratio:      0.1        # 10% font dành riêng cho tập validation
+  test_ratio:     0.1        # 10% font dành riêng cho tập test
   font_size_min:  10
   font_size_max:  52
   min_text_len:   2
