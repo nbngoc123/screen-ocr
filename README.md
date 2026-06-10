@@ -128,6 +128,8 @@ Kết quả chạy pipeline thực tế qua Gradio:
 | 12 | OPTIMIATION | 97.73% |
 | 13 | SYSTEM) | 99.82% |
 
+![Kết quả nhận diện thực tế 3](reports/infrent_3.png)
+
 **3. Đánh giá độ chính xác (Evaluation)**
 
 | Dataset | Số mẫu (Samples) | Exact Match (%) | CER Trung bình (%) | Báo cáo chi tiết |
@@ -152,3 +154,7 @@ Kết quả chạy pipeline thực tế qua Gradio:
 Để huấn luyện nhận diện đa ngôn ngữ, mô hình sử dụng nguồn text lấy từ các tệp corpus lớn (`.txt`), sau đó render chèn lên các background màn hình ngẫu nhiên:
 - **Corpus Tiếng Việt (`data/wiki_corpus.txt`)**: Các câu văn phong phú như *"Hệ Trái Đất - Mặt Trăng"*, *"Chiến tranh thế giới thứ hai đã cướp đi..."*, *"Chủ nghĩa Khai sáng và Chủ nghĩa Canh Tân"*, *"Màu của niềm tin và hy vọng"*...
 - **Corpus Tiếng Anh (`data/icdar_en_corpus.txt`)**: Văn bản thực tế từ tập ICDAR như *"because she is so full of contradictions"*, *"The status of"*, *"All Things Considered (NPR)"*, *"The loss was the All Blacks' only loss..."*...
+
+**5. Hạn chế hiện tại (Known Issues)**
+
+- **Khoảng trắng (Whitespaces)**: Hiện tại mô hình CRNN nhận diện chưa thực sự tốt các khoảng trắng giữa các từ. Các từ thường bị dính liền vào nhau (ví dụ: `STATIC ROUTE` nhận diện thành `STATICROUTE`). Đây là một điểm cần khắc phục trong các version tiếp theo bằng cách cân bằng lại bộ dữ liệu huấn luyện hoặc thay đổi cách mã hóa khoảng trắng trong quá trình gen text.
